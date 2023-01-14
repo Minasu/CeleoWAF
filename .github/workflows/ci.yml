@@ -23,6 +23,8 @@ jobs:
           - {label: "without maxmind", opt: "--without-maxmind" }
     steps:
       - name: Setup Dependencies
+        run: |
+          sudo yum -y install yajl-devel
       - uses: actions/checkout@v2
         with:
           submodules: true
