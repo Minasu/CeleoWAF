@@ -48,3 +48,5 @@ examples/multiprocess_c/multi
 examples/reading_logs_via_rule_message/simple_request
 examples/reading_logs_with_offset/read
 examples/using_bodies_in_chunks/simple_request
+src/parser/test.cc
+celeowaf.pc
