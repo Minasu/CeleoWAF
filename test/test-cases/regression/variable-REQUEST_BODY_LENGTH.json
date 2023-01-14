@@ -17,27 +17,13 @@
         "User-Agent":"curl/7.38.0",
         "Accept":"*/*",
         "Content-Length":"330",
-        "Content-Type":"multipart/form-data; boundary=--------------------------756b6d74fa1a8ee2",
+        "Content-Type":"application/x-www-form-urlencoded",
         "Expect":"100-continue"
       },
       "uri":"/",
       "method":"POST",
       "body":[  
-        "--------------------------756b6d74fa1a8ee2",
-        "Content-Disposition: form-data; name=\"name\"",
-        "",
-        "test",
-        "--------------------------756b6d74fa1a8ee2",
-        "Content-Disposition: form-data; name=\"filedata\"; filename=\"small_text_file.txt\"",
-        "Content-Type: text/plain",
-        "",
-        "This is a very small test file..",
-        "--------------------------756b6d74fa1a8ee2",
-        "Content-Disposition: form-data; name=\"filedata\"; filename=\"small_text_file.txt\"",
-        "Content-Type: text/plain",
-        "",
-        "This is another very small test file..",
-        "--------------------------756b6d74fa1a8ee2--"
+        "subject=test&send=send"
       ]
     },
     "response":{  
@@ -51,7 +37,7 @@
       ]
     },
     "expected":{  
-      "debug_log":"Target value: \"508\" \\(Variable: REQUEST_BODY_LENGTH\\)"
+      "debug_log":"Target value: \"23\" \\(Variable: REQUEST_BODY_LENGTH\\)"
     },
     "rules":[  
       "SecRuleEngine On",
@@ -60,3 +46,4 @@
     ]
   }
 ]
+

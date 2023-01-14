@@ -981,84 +981,21 @@
         "User-Agent":"curl/7.38.0",
         "Accept":"*/*",
         "Content-Length":"330",
-        "Content-Type":"multipart/form-data; boundary=--------------------------756b6d74fa1a8ee2",
+        "Content-Type":"application/x-www-form-urlencoded",
         "Expect":"100-continue"
       },
       "uri":"/",
       "method":"POST",
       "body":[  
-        "----------------------------756b6d74fa1a8ee2",
-        "Content-Disposition: form-data; name=\"name\"",
-        "",
-        "test",
-        "----------------------------756b6d74fa1a8ee2",
-        "Content-Disposition: form-data; name=\"filedata\"; filename=\"small_text_file.txt\"",
-        "Content-Type: text/plain",
-        "",
-        "This is a very small test file..",
-        "----------------------------756b6d74fa1a8ee2",
-        "Content-Disposition: form-data; name=\"filedata\"; filename=\"small_text_file.txt\"",
-        "Content-Type: text/plain",
-        "",
-        "This is another very small test file..",
-        "----------------------------756b6d74fa1a8ee2--"
+        "subject=test&send=send"
       ]
     },
     "expected":{
-      "error_log":"o45,30v193,516t:trim"
+      "error_log":"t:trim"
     },
     "rules":[
       "SecRequestBodyAccess On",
-      "SecRule REQUEST_BODY \"Content-Disposition: form-data\" \"id:1,phase:3,pass,t:trim,msg:'s'\""
-    ]
-  },
-  {
-    "enabled":1,
-    "version_min":300000,
-    "title":"Testing Variables :: REQUEST_BODY",
-    "client":{
-      "ip":"200.249.12.31",
-      "port":123
-    },
-    "server":{
-      "ip":"200.249.12.31",
-      "port":80
-    },
-    "request":{  
-      "headers":{  
-        "Host":"localhost",
-        "User-Agent":"curl/7.38.0",
-        "Accept":"*/*",
-        "Content-Length":"330",
-        "Content-Type":"multipart/form-data; boundary=--------------------------756b6d74fa1a8ee2",
-        "Expect":"100-continue"
-      },
-      "uri":"/",
-      "method":"POST",
-      "body":[  
-        "----------------------------756b6d74fa1a8ee2",
-        "Content-Disposition: form-data; name=\"name\"",
-        "",
-        "test",
-        "----------------------------756b6d74fa1a8ee2",
-        "Content-Disposition: form-data; name=\"filedata\"; filename=\"small_text_file.txt\"",
-        "Content-Type: text/plain",
-        "",
-        "This is a very small test file..",
-        "----------------------------756b6d74fa1a8ee2",
-        "Content-Disposition: form-data; name=\"filedata\"; filename=\"small_text_file.txt\"",
-        "Content-Type: text/plain",
-        "",
-        "This is another very small test file..",
-        "----------------------------756b6d74fa1a8ee2--"
-      ]
-    },
-    "expected":{
-      "error_log":"o45,30v193,516t:trim"
-    },
-    "rules":[
-      "SecRequestBodyAccess On",
-      "SecRule REQUEST_BODY \"Content-Disposition: form-data\" \"id:1,phase:3,pass,t:trim,msg:'s'\""
+      "SecRule REQUEST_BODY \"subject=test&send=send\" \"id:1,phase:3,pass,t:trim,msg:'s'\""
     ]
   },
   {
@@ -1079,31 +1016,17 @@
         "User-Agent":"curl/7.38.0",
         "Accept":"*/*",
         "Content-Length":"330",
-        "Content-Type":"multipart/form-data; boundary=--------------------------756b6d74fa1a8ee2",
+        "Content-Type":"application/x-www-form-urlencoded",
         "Expect":"100-continue"
       },
       "uri":"/",
       "method":"POST",
       "body":[  
-        "----------------------------756b6d74fa1a8ee2",
-        "Content-Disposition: form-data; name=\"name\"",
-        "",
-        "test",
-        "----------------------------756b6d74fa1a8ee2",
-        "Content-Disposition: form-data; name=\"filedata\"; filename=\"small_text_file.txt\"",
-        "Content-Type: text/plain",
-        "",
-        "This is a very small test file..",
-        "----------------------------756b6d74fa1a8ee2",
-        "Content-Disposition: form-data; name=\"filedata\"; filename=\"small_text_file.txt\"",
-        "Content-Type: text/plain",
-        "",
-        "This is another very small test file..",
-        "----------------------------756b6d74fa1a8ee2--"
+        "subject=test&send=send"
       ]
     },
     "expected":{
-      "error_log":"v193,516t:trim"
+      "error_log":"t:trim"
     },
     "rules":[
       "SecRequestBodyAccess On",

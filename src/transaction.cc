@@ -969,7 +969,7 @@ int Transaction::processRequestBody() {
     m_variableFullRequestLength.set(std::to_string(fullRequest.size()),
         m_variableOffset);
 
-    if (m_requestBody.tellp() > 0) {
+    if (m_requestBody.tellp() > 0 && this->m_requestBodyType != MultiPartRequestBody) {
         m_variableRequestBody.set(m_requestBody.str(), m_variableOffset);
         m_variableRequestBodyLength.set(std::to_string(
             m_requestBody.str().size()),
