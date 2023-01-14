@@ -1,6 +1,6 @@
 [
   {
-    "enabled":1,
+    "enabled":0,
     "version_min":300000,
     "resource":"ssdeep",
     "title":"Testing Operator :: @fuzzyHash (1/2)",
@@ -107,7 +107,7 @@
     ]
   },
   {
-    "enabled":1,
+    "enabled":0,
     "version_min":300000,
     "resource":"ssdeep",
     "title":"Testing Operator :: @fuzzyHash (2/2)",
