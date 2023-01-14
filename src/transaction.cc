@@ -1,5 +1,5 @@
 /*
- * ModSecurity, http://www.modsecurity.org/
+ * CeleoWAF, http://www.celeowaf.org/
  * Copyright (c) 2015 - 2021 Trustwave Holdings, Inc. (http://www.trustwave.com/)
  *
  * You may not use this file except in compliance with
@@ -9,11 +9,11 @@
  *
  * If any of the files related to licensing are missing or if you have any
  * other questions related to licensing please contact Trustwave Holdings, Inc.
- * directly using the email address security@modsecurity.org.
+ * directly using the email address security@celeowaf.org.
  *
  */
 
-#include "modsecurity/transaction.h"
+#include "celeowaf/transaction.h"
 
 #ifdef WITH_YAJL
 #include <yajl/yajl_tree.h>
@@ -32,34 +32,34 @@
 #include <unordered_map>
 #include <vector>
 
-#include "modsecurity/actions/action.h"
+#include "celeowaf/actions/action.h"
 #include "src/actions/disruptive/deny.h"
-#include "modsecurity/intervention.h"
-#include "modsecurity/modsecurity.h"
+#include "celeowaf/intervention.h"
+#include "celeowaf/celeowaf.h"
 #include "src/request_body_processor/multipart.h"
 #include "src/request_body_processor/xml.h"
 #ifdef WITH_YAJL
 #include "src/request_body_processor/json.h"
 #endif
-#include "modsecurity/audit_log.h"
+#include "celeowaf/audit_log.h"
 #include "src/unique_id.h"
 #include "src/utils/string.h"
 #include "src/utils/system.h"
 #include "src/utils/decode.h"
 #include "src/utils/random.h"
-#include "modsecurity/rule.h"
-#include "modsecurity/rule_message.h"
-#include "modsecurity/rules_set_properties.h"
+#include "celeowaf/rule.h"
+#include "celeowaf/rule_message.h"
+#include "celeowaf/rules_set_properties.h"
 #include "src/actions/disruptive/allow.h"
 #include "src/variables/remote_user.h"
 
 
 
-using modsecurity::actions::Action;
-using modsecurity::RequestBodyProcessor::Multipart;
-using modsecurity::RequestBodyProcessor::XML;
+using celeowaf::actions::Action;
+using celeowaf::RequestBodyProcessor::Multipart;
+using celeowaf::RequestBodyProcessor::XML;
 
-namespace modsecurity {
+namespace celeowaf {
 
 /**
  * @name    Transaction
@@ -68,20 +68,20 @@ namespace modsecurity {
  * An instance of the Transaction class represents an entire request, on its
  * different phases.
  *
- * @param ms ModSecurity core instance.
+ * @param ms CeleoWAF core instance.
  * @param rules Rules instance.
  *
  * Example Usage:
  * @code
  *
- * using ModSecurity::ModSecurity;
- * using ModSecurity::Rules;
- * using ModSecurity::Transaction;
+ * using CeleoWAF::CeleoWAF;
+ * using CeleoWAF::Rules;
+ * using CeleoWAF::Transaction;
  *
- * ModSecurity *modsec;
- * ModSecurity::Rules *rules;
+ * CeleoWAF *modsec;
+ * CeleoWAF::Rules *rules;
  *
- * modsec = new ModSecurity();
+ * modsec = new CeleoWAF();
  * rules = new Rules();
  * rules->loadFromUri(rules_file);
  *
@@ -99,7 +99,7 @@ namespace modsecurity {
  * @endcode
  *
  */
-Transaction::Transaction(ModSecurity *ms, RulesSet *rules, void *logCbData)
+Transaction::Transaction(CeleoWAF *ms, RulesSet *rules, void *logCbData)
     : m_creationTimeStamp(utils::cpu_seconds()),
     /* m_clientIpAddress(nullptr), */
     m_httpVersion(""),
@@ -128,7 +128,7 @@ Transaction::Transaction(ModSecurity *ms, RulesSet *rules, void *logCbData)
     m_responseBody(),
     /* m_id(), */
     m_skip_next(0),
-    m_allowType(modsecurity::actions::disruptive::NoneAllowType),
+    m_allowType(celeowaf::actions::disruptive::NoneAllowType),
     m_uri_decoded(""),
     m_actions(),
     m_it(),
@@ -164,7 +164,7 @@ Transaction::Transaction(ModSecurity *ms, RulesSet *rules, void *logCbData)
     TransactionAnchoredVariables(this) {
     m_id = std::unique_ptr<std::string>( new std::string(
         std::to_string(m_timeStamp)
-        + std::to_string(modsecurity::utils::generate_transaction_unique_id())));
+        + std::to_string(celeowaf::utils::generate_transaction_unique_id())));
 
     m_variableUrlEncodedError.set("0", 0);
 
@@ -173,7 +173,7 @@ Transaction::Transaction(ModSecurity *ms, RulesSet *rules, void *logCbData)
     intervention::clean(&m_it);
 }
 
-Transaction::Transaction(ModSecurity *ms, RulesSet *rules, char *id, void *logCbData)
+Transaction::Transaction(CeleoWAF *ms, RulesSet *rules, char *id, void *logCbData)
     : m_creationTimeStamp(utils::cpu_seconds()),
     /* m_clientIpAddress(""), */
     m_httpVersion(""),
@@ -202,7 +202,7 @@ Transaction::Transaction(ModSecurity *ms, RulesSet *rules, char *id, void *logCb
     m_responseBody(),
     m_id(std::unique_ptr<std::string>(new std::string(id))),
     m_skip_next(0),
-    m_allowType(modsecurity::actions::disruptive::NoneAllowType),
+    m_allowType(celeowaf::actions::disruptive::NoneAllowType),
     m_uri_decoded(""),
     m_actions(),
     m_it(),
@@ -297,7 +297,7 @@ void Transaction::debug(int level, const std::string& message) const {
  *
  * @note Remember to check for a possible intervention.
  *
- * @param transaction ModSecurity Transaction.
+ * @param transaction CeleoWAF Transaction.
  * @param client Client's IP address in text format.
  * @param cPort Client's port
  * @param server Server's IP address in text format.
@@ -327,7 +327,7 @@ int Transaction::processConnection(const char *client, int cPort,
     m_variableRemotePort.set(std::to_string(this->m_clientPort),
         m_variableOffset);
 
-    this->m_rules->evaluate(modsecurity::ConnectionPhase, this);
+    this->m_rules->evaluate(celeowaf::ConnectionPhase, this);
     return true;
 }
 
@@ -429,7 +429,7 @@ bool Transaction::addArgument(const std::string& orig, const std::string& key,
  *       SecLanguage phase 1 and 2.
  * @note Remember to check for a possible intervention.
  *
- * @param transaction ModSecurity transaction.
+ * @param transaction CeleoWAF transaction.
  * @param uri   Uri.
  * @param method   Method (GET, POST, PUT).
  * @param http_version   Http version (1.0, 1.1, 2.0).
@@ -577,7 +577,7 @@ int Transaction::processRequestHeaders() {
         return true;
     }
 
-    this->m_rules->evaluate(modsecurity::RequestHeadersPhase, this);
+    this->m_rules->evaluate(celeowaf::RequestHeadersPhase, this);
 
     return true;
 }
@@ -587,7 +587,7 @@ int Transaction::processRequestHeaders() {
  * @name    addRequestHeader
  * @brief   Adds a request header
  *
- * With this method it is possible to feed ModSecurity with a request header.
+ * With this method it is possible to feed CeleoWAF with a request header.
  *
  * @note This function expects a NULL terminated string, for both: key and
  *       value.
@@ -713,7 +713,7 @@ int Transaction::addRequestHeader(const std::string& key,
  * @name    addRequestHeader
  * @brief   Adds a request header
  *
- * With this method it is possible to feed ModSecurity with a request header.
+ * With this method it is possible to feed CeleoWAF with a request header.
  *
  * @note This function expects a NULL terminated string, for both: key and
  *       value.
@@ -742,7 +742,7 @@ int Transaction::addRequestHeader(const unsigned char *key,
  * Do not expect a NULL terminated string, instead it expect the string and the
  * string size, for the value and key.
  *
- * @param transaction   ModSecurity transaction.
+ * @param transaction   CeleoWAF transaction.
  * @param key     header name.
  * @param key_n   header name size.
  * @param value   header value.
@@ -976,7 +976,7 @@ int Transaction::processRequestBody() {
             m_variableOffset, m_requestBody.str().size());
     }
 
-    this->m_rules->evaluate(modsecurity::RequestBodyPhase, this);
+    this->m_rules->evaluate(celeowaf::RequestBodyPhase, this);
     return true;
 }
 
@@ -985,7 +985,7 @@ int Transaction::processRequestBody() {
  * @name    appendRequestBody
  * @brief   Adds request body to be inspected.
  *
- * With this method it is possible to feed ModSecurity with data for
+ * With this method it is possible to feed CeleoWAF with data for
  * inspection regarding the request body. There are two possibilities here:
  * 
  * 1 - Adds the buffer in a row;
@@ -995,7 +995,7 @@ int Transaction::processRequestBody() {
  * In any case, remember that the utilization of this function may reduce your
  * server throughput, as this buffer creations is computationally expensive.
  *
- * @note While feeding ModSecurity remember to keep checking if there is an
+ * @note While feeding CeleoWAF remember to keep checking if there is an
  *       intervention, Sec Language has the capability to set the maximum
  *       inspection size which may be reached, and the decision on what to do
  *       in this case is upon the rules.
@@ -1110,7 +1110,7 @@ int Transaction::processResponseHeaders(int code, const std::string& proto) {
         return true;
     }
 
-    this->m_rules->evaluate(modsecurity::ResponseHeadersPhase, this);
+    this->m_rules->evaluate(celeowaf::ResponseHeadersPhase, this);
     return true;
 }
 
@@ -1119,7 +1119,7 @@ int Transaction::processResponseHeaders(int code, const std::string& proto) {
  * @name    addResponseHeader
  * @brief   Adds a response header
  *
- * With this method it is possible to feed ModSecurity with a response
+ * With this method it is possible to feed CeleoWAF with a response
  * header.
  *
  * @note This method expects a NULL terminated string, for both: key and
@@ -1154,7 +1154,7 @@ int Transaction::addResponseHeader(const std::string& key,
  * @name    addResponseHeader
  * @brief   Adds a response header
  *
- * With this method it is possible to feed ModSecurity with a response
+ * With this method it is possible to feed CeleoWAF with a response
  * header.
  *
  * @note This method expects a NULL terminated string, for both: key and
@@ -1261,7 +1261,7 @@ int Transaction::processResponseBody() {
     m_variableResponseContentLength.set(std::to_string(
         m_responseBody.str().size()), m_variableOffset);
 
-    m_rules->evaluate(modsecurity::ResponseBodyPhase, this);
+    m_rules->evaluate(celeowaf::ResponseBodyPhase, this);
     return true;
 }
 
@@ -1270,8 +1270,8 @@ int Transaction::processResponseBody() {
  * @name    appendResponseBody
  * @brief   Adds reponse body to be inspected.
  *
- * With this method it is possible to feed ModSecurity with data for
- * inspection regarding the response body. ModSecurity can also update the
+ * With this method it is possible to feed CeleoWAF with data for
+ * inspection regarding the response body. CeleoWAF can also update the
  * contents of the response body, this is not quite ready yet on this version
  * of the API. 
  *
@@ -1344,7 +1344,7 @@ int Transaction::appendResponseBody(const unsigned char *buf, size_t len) {
  * @name    getResponseBody
  * @brief   Retrieve a buffer with the updated response body.
  *
- * This method is needed to be called whenever ModSecurity update the
+ * This method is needed to be called whenever CeleoWAF update the
  * contents of the response body, otherwise there is no need to call this
  * method.
  *
@@ -1418,7 +1418,7 @@ int Transaction::processLogging() {
         return true;
     }
 
-    this->m_rules->evaluate(modsecurity::LoggingPhase, this);
+    this->m_rules->evaluate(celeowaf::LoggingPhase, this);
 
     /* If relevant, save this transaction information at the audit_logs */
     if (m_rules != NULL && m_rules->m_auditLog != NULL) {
@@ -1458,16 +1458,16 @@ int Transaction::processLogging() {
 
 /**
  * @name    intervention
- * @brief   Check if ModSecurity has anything to ask to the server.
+ * @brief   Check if CeleoWAF has anything to ask to the server.
  *
  * Intervention can generate a log event and/or perform a disruptive action.
  *
- * @param Pointer ModSecurityIntervention structure
+ * @param Pointer CeleoWAFIntervention structure
  * @retval true  A intervention should be made.
  * @retval false Nothing to be done.
  *
  */
-bool Transaction::intervention(ModSecurityIntervention *it) {
+bool Transaction::intervention(CeleoWAFIntervention *it) {
     if (m_it.disruptive) {
         if (m_it.url) {
             it->url = strdup(m_it.url);
@@ -1764,8 +1764,8 @@ std::string Transaction::toJSON(int parts) {
             strlen("producer"));
         yajl_gen_map_open(g);
 
-        /* producer > libmodsecurity */
-        LOGFY_ADD("modsecurity", m_ms->whoAmI().c_str());
+        /* producer > libceleowaf */
+        LOGFY_ADD("celeowaf", m_ms->whoAmI().c_str());
 
         /* producer > connector */
         LOGFY_ADD("connector", m_ms->getConnectorInformation().c_str());
@@ -1848,7 +1848,7 @@ std::string Transaction::toJSON(int parts) {
 
     return log;
 #else
-    return std::string("{\"error\":\"ModSecurity was " \
+    return std::string("{\"error\":\"CeleoWAF was " \
         "not compiled with JSON support.\"}");
 #endif
 }
@@ -1893,28 +1893,28 @@ int Transaction::updateStatusCode(int code) {
 
 /**
  * @name    msc_new_transaction
- * @brief   Create a new transaction for a given configuration and ModSecurity core.
+ * @brief   Create a new transaction for a given configuration and CeleoWAF core.
  *
  * The transaction is the unit that will be used the inspect every request. It holds
  * all the information for a given request.
  * 
  * @note Remember to cleanup the transaction when the transaction is complete.
  *
- * @param ms ModSecurity core pointer.
+ * @param ms CeleoWAF core pointer.
  * @param rules Rules pointer.
  *
  * @return Pointer to Transaction structure
  * @retval >0   Transaction structure was initialized correctly
  * @retval NULL Transaction cannot be initialized, either by problems with the rules,
- *              problems with the ModSecurity core or missing memory to
+ *              problems with the CeleoWAF core or missing memory to
  *              allocate the resources needed by the transaction.
  *
  */
-extern "C" Transaction *msc_new_transaction(ModSecurity *ms,
+extern "C" Transaction *msc_new_transaction(CeleoWAF *ms,
     RulesSet *rules, void *logCbData) {
     return new Transaction(ms, rules, logCbData);
 }
-extern "C" Transaction *msc_new_transaction_with_id(ModSecurity *ms,
+extern "C" Transaction *msc_new_transaction_with_id(CeleoWAF *ms,
     RulesSet *rules, char *id, void *logCbData) {
     return new Transaction(ms, rules, id, logCbData);
 }
@@ -1929,7 +1929,7 @@ extern "C" Transaction *msc_new_transaction_with_id(ModSecurity *ms,
  *
  * @note Remember to check for a possible intervention.
  *
- * @param transaction ModSecurity transaction.
+ * @param transaction CeleoWAF transaction.
  * @param client Client's IP address in text format.
  * @param cPort Client's port
  * @param server Server's IP address in text format.
@@ -1959,7 +1959,7 @@ extern "C" int msc_process_connection(Transaction *transaction,
  *       SecLanguage phase 1 and 2.
  * @note Remember to check for a possible intervention.
  *
- * @param transaction ModSecurity transaction.
+ * @param transaction CeleoWAF transaction.
  * @param uri   Uri.
  * @param protocol   Protocol (GET, POST, PUT).
  * @param http_version   Http version (1.0, 1.2, 2.0).
@@ -1984,7 +1984,7 @@ extern "C" int msc_process_uri(Transaction *transaction, const char *uri,
  *
  * @note Remember to check for a possible intervention.
  *
- * @param transaction ModSecurity transaction.
+ * @param transaction CeleoWAF transaction.
  *
  * @returns If the operation was successful or not.
  * @retval 1 Operation was successful.
@@ -2008,7 +2008,7 @@ extern "C" int msc_process_request_headers(Transaction *transaction) {
  *       of this function.
  * @note Remember to check for a possible intervention.
  *
- * @param transaction ModSecurity transaction.
+ * @param transaction CeleoWAF transaction.
  * 
  * @returns If the operation was successful or not.
  * @retval 1 Operation was successful.
@@ -2024,7 +2024,7 @@ extern "C" int msc_process_request_body(Transaction *transaction) {
  * @name    msc_append_request_body
  * @brief   Adds request body to be inspected.
  *
- * With this function it is possible to feed ModSecurity with data for
+ * With this function it is possible to feed CeleoWAF with data for
  * inspection regarding the request body. There are two possibilities here:
  * 
  * 1 - Adds the buffer in a row;
@@ -2034,12 +2034,12 @@ extern "C" int msc_process_request_body(Transaction *transaction) {
  * In any case, remember that the utilization of this function may reduce your
  * server throughput, as this buffer creations is computationally expensive.
  *
- * @note While feeding ModSecurity remember to keep checking if there is an
+ * @note While feeding CeleoWAF remember to keep checking if there is an
  *       intervention, Sec Language has the capability to set the maximum
  *       inspection size which may be reached, and the decision on what to do
  *       in this case is upon the rules.
  *
- * @param transaction ModSecurity transaction.
+ * @param transaction CeleoWAF transaction.
  * 
  * @returns If the operation was successful or not.
  * @retval 1 Operation was successful.
@@ -2067,7 +2067,7 @@ extern "C" int msc_request_body_from_file(Transaction *transaction,
  *
  * @note Remember to check for a possible intervention.
  *
- * @param transaction ModSecurity transaction.
+ * @param transaction CeleoWAF transaction.
  *
  * @returns If the operation was successful or not.
  * @retval 1 Operation was successful.
@@ -2092,7 +2092,7 @@ extern "C" int msc_process_response_headers(Transaction *transaction,
  *       of this function.
  * @note Remember to check for a possible intervention.
  *
- * @param transaction ModSecurity transaction.
+ * @param transaction CeleoWAF transaction.
  *
  * @returns If the operation was successful or not.
  * @retval 1 Operation was successful.
@@ -2108,8 +2108,8 @@ extern "C" int msc_process_response_body(Transaction *transaction) {
  * @name    msc_append_response_body
  * @brief   Adds reponse body to be inspected.
  *
- * With this function it is possible to feed ModSecurity with data for
- * inspection regarding the response body. ModSecurity can also update the
+ * With this function it is possible to feed CeleoWAF with data for
+ * inspection regarding the response body. CeleoWAF can also update the
  * contents of the response body, this is not quite ready yet on this version
  * of the API. 
  *
@@ -2117,7 +2117,7 @@ extern "C" int msc_process_response_body(Transaction *transaction) {
  *       length header filled, at least not with the old values. Otherwise
  *       unexpected behavior may happens.
  *
- * @param transaction ModSecurity transaction.
+ * @param transaction CeleoWAF transaction.
  *
  * @returns If the operation was successful or not.
  * @retval 1 Operation was successful.
@@ -2134,12 +2134,12 @@ extern "C" int msc_append_response_body(Transaction *transaction,
  * @name    msc_add_request_header
  * @brief   Adds a request header
  *
- * With this function it is possible to feed ModSecurity with a request header.
+ * With this function it is possible to feed CeleoWAF with a request header.
  *
  * @note This function expects a NULL terminated string, for both: key and
  *       value.
  *
- * @param transaction ModSecurity transaction.
+ * @param transaction CeleoWAF transaction.
  * @param key   header name.
  * @param value header value.
  *
@@ -2162,7 +2162,7 @@ extern "C" int msc_add_request_header(Transaction *transaction,
  * Same as msc_add_request_header, do not expect a NULL terminated string,
  * instead it expect the string and the string size, for the value and key.
  *
- * @param transaction   ModSecurity transaction.
+ * @param transaction   CeleoWAF transaction.
  * @param key     header name.
  * @param key_len header name size.
  * @param value   header value.
@@ -2184,13 +2184,13 @@ extern "C" int msc_add_n_request_header(Transaction *transaction,
  * @name    msc_add_response_header
  * @brief   Adds a response header
  *
- * With this function it is possible to feed ModSecurity with a response
+ * With this function it is possible to feed CeleoWAF with a response
  * header.
  *
  * @note This function expects a NULL terminated string, for both: key and
  *       value.
  *
- * @param transaction   ModSecurity transaction.
+ * @param transaction   CeleoWAF transaction.
  * @param key     header name.
  * @param value   header value.
  *
@@ -2213,7 +2213,7 @@ extern "C" int msc_add_response_header(Transaction *transaction,
  * Same as msc_add_response_header, do not expect a NULL terminated string,
  * instead it expect the string and the string size, for the value and key.
  *
- * @param transaction   ModSecurity transaction.
+ * @param transaction   CeleoWAF transaction.
  * @param key     header name.
  * @param key_len header name size.
  * @param value   header value.
@@ -2238,7 +2238,7 @@ extern "C" int msc_add_n_response_header(Transaction *transaction,
  * It is mandatory to call this function after every request being finished,
  * otherwise it may end up in a huge memory leak.
  *
- * @param transaction ModSecurity transaction.
+ * @param transaction CeleoWAF transaction.
  *
  */
 extern "C" void msc_transaction_cleanup(Transaction *transaction) {
@@ -2248,19 +2248,19 @@ extern "C" void msc_transaction_cleanup(Transaction *transaction) {
 
 /**
  * @name    msc_intervention
- * @brief   Check if ModSecurity has anything to ask to the server.
+ * @brief   Check if CeleoWAF has anything to ask to the server.
  *
  * Intervention can generate a log event and/or perform a disruptive action.
  *
- * @param transaction ModSecurity transaction.
+ * @param transaction CeleoWAF transaction.
  *
- * @return Pointer to ModSecurityIntervention structure
+ * @return Pointer to CeleoWAFIntervention structure
  * @retval >0   A intervention should be made.
  * @retval NULL Nothing to be done.
  *
  */
 extern "C" int msc_intervention(Transaction *transaction,
-    ModSecurityIntervention *it) {
+    CeleoWAFIntervention *it) {
     return transaction->intervention(it);
 }
 
@@ -2269,11 +2269,11 @@ extern "C" int msc_intervention(Transaction *transaction,
  * @name    msc_get_response_body
  * @brief   Retrieve a buffer with the updated response body.
  *
- * This function is needed to be called whenever ModSecurity update the
+ * This function is needed to be called whenever CeleoWAF update the
  * contents of the response body, otherwise there is no need to call this
  * function.
  *
- * @param transaction ModSecurity transaction.
+ * @param transaction CeleoWAF transaction.
  *
  * @return It returns a buffer (const char *)
  * @retval >0   body was update and available.
@@ -2291,7 +2291,7 @@ extern "C" const char *msc_get_response_body(Transaction *transaction) {
  *
  * This function returns the size of the response body buffer.
  *
- * @param transaction ModSecurity transaction.
+ * @param transaction CeleoWAF transaction.
  *
  * @return Size of the response body.
  *
@@ -2306,7 +2306,7 @@ extern "C" size_t msc_get_response_body_length(Transaction *transaction) {
  *
  * This function returns the size of the request body buffer.
  *
- * @param transaction ModSecurity transaction.
+ * @param transaction CeleoWAF transaction.
  *
  * @return Size of the request body.
  *
@@ -2322,7 +2322,7 @@ extern "C" size_t msc_get_request_body_length(Transaction *transaction) {
  * At this point there is not need to hold the connection, the response can be
  * delivered prior to the execution of this function.
  *
- * @param transaction ModSecurity transaction.
+ * @param transaction CeleoWAF transaction.
  *
  * @returns If the operation was successful or not.
  * @retval 1 Operation was successful.
@@ -2341,7 +2341,7 @@ extern "C" int msc_process_logging(Transaction *transaction) {
  * Called after msc_process_response_headers to inform a new response code.
  * Not mandatory.
  *
- * @param transaction ModSecurity transaction.
+ * @param transaction CeleoWAF transaction.
  *
  * @returns If the operation was successful or not.
  * @retval 1 Operation was successful.
@@ -2353,5 +2353,5 @@ extern "C" int msc_update_status_code(Transaction *transaction, int status) {
 }
 
 
-}  // namespace modsecurity
+}  // namespace celeowaf
 

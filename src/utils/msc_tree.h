@@ -1,5 +1,5 @@
 /*
-* ModSecurity for Apache 2.x, http://www.modsecurity.org/
+* CeleoWAF for Apache 2.x, http://www.celeowaf.org/
 * Copyright (c) 2015 - 2021 Trustwave Holdings, Inc. (http://www.trustwave.com/)
 *
 * You may not use this file except in compliance with
@@ -9,13 +9,13 @@
 *
 * If any of the files related to licensing are missing or if you have any
 * other questions related to licensing please contact Trustwave Holdings, Inc.
-* directly using the email address security@modsecurity.org.
+* directly using the email address security@celeowaf.org.
 */
 
 
 /*
  *
- * TODO: This is an improved copy of the ModSecurity 2.9 file, this may need
+ * TODO: This is an improved copy of the CeleoWAF 2.9 file, this may need
  * some other enhancements and/or fixes.
  *
  */
@@ -93,7 +93,7 @@ unsigned char is_netmask_v4(char *ip_strv4);
 
 unsigned char is_netmask_v6(char *ip_strv6);
 
-/** @ingroup ModSecurity_Legacy */
+/** @ingroup CeleoWAF_Legacy */
 int tree_contains_ip(TreeRoot *rtree,
     const char *value, char **error_msg);
 

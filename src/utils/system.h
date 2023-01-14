@@ -1,5 +1,5 @@
 /*
- * ModSecurity, http://www.modsecurity.org/
+ * CeleoWAF, http://www.celeowaf.org/
  * Copyright (c) 2015 - 2021 Trustwave Holdings, Inc. (http://www.trustwave.com/)
  *
  * You may not use this file except in compliance with
@@ -9,7 +9,7 @@
  *
  * If any of the files related to licensing are missing or if you have any
  * other questions related to licensing please contact Trustwave Holdings, Inc.
- * directly using the email address security@modsecurity.org.
+ * directly using the email address security@celeowaf.org.
  *
  */
 
@@ -18,13 +18,13 @@
 #include <string>
 #include <list>
 
-#include "modsecurity/modsecurity.h"
+#include "celeowaf/celeowaf.h"
 
 #ifndef SRC_UTILS_SYSTEM_H_
 #define SRC_UTILS_SYSTEM_H_
 
 
-namespace modsecurity {
+namespace celeowaf {
 namespace utils {
 
 
@@ -37,6 +37,6 @@ bool createDir(const std::string& dir, int mode, std::string *error);
 bool isFile(const std::string& f);
 
 }  // namespace utils
-}  // namespace modsecurity
+}  // namespace celeowaf
 
 #endif  // SRC_UTILS_SYSTEM_H_

@@ -1,5 +1,5 @@
 /*
- * ModSecurity, http://www.modsecurity.org/
+ * CeleoWAF, http://www.celeowaf.org/
  * Copyright (c) 2015 - 2021 Trustwave Holdings, Inc. (http://www.trustwave.com/)
  *
  * You may not use this file except in compliance with
@@ -9,7 +9,7 @@
  *
  * If any of the files related to licensing are missing or if you have any
  * other questions related to licensing please contact Trustwave Holdings, Inc.
- * directly using the email address security@modsecurity.org.
+ * directly using the email address security@celeowaf.org.
  *
  */
 
@@ -18,10 +18,10 @@
 #include <iostream>
 #include <string>
 
-#include "modsecurity/rules_set_properties.h"
-#include "modsecurity/transaction.h"
+#include "celeowaf/rules_set_properties.h"
+#include "celeowaf/transaction.h"
 
-namespace modsecurity {
+namespace celeowaf {
 namespace actions {
 namespace ctl {
 
@@ -55,4 +55,4 @@ bool RequestBodyAccess::evaluate(RuleWithActions *rule, Transaction *transaction
 
 }  // namespace ctl
 }  // namespace actions
-}  // namespace modsecurity
+}  // namespace celeowaf

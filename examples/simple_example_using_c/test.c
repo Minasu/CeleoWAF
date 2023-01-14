@@ -1,5 +1,5 @@
 /*
- * ModSecurity, http://www.modsecurity.org/
+ * CeleoWAF, http://www.celeowaf.org/
  * Copyright (c) 2015 - 2021 Trustwave Holdings, Inc. (http://www.trustwave.com/)
  *
  * You may not use this file except in compliance with
@@ -9,7 +9,7 @@
  *
  * If any of the files related to licensing are missing or if you have any
  * other questions related to licensing please contact Trustwave Holdings, Inc.
- * directly using the email address security@modsecurity.org.
+ * directly using the email address security@celeowaf.org.
  *
  */
 
@@ -17,8 +17,8 @@
 #include <stdio.h>
 #include <stdlib.h>
 
-#include "modsecurity/modsecurity.h"
-#include "modsecurity/rules_set.h"
+#include "celeowaf/celeowaf.h"
+#include "celeowaf/rules_set.h"
 
 
 char main_rule_uri[] = "basic_rules.conf";
@@ -27,14 +27,14 @@ int main (int argc, char **argv)
 {
     int ret;
     const char *error = NULL;
-    ModSecurity *modsec;
+    CeleoWAF *modsec;
     Transaction *transaction = NULL;
     RulesSet *rules;
 
     modsec = msc_init();
 
-    msc_set_connector_info(modsec, "ModSecurity-test v0.0.1-alpha (Simple " \
-        "example on how to use ModSecurity API");
+    msc_set_connector_info(modsec, "CeleoWAF-test v0.0.1-alpha (Simple " \
+        "example on how to use CeleoWAF API");
 
     rules = msc_create_rules_set();
 
@@ -47,7 +47,7 @@ int main (int argc, char **argv)
     msc_rules_dump(rules);
 
     ret = msc_rules_add_remote(rules, "test",
-        "https://www.modsecurity.org/modsecurity-regression-test-secremoterules.txt",
+        "https://www.celeowaf.org/celeowaf-regression-test-secremoterules.txt",
         &error);
     if (ret < 0) {
         fprintf(stderr, "Problems loading the rules --\n");
@@ -60,7 +60,7 @@ int main (int argc, char **argv)
 
     msc_process_connection(transaction, "127.0.0.1", 12345, "127.0.0.1", 80);
     msc_process_uri(transaction,
-        "http://www.modsecurity.org/test?key1=value1&key2=value2&key3=value3",
+        "http://www.celeowaf.org/test?key1=value1&key2=value2&key3=value3",
         "GET", "1.1");
     msc_process_request_headers(transaction);
     msc_process_request_body(transaction);

@@ -1,5 +1,5 @@
 /*
- * ModSecurity, http://www.modsecurity.org/
+ * CeleoWAF, http://www.celeowaf.org/
  * Copyright (c) 2015 - 2021 Trustwave Holdings, Inc. (http://www.trustwave.com/)
  *
  * You may not use this file except in compliance with
@@ -9,7 +9,7 @@
  *
  * If any of the files related to licensing are missing or if you have any
  * other questions related to licensing please contact Trustwave Holdings, Inc.
- * directly using the email address security@modsecurity.org.
+ * directly using the email address security@celeowaf.org.
  *
  */
 
@@ -19,7 +19,7 @@
 #include <memory>
 #include <string>
 
-#include "modsecurity/transaction.h"
+#include "celeowaf/transaction.h"
 #include "src/run_time_string.h"
 #include "src/utils/string.h"
 #include "src/operators/begins_with.h"
@@ -66,7 +66,7 @@
 #define IF_MATCH(a) \
     if (op_ == #a)
 
-namespace modsecurity {
+namespace celeowaf {
 namespace operators {
 
 
@@ -199,4 +199,4 @@ Operator *Operator::instantiate(const std::string& op, const std::string& param_
 }
 
 }  // namespace operators
-}  // namespace modsecurity
+}  // namespace celeowaf

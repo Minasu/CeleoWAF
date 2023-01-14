@@ -4,7 +4,7 @@
   "version_min": 209000,
   "version_max": -1,
   "title": "Regex match does not work when arg ends with unescaped equal char (1/2)",
-  "url": "https:\/\/github.com\/SpiderLabs\/ModSecurity\/issues\/1743",
+  "url": "https:\/\/github.com\/SpiderLabs\/CeleoWAF\/issues\/1743",
   "gihub_issue": 1743,
   "client": {
     "ip": "200.249.12.31",
@@ -40,7 +40,7 @@
   "version_min": 209000,
   "version_max": -1,
   "title": "Regex match does not work when arg ends with unescaped equal char (2/2)",
-  "url": "https:\/\/github.com\/SpiderLabs\/ModSecurity\/issues\/1743",
+  "url": "https:\/\/github.com\/SpiderLabs\/CeleoWAF\/issues\/1743",
   "gihub_issue": 1743,
   "client": {
     "ip": "200.249.12.31",

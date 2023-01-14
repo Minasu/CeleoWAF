@@ -4,7 +4,7 @@
     "version_min": 209000,
     "version_max": -1,
     "title": "Override the default status code if not suitable to redirect action",
-    "url": "https:\/\/github.com\/SpiderLabs\/ModSecurity\/issues\/1850",
+    "url": "https:\/\/github.com\/SpiderLabs\/CeleoWAF\/issues\/1850",
     "client": {
       "ip": "200.249.12.31",
       "port": 2313

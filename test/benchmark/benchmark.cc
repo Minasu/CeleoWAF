@@ -1,5 +1,5 @@
 /*
- * ModSecurity, http://www.modsecurity.org/
+ * CeleoWAF, http://www.celeowaf.org/
  * Copyright (c) 2015 - 2021 Trustwave Holdings, Inc. (http://www.trustwave.com/)
  *
  * You may not use this file except in compliance with
@@ -9,7 +9,7 @@
  *
  * If any of the files related to licensing are missing or if you have any
  * other questions related to licensing please contact Trustwave Holdings, Inc.
- * directly using the email address security@modsecurity.org.
+ * directly using the email address security@celeowaf.org.
  *
  */
 
@@ -19,10 +19,10 @@
 #include <iostream>
 #include <string>
 
-#include "modsecurity/rules_set.h"
-#include "modsecurity/modsecurity.h"
+#include "celeowaf/rules_set.h"
+#include "celeowaf/celeowaf.h"
 
-using modsecurity::Transaction;
+using celeowaf::Transaction;
 
 char request_uri[] = "/test.pl?param1=test&para2=test2";
 
@@ -70,15 +70,15 @@ int main(int argc, char *argv[]) {
         }
     }
     std::cout << "Doing " << NUM_REQUESTS << " transactions...\n";
-    modsecurity::ModSecurity *modsec;
-    modsecurity::RulesSet *rules;
-    modsecurity::ModSecurityIntervention it;
-    modsecurity::intervention::reset(&it);
-    modsec = new modsecurity::ModSecurity();
-    modsec->setConnectorInformation("ModSecurity-benchmark v0.0.1-alpha" \
-            " (ModSecurity benchmark utility)");
+    celeowaf::CeleoWAF *modsec;
+    celeowaf::RulesSet *rules;
+    celeowaf::CeleoWAFIntervention it;
+    celeowaf::intervention::reset(&it);
+    modsec = new celeowaf::CeleoWAF();
+    modsec->setConnectorInformation("CeleoWAF-benchmark v0.0.1-alpha" \
+            " (CeleoWAF benchmark utility)");
 
-    rules = new modsecurity::RulesSet();
+    rules = new celeowaf::RulesSet();
     if (rules->loadFromUri(rules_file) < 0) {
         std::cout << "Problems loading the rules..." << std::endl;
         std::cout << rules->m_parserError.str() << std::endl;

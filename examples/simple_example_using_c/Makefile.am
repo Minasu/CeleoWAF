@@ -13,7 +13,7 @@ test_LDADD = \
 test_LDFLAGS = \
 	-L$(top_builddir)/src/.libs/ \
 	$(GEOIP_LDFLAGS) \
-	-lmodsecurity \
+	-lceleowaf \
 	-lm \
 	-lstdc++ \
 	$(LUA_LDFLAGS) \

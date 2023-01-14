@@ -1,5 +1,5 @@
 /*
- * ModSecurity, http://www.modsecurity.org/
+ * CeleoWAF, http://www.celeowaf.org/
  * Copyright (c) 2015 - 2021 Trustwave Holdings, Inc. (http://www.trustwave.com/)
  *
  * You may not use this file except in compliance with
@@ -9,21 +9,21 @@
  *
  * If any of the files related to licensing are missing or if you have any
  * other questions related to licensing please contact Trustwave Holdings, Inc.
- * directly using the email address security@modsecurity.org.
+ * directly using the email address security@celeowaf.org.
  *
  */
 
 #include <sstream>
 #include <string>
 
-#include "modsecurity/debug_log.h"
+#include "celeowaf/debug_log.h"
 
 #ifndef TEST_REGRESSION_CUSTOM_DEBUG_LOG_H_
 #define TEST_REGRESSION_CUSTOM_DEBUG_LOG_H_
 
-namespace modsecurity_test {
+namespace celeowaf_test {
 
-class CustomDebugLog : public modsecurity::debug_log::DebugLog {
+class CustomDebugLog : public celeowaf::debug_log::DebugLog {
  public:
     CustomDebugLog *new_instance();
     ~CustomDebugLog();
@@ -40,6 +40,6 @@ class CustomDebugLog : public modsecurity::debug_log::DebugLog {
     std::stringstream m_log;
 };
 
-}  // namespace modsecurity_test
+}  // namespace celeowaf_test
 
 #endif  // TEST_REGRESSION_CUSTOM_DEBUG_LOG_H_

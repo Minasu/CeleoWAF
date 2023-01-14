@@ -1,5 +1,5 @@
 /*
- * ModSecurity, http://www.modsecurity.org/
+ * CeleoWAF, http://www.celeowaf.org/
  * Copyright (c) 2015 - 2021 Trustwave Holdings, Inc. (http://www.trustwave.com/)
  *
  * You may not use this file except in compliance with
@@ -9,7 +9,7 @@
  *
  * If any of the files related to licensing are missing or if you have any
  * other questions related to licensing please contact Trustwave Holdings, Inc.
- * directly using the email address security@modsecurity.org.
+ * directly using the email address security@celeowaf.org.
  *
  */
 
@@ -26,16 +26,16 @@
 #include <iterator>
 #include <iostream>
 
-#include "modsecurity/variable_value.h"
-#include "modsecurity/modsecurity.h"
+#include "celeowaf/variable_value.h"
+#include "celeowaf/celeowaf.h"
 #include "src/utils/string.h"
-#include "modsecurity/transaction.h"
+#include "celeowaf/transaction.h"
 #include "src/variables/variable.h"
 #include "src/variables/highest_severity.h"
 #include "src/actions/transformations/transformation.h"
 
 
-namespace modsecurity {
+namespace celeowaf {
 namespace engine {
 
 
@@ -477,5 +477,5 @@ std::string Lua::applyTransformations(lua_State *L, Transaction *t,
 #endif
 
 }  //  namespace engine
-}  //  namespace modsecurity
+}  //  namespace celeowaf
 

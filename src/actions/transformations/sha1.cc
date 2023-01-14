@@ -1,5 +1,5 @@
 /*
- * ModSecurity, http://www.modsecurity.org/
+ * CeleoWAF, http://www.celeowaf.org/
  * Copyright (c) 2015 - 2021 Trustwave Holdings, Inc. (http://www.trustwave.com/)
  *
  * You may not use this file except in compliance with
@@ -9,7 +9,7 @@
  *
  * If any of the files related to licensing are missing or if you have any
  * other questions related to licensing please contact Trustwave Holdings, Inc.
- * directly using the email address security@modsecurity.org.
+ * directly using the email address security@celeowaf.org.
  *
  */
 
@@ -22,12 +22,12 @@
 #include <cctype>
 #include <locale>
 
-#include "modsecurity/transaction.h"
+#include "celeowaf/transaction.h"
 #include "src/actions/transformations/transformation.h"
 #include "src/utils/sha1.h"
 
 
-namespace modsecurity {
+namespace celeowaf {
 namespace actions {
 namespace transformations {
 
@@ -44,4 +44,4 @@ std::string Sha1::evaluate(const std::string &value,
 
 }  // namespace transformations
 }  // namespace actions
-}  // namespace modsecurity
+}  // namespace celeowaf

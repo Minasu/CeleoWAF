@@ -4,7 +4,7 @@
   "version_min": 209000,
   "version_max": -1,
   "title": "Macro expansion on msg and logdata does not work for DURATION",
-  "url": "https:\/\/github.com\/SpiderLabs\/ModSecurity\/issues\/1725",
+  "url": "https:\/\/github.com\/SpiderLabs\/CeleoWAF\/issues\/1725",
   "gihub_issue": 1725,
   "client": {
     "ip": "200.249.12.31",

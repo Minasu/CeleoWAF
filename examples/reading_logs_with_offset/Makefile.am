@@ -20,7 +20,7 @@ read_LDADD = \
 read_LDFLAGS = \
 	-L$(top_builddir)/src/.libs/ \
 	$(GEOIP_LDFLAGS) \
-	-lmodsecurity \
+	-lceleowaf \
 	-lpthread \
 	-lm \
 	-lstdc++ \

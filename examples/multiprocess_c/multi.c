@@ -1,5 +1,5 @@
 /*
- * ModSecurity, http://www.modsecurity.org/
+ * CeleoWAF, http://www.celeowaf.org/
  * Copyright (c) 2015 - 2021 Trustwave Holdings, Inc. (http://www.trustwave.com/)
  *
  * You may not use this file except in compliance with
@@ -9,13 +9,13 @@
  *
  * If any of the files related to licensing are missing or if you have any
  * other questions related to licensing please contact Trustwave Holdings, Inc.
- * directly using the email address security@modsecurity.org.
+ * directly using the email address security@celeowaf.org.
  *
  */
 
-#include <modsecurity/modsecurity.h>
-#include <modsecurity/transaction.h>
-#include <modsecurity/rules_set.h>
+#include <celeowaf/celeowaf.h>
+#include <celeowaf/transaction.h>
+#include <celeowaf/rules_set.h>
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
@@ -31,7 +31,7 @@
 
 char main_rule_uri[] = "basic_rules.conf";
 RulesSet *rules = NULL;
-ModSecurity *modsec = NULL;
+CeleoWAF *modsec = NULL;
 
 
 void process_special_request (int j) {
@@ -40,11 +40,11 @@ void process_special_request (int j) {
 
     msc_process_connection(transaction, "127.0.0.1", 12345, "127.0.0.1", 80);
     msc_process_uri(transaction,
-        "http://www.modsecurity.org/test?foo=herewego",
+        "http://www.celeowaf.org/test?foo=herewego",
         "GET", "1.1");
     msc_add_request_header(transaction,
         (const unsigned char *) "User-Agent",
-        (const unsigned char *) "Basic ModSecurity example");
+        (const unsigned char *) "Basic CeleoWAF example");
     msc_process_request_headers(transaction);
     msc_process_request_body(transaction);
     msc_add_response_header(transaction,
@@ -71,11 +71,11 @@ void process_request (int j) {
 
         msc_process_connection(transaction, "127.0.0.1", 12345, "127.0.0.1", 80);
         msc_process_uri(transaction,
-            "http://www.modsecurity.org/test?key1=value1&key2=value2&key3=value3",
+            "http://www.celeowaf.org/test?key1=value1&key2=value2&key3=value3",
             "GET", "1.1");
         msc_add_request_header(transaction,
             (const unsigned char *) "User-Agent",
-            (const unsigned char *) "Basic ModSecurity example");
+            (const unsigned char *) "Basic CeleoWAF example");
         msc_process_request_headers(transaction);
         msc_process_request_body(transaction);
         msc_add_response_header(transaction,
@@ -102,8 +102,8 @@ int main (int argc, char **argv)
 
     modsec = msc_init();
 
-    msc_set_connector_info(modsec, "ModSecurity-test v0.0.1-alpha (Simple " \
-        "example on how to use ModSecurity API");
+    msc_set_connector_info(modsec, "CeleoWAF-test v0.0.1-alpha (Simple " \
+        "example on how to use CeleoWAF API");
 
     rules = msc_create_rules_set();
 

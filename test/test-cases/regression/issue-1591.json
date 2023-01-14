@@ -4,7 +4,7 @@
   "version_min": 209000,
   "version_max": -1,
   "title": "Regular expressions in rule targets not respected (1/3)",
-  "url": "https:\/\/github.com\/SpiderLabs\/ModSecurity\/issues\/1591",
+  "url": "https:\/\/github.com\/SpiderLabs\/CeleoWAF\/issues\/1591",
   "gihub_issue": 394,
   "client": {
     "ip": "200.249.12.31",
@@ -43,7 +43,7 @@
   "version_min": 209000,
   "version_max": -1,
   "title": "Regular expressions in rule targets not respected (2/3)",
-  "url": "https:\/\/github.com\/SpiderLabs\/ModSecurity\/issues\/1591",
+  "url": "https:\/\/github.com\/SpiderLabs\/CeleoWAF\/issues\/1591",
   "gihub_issue": 394,
   "client": {
     "ip": "200.249.12.31",
@@ -82,7 +82,7 @@
   "version_min": 209000,
   "version_max": -1,
   "title": "Regular expressions in rule targets not respected (3/3)",
-  "url": "https:\/\/github.com\/SpiderLabs\/ModSecurity\/issues\/1591",
+  "url": "https:\/\/github.com\/SpiderLabs\/CeleoWAF\/issues\/1591",
   "gihub_issue": 394,
   "client": {
     "ip": "200.249.12.31",

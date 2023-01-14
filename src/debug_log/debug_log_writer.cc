@@ -1,5 +1,5 @@
 /*
- * ModSecurity, http://www.modsecurity.org/
+ * CeleoWAF, http://www.celeowaf.org/
  * Copyright (c) 2015 - 2021 Trustwave Holdings, Inc. (http://www.trustwave.com/)
  *
  * You may not use this file except in compliance with
@@ -9,7 +9,7 @@
  *
  * If any of the files related to licensing are missing or if you have any
  * other questions related to licensing please contact Trustwave Holdings, Inc.
- * directly using the email address security@modsecurity.org.
+ * directly using the email address security@celeowaf.org.
  *
  */
 
@@ -29,7 +29,7 @@
 
 #include "src/utils/shared_files.h"
 
-namespace modsecurity {
+namespace celeowaf {
 namespace debug_log {
 
 
@@ -52,4 +52,4 @@ void DebugLogWriter::write_log(const std::string& fileName,
 
 
 }  // namespace debug_log
-}  // namespace modsecurity
+}  // namespace celeowaf

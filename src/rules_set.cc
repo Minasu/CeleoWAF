@@ -1,5 +1,5 @@
 /*
- * ModSecurity, http://www.modsecurity.org/
+ * CeleoWAF, http://www.celeowaf.org/
  * Copyright (c) 2015 - 2021 Trustwave Holdings, Inc. (http://www.trustwave.com/)
  *
  * You may not use this file except in compliance with
@@ -9,7 +9,7 @@
  *
  * If any of the files related to licensing are missing or if you have any
  * other questions related to licensing please contact Trustwave Holdings, Inc.
- * directly using the email address security@modsecurity.org.
+ * directly using the email address security@celeowaf.org.
  *
  */
 
@@ -19,17 +19,17 @@
 #include <string>
 #include <vector>
 
-#include "modsecurity/rules_set.h"
-#include "modsecurity/modsecurity.h"
-#include "modsecurity/transaction.h"
+#include "celeowaf/rules_set.h"
+#include "celeowaf/celeowaf.h"
+#include "celeowaf/transaction.h"
 #include "src/parser/driver.h"
 #include "src/utils/https_client.h"
-#include "modsecurity/rules.h"
+#include "celeowaf/rules.h"
 
-using modsecurity::Parser::Driver;
-using modsecurity::Utils::HttpsClient;
+using celeowaf::Parser::Driver;
+using celeowaf::Utils::HttpsClient;
 
-namespace modsecurity {
+namespace celeowaf {
 
 
 /**
@@ -38,7 +38,7 @@ namespace modsecurity {
  * @ingroup ModSecCore
  *
  * Load the rules from a given uri into memory in
- * the format expected by ModSecurity core.
+ * the format expected by CeleoWAF core.
  *
  * @param uri Full path to the rules file.
  *
@@ -107,7 +107,7 @@ std::string RulesSet::getParserError() {
 
 
 int RulesSet::evaluate(int phase, Transaction *t) {
-    if (phase >= modsecurity::Phases::NUMBER_OF_PHASES) {
+    if (phase >= celeowaf::Phases::NUMBER_OF_PHASES) {
        return 0;
     }
 
@@ -117,13 +117,13 @@ int RulesSet::evaluate(int phase, Transaction *t) {
         + std::to_string(rules->size()) + " rule(s).");
 
     if (t->m_allowType == actions::disruptive::FromNowOnAllowType
-        && phase != modsecurity::Phases::LoggingPhase) {
+        && phase != celeowaf::Phases::LoggingPhase) {
         ms_dbg_a(t, 9, "Skipping all rules evaluation on this phase as request " \
             "through the utilization of an `allow' action.");
         return true;
     }
     if (t->m_allowType == actions::disruptive::RequestAllowType
-        && phase <= modsecurity::Phases::RequestBodyPhase) {
+        && phase <= celeowaf::Phases::RequestBodyPhase) {
         ms_dbg_a(t, 9, "Skipping all rules evaluation on this phase as request " \
             "through the utilization of an `allow' action.");
         return true;
@@ -317,5 +317,5 @@ extern "C" int msc_rules_cleanup(RulesSet *rules) {
 }
 
 
-}  // namespace modsecurity
+}  // namespace celeowaf
 

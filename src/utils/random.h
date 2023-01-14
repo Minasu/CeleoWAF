@@ -1,5 +1,5 @@
 /*
- * ModSecurity, http://www.modsecurity.org/
+ * CeleoWAF, http://www.celeowaf.org/
  * Copyright (c) 2015 - 2021 Trustwave Holdings, Inc. (http://www.trustwave.com/)
  *
  * You may not use this file except in compliance with
@@ -9,7 +9,7 @@
  *
  * If any of the files related to licensing are missing or if you have any
  * other questions related to licensing please contact Trustwave Holdings, Inc.
- * directly using the email address security@modsecurity.org.
+ * directly using the email address security@celeowaf.org.
  *
  */
 
@@ -18,13 +18,13 @@
 #include <string>
 #include <vector>
 
-#include "modsecurity/modsecurity.h"
+#include "celeowaf/celeowaf.h"
 
 #ifndef SRC_UTILS_RANDOM_H_
 #define SRC_UTILS_RANDOM_H_
 
 
-namespace modsecurity {
+namespace celeowaf {
 namespace utils {
 
 
@@ -33,7 +33,7 @@ namespace utils {
 
 
 }  // namespace utils
-}  // namespace modsecurity
+}  // namespace celeowaf
 
 
 #endif  // SRC_UTILS_RANDOM_H_

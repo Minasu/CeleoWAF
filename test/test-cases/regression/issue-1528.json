@@ -4,7 +4,7 @@
   "version_min": 209000,
   "version_max": -1,
   "title": "Macro expansion inside regex does not work",
-  "url": "https:\/\/github.com\/SpiderLabs\/ModSecurity\/issues\/1528",
+  "url": "https:\/\/github.com\/SpiderLabs\/CeleoWAF\/issues\/1528",
   "gihub_issue": 1528,
   "client": {
     "ip": "200.249.12.31",

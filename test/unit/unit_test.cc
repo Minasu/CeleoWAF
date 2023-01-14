@@ -1,5 +1,5 @@
 /*
- * ModSecurity, http://www.modsecurity.org/
+ * CeleoWAF, http://www.celeowaf.org/
  * Copyright (c) 2015 - 2021 Trustwave Holdings, Inc. (http://www.trustwave.com/)
  *
  * You may not use this file except in compliance with
@@ -9,7 +9,7 @@
  *
  * If any of the files related to licensing are missing or if you have any
  * other questions related to licensing please contact Trustwave Holdings, Inc.
- * directly using the email address security@modsecurity.org.
+ * directly using the email address security@celeowaf.org.
  *
  */
 
@@ -27,7 +27,7 @@
 #include "src/utils/string.h"
 
 
-namespace modsecurity_test {
+namespace celeowaf_test {
 
 
 std::string string_to_hex(const std::string& input) {
@@ -58,11 +58,11 @@ void replaceAll(std::string *s, const std::string &search,
 
 
 void json2bin(std::string *str) {
-    modsecurity::Utils::Regex re("\\\\x([a-z0-9A-Z]{2})");
-    modsecurity::Utils::Regex re2("\\\\u([a-z0-9A-Z]{4})");
-    modsecurity::Utils::SMatch match;
+    celeowaf::Utils::Regex re("\\\\x([a-z0-9A-Z]{2})");
+    celeowaf::Utils::Regex re2("\\\\u([a-z0-9A-Z]{4})");
+    celeowaf::Utils::SMatch match;
 
-    while (modsecurity::Utils::regex_search(*str, &match, re)) {
+    while (celeowaf::Utils::regex_search(*str, &match, re)) {
         unsigned int p;
         std::string toBeReplaced = match.str();
         toBeReplaced.erase(0, 2);
@@ -70,7 +70,7 @@ void json2bin(std::string *str) {
         replaceAll(str, match.str(), p);
     }
 
-    while (modsecurity::Utils::regex_search(*str, &match, re2)) {
+    while (celeowaf::Utils::regex_search(*str, &match, re2)) {
         unsigned int p;
         std::string toBeReplaced = match.str();
         toBeReplaced.erase(0, 2);
@@ -108,9 +108,9 @@ std::string UnitTest::print() {
     }
     if (this->output != this->obtainedOutput) {
         i << "Expecting: \"";
-        i << modsecurity::utils::string::toHexIfNeeded(this->output);
+        i << celeowaf::utils::string::toHexIfNeeded(this->output);
         i << "\" - returned: \"";
-        i << modsecurity::utils::string::toHexIfNeeded(this->obtainedOutput);
+        i << celeowaf::utils::string::toHexIfNeeded(this->obtainedOutput);
         i << "\"";
         i << std::endl;
     }
@@ -155,4 +155,4 @@ UnitTest *UnitTest::from_yajl_node(const yajl_val &node) {
     return u;
 }
 
-}  // namespace modsecurity_test
+}  // namespace celeowaf_test

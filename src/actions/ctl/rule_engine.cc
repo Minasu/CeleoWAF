@@ -1,5 +1,5 @@
 /*
- * ModSecurity, http://www.modsecurity.org/
+ * CeleoWAF, http://www.celeowaf.org/
  * Copyright (c) 2015 - 2021 Trustwave Holdings, Inc. (http://www.trustwave.com/)
  *
  * You may not use this file except in compliance with
@@ -9,7 +9,7 @@
  *
  * If any of the files related to licensing are missing or if you have any
  * other questions related to licensing please contact Trustwave Holdings, Inc.
- * directly using the email address security@modsecurity.org.
+ * directly using the email address security@celeowaf.org.
  *
  */
 
@@ -18,11 +18,11 @@
 #include <iostream>
 #include <string>
 
-#include "modsecurity/rules_set_properties.h"
-#include "modsecurity/rules_set.h"
-#include "modsecurity/transaction.h"
+#include "celeowaf/rules_set_properties.h"
+#include "celeowaf/rules_set.h"
+#include "celeowaf/transaction.h"
 
-namespace modsecurity {
+namespace celeowaf {
 namespace actions {
 namespace ctl {
 
@@ -48,7 +48,7 @@ bool RuleEngine::init(std::string *error) {
 bool RuleEngine::evaluate(RuleWithActions *rule, Transaction *transaction) {
     std::stringstream a;
     a << "Setting SecRuleEngine to ";
-    a << modsecurity::RulesSetProperties::ruleEngineStateString(m_ruleEngine);
+    a << celeowaf::RulesSetProperties::ruleEngineStateString(m_ruleEngine);
     a << " as requested by a ctl:ruleEngine action";
 
     ms_dbg_a(transaction, 8, a.str());
@@ -60,4 +60,4 @@ bool RuleEngine::evaluate(RuleWithActions *rule, Transaction *transaction) {
 
 }  // namespace ctl
 }  // namespace actions
-}  // namespace modsecurity
+}  // namespace celeowaf

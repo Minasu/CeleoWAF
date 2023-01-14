@@ -4,7 +4,7 @@
     "version_min": 209000,
     "version_max": -1,
     "title": "@ipMatch \"Could not add entry\" on slash\/32 notation in 2.9.0 (1/2)",
-    "url": "https:\/\/github.com\/SpiderLabs\/ModSecurity\/issues\/849",
+    "url": "https:\/\/github.com\/SpiderLabs\/CeleoWAF\/issues\/849",
     "client": {
       "ip": "200.249.12.31",
       "port": 2313
@@ -51,7 +51,7 @@
     "version_min": 209000,
     "version_max": -1,
     "title": "@ipMatch \"Could not add entry\" on slash\/32 notation in 2.9.0 (2/2)",
-    "url": "https:\/\/github.com\/SpiderLabs\/ModSecurity\/issues\/849",
+    "url": "https:\/\/github.com\/SpiderLabs\/CeleoWAF\/issues\/849",
     "client": {
       "ip": "200.249.12.31",
       "port": 2313

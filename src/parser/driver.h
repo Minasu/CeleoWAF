@@ -1,5 +1,5 @@
 /*
- * ModSecurity, http://www.modsecurity.org/
+ * CeleoWAF, http://www.celeowaf.org/
  * Copyright (c) 2015 - 2021 Trustwave Holdings, Inc. (http://www.trustwave.com/)
  *
  * You may not use this file except in compliance with
@@ -9,7 +9,7 @@
  *
  * If any of the files related to licensing are missing or if you have any
  * other questions related to licensing please contact Trustwave Holdings, Inc.
- * directly using the email address security@modsecurity.org.
+ * directly using the email address security@celeowaf.org.
  *
  */
 
@@ -25,25 +25,25 @@
 #ifndef SRC_PARSER_DRIVER_H_
 #define SRC_PARSER_DRIVER_H_
 
-#include "modsecurity/modsecurity.h"
-#include "modsecurity/rules_set.h"
-#include "modsecurity/rules_set_properties.h"
-#include "modsecurity/audit_log.h"
+#include "celeowaf/celeowaf.h"
+#include "celeowaf/rules_set.h"
+#include "celeowaf/rules_set_properties.h"
+#include "celeowaf/audit_log.h"
 #include "src/rule_script.h"
 #ifndef MS_CPPCHECK_DISABLED_FOR_PARSER
 #include "src/parser/seclang-parser.hh"
 #endif
 
-using modsecurity::RuleWithOperator;
-using modsecurity::RulesSet;
+using celeowaf::RuleWithOperator;
+using celeowaf::RulesSet;
 
 
 # define YY_DECL \
-  yy::seclang_parser::symbol_type yylex(modsecurity::Parser::Driver& driver)
+  yy::seclang_parser::symbol_type yylex(celeowaf::Parser::Driver& driver)
 
 YY_DECL;
 
-namespace modsecurity {
+namespace celeowaf {
 namespace Parser {
 
 #ifdef __cplusplus
@@ -96,6 +96,6 @@ class Driver : public RulesSetProperties {
 
 
 }  // namespace Parser
-}  // namespace modsecurity
+}  // namespace celeowaf
 
 #endif  // SRC_PARSER_DRIVER_H_

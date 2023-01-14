@@ -1,5 +1,5 @@
 /*
- * ModSecurity, http://www.modsecurity.org/
+ * CeleoWAF, http://www.celeowaf.org/
  * Copyright (c) 2015 - 2021 Trustwave Holdings, Inc. (http://www.trustwave.com/)
  *
  * You may not use this file except in compliance with
@@ -9,7 +9,7 @@
  *
  * If any of the files related to licensing are missing or if you have any
  * other questions related to licensing please contact Trustwave Holdings, Inc.
- * directly using the email address security@modsecurity.org.
+ * directly using the email address security@celeowaf.org.
  *
  */
 
@@ -18,9 +18,9 @@
 #include <string.h>
 
 
-#include <modsecurity/modsecurity.h>
-#include <modsecurity/rules_set.h>
-#include <modsecurity/rule_message.h>
+#include <celeowaf/celeowaf.h>
+#include <celeowaf/rules_set.h>
+#include <celeowaf/rule_message.h>
 
 
 #include <string>
@@ -69,27 +69,27 @@ static void logCb(void *data, const void *ruleMessagev) {
         return;
     }
 
-    const modsecurity::RuleMessage *ruleMessage = \
-        reinterpret_cast<const modsecurity::RuleMessage *>(ruleMessagev);
+    const celeowaf::RuleMessage *ruleMessage = \
+        reinterpret_cast<const celeowaf::RuleMessage *>(ruleMessagev);
 
     std::cout << "Rule Id: " << std::to_string(ruleMessage->m_ruleId);
     std::cout << " phase: " << std::to_string(ruleMessage->m_phase);
     std::cout << std::endl;
     if (ruleMessage->m_isDisruptive) {
         std::cout << " * Disruptive action: ";
-        std::cout << modsecurity::RuleMessage::log(ruleMessage);
+        std::cout << celeowaf::RuleMessage::log(ruleMessage);
         std::cout << std::endl;
         std::cout << " ** %d is meant to be informed by the webserver.";
         std::cout << std::endl;
     } else {
         std::cout << " * Match, but no disruptive action: ";
-        std::cout << modsecurity::RuleMessage::log(ruleMessage);
+        std::cout << celeowaf::RuleMessage::log(ruleMessage);
         std::cout << std::endl;
     }
 }
 
-int process_intervention(modsecurity::Transaction *transaction) {
-    modsecurity::ModSecurityIntervention intervention;
+int process_intervention(celeowaf::Transaction *transaction) {
+    celeowaf::CeleoWAFIntervention intervention;
     intervention.status = 200;
     intervention.url = NULL;
     intervention.log = NULL;
@@ -125,8 +125,8 @@ int process_intervention(modsecurity::Transaction *transaction) {
 }
 
 int main(int argc, char **argv) {
-    modsecurity::ModSecurity *modsec;
-    modsecurity::RulesSet *rules;
+    celeowaf::CeleoWAF *modsec;
+    celeowaf::RulesSet *rules;
 
     if (argc < 2) {
         std::cout << "Use " << *argv << " test-case-file.conf";
@@ -137,20 +137,20 @@ int main(int argc, char **argv) {
     std::string rules_arg(rule);
 
     /**
-     * ModSecurity initial setup
+     * CeleoWAF initial setup
      *
      */
-    modsec = new modsecurity::ModSecurity();
-    modsec->setConnectorInformation("ModSecurity-test v0.0.1-alpha" \
-        " (ModSecurity test)");
-    modsec->setServerLogCb(logCb, modsecurity::RuleMessageLogProperty
-        | modsecurity::IncludeFullHighlightLogProperty);
+    modsec = new celeowaf::CeleoWAF();
+    modsec->setConnectorInformation("CeleoWAF-test v0.0.1-alpha" \
+        " (CeleoWAF test)");
+    modsec->setServerLogCb(logCb, celeowaf::RuleMessageLogProperty
+        | celeowaf::IncludeFullHighlightLogProperty);
 
     /**
      * loading the rules....
      *
      */
-    rules = new modsecurity::RulesSet();
+    rules = new celeowaf::RulesSet();
     if (rules->loadFromUri(rules_arg.c_str()) < 0) {
         std::cout << "Problems loading the rules..." << std::endl;
         std::cout << rules->m_parserError.str() << std::endl;
@@ -162,8 +162,8 @@ int main(int argc, char **argv) {
      * We are going to have a transaction
      *
      */
-    modsecurity::Transaction *modsecTransaction = \
-        new modsecurity::Transaction(modsec, rules, NULL);
+    celeowaf::Transaction *modsecTransaction = \
+        new celeowaf::Transaction(modsec, rules, NULL);
     process_intervention(modsecTransaction);
 
     /**

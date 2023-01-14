@@ -6,4 +6,4 @@
 	url = https://github.com/libinjection/libinjection.git
 [submodule "bindings/python"]
 	path = bindings/python
-	url = https://github.com/SpiderLabs/ModSecurity-Python-bindings.git
+	url = https://github.com/SpiderLabs/CeleoWAF-Python-bindings.git

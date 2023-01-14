@@ -1,5 +1,5 @@
 /*
- * ModSecurity, http://www.modsecurity.org/
+ * CeleoWAF, http://www.celeowaf.org/
  * Copyright (c) 2015 - 2021 Trustwave Holdings, Inc. (http://www.trustwave.com/)
  *
  * You may not use this file except in compliance with
@@ -9,7 +9,7 @@
  *
  * If any of the files related to licensing are missing or if you have any
  * other questions related to licensing please contact Trustwave Holdings, Inc.
- * directly using the email address security@modsecurity.org.
+ * directly using the email address security@celeowaf.org.
  *
  */
 
@@ -30,12 +30,12 @@
 
 #include "src/operators/operator.h"
 
-namespace modsecurity {
+namespace celeowaf {
 namespace operators {
 
 class VerifyCC : public Operator {
  public:
-    /** @ingroup ModSecurity_Operator */
+    /** @ingroup CeleoWAF_Operator */
     explicit VerifyCC(std::unique_ptr<RunTimeString> param)
         : Operator("VerifyCC", std::move(param)),
 #if WITH_PCRE2
@@ -63,7 +63,7 @@ class VerifyCC : public Operator {
 };
 
 }  // namespace operators
-}  // namespace modsecurity
+}  // namespace celeowaf
 
 
 #endif  // SRC_OPERATORS_VERIFY_CC_H_

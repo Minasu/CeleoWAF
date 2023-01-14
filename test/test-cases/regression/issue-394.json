@@ -4,7 +4,7 @@
   "version_min": 209000,
   "version_max": -1,
   "title": "Segmentation fault when uploading file with SecStreamInBodyInspection enabled",
-  "url": "https:\/\/github.com\/SpiderLabs\/ModSecurity\/issues\/394",
+  "url": "https:\/\/github.com\/SpiderLabs\/CeleoWAF\/issues\/394",
   "gihub_issue": 394,
   "client": {
     "ip": "200.249.12.31",

@@ -1,5 +1,5 @@
 /*
- * ModSecurity, http://www.modsecurity.org/
+ * CeleoWAF, http://www.celeowaf.org/
  * Copyright (c) 2015 - 2021 Trustwave Holdings, Inc. (http://www.trustwave.com/)
  *
  * You may not use this file except in compliance with
@@ -9,13 +9,13 @@
  *
  * If any of the files related to licensing are missing or if you have any
  * other questions related to licensing please contact Trustwave Holdings, Inc.
- * directly using the email address security@modsecurity.org.
+ * directly using the email address security@celeowaf.org.
  * 
  */
 
 #include "src/operators/unconditional_match.h"
 
-namespace modsecurity {
+namespace celeowaf {
 namespace operators {
 
 bool UnconditionalMatch::evaluate(Transaction *transaction,
@@ -24,4 +24,4 @@ bool UnconditionalMatch::evaluate(Transaction *transaction,
 }
 
 }  // namespace operators
-}  // namespace modsecurity
+}  // namespace celeowaf

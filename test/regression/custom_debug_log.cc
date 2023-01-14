@@ -1,5 +1,5 @@
 /*
- * ModSecurity, http://www.modsecurity.org/
+ * CeleoWAF, http://www.celeowaf.org/
  * Copyright (c) 2015 - 2021 Trustwave Holdings, Inc. (http://www.trustwave.com/)
  *
  * You may not use this file except in compliance with
@@ -9,7 +9,7 @@
  *
  * If any of the files related to licensing are missing or if you have any
  * other questions related to licensing please contact Trustwave Holdings, Inc.
- * directly using the email address security@modsecurity.org.
+ * directly using the email address security@celeowaf.org.
  *
  */
 
@@ -18,10 +18,10 @@
 #include <iostream>
 #include <string>
 
-#include "modsecurity/debug_log.h"
+#include "celeowaf/debug_log.h"
 #include "src/utils/regex.h"
 
-namespace modsecurity_test {
+namespace celeowaf_test {
 
 CustomDebugLog::~CustomDebugLog() { }
 
@@ -37,9 +37,9 @@ void CustomDebugLog::write(int level, const std::string &id,
 }
 
 bool const CustomDebugLog::contains(const std::string& pattern) const {
-    modsecurity::Utils::Regex re(pattern);
+    celeowaf::Utils::Regex re(pattern);
     std::string s = m_log.str();
-    return modsecurity::Utils::regex_search(s, re);
+    return celeowaf::Utils::regex_search(s, re);
 }
 
 std::string const CustomDebugLog::log_messages() const {
@@ -52,4 +52,4 @@ int CustomDebugLog::getDebugLogLevel() {
 }
 
 
-}  // namespace modsecurity_test
+}  // namespace celeowaf_test

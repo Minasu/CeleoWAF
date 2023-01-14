@@ -1,5 +1,5 @@
 /*
- * ModSecurity, http://www.modsecurity.org/
+ * CeleoWAF, http://www.celeowaf.org/
  * Copyright (c) 2015 - 2021 Trustwave Holdings, Inc. (http://www.trustwave.com/)
  *
  * You may not use this file except in compliance with
@@ -9,7 +9,7 @@
  *
  * If any of the files related to licensing are missing or if you have any
  * other questions related to licensing please contact Trustwave Holdings, Inc.
- * directly using the email address security@modsecurity.org.
+ * directly using the email address security@celeowaf.org.
  *
  */
 
@@ -20,16 +20,16 @@
 #include <ctime>
 #include <string>
 
-#include "modsecurity/rules_set.h"
-#include "modsecurity/modsecurity.h"
+#include "celeowaf/rules_set.h"
+#include "celeowaf/celeowaf.h"
 #include "src/operators/operator.h"
 #include "src/actions/transformations/transformation.h"
-#include "modsecurity/transaction.h"
-#include "modsecurity/actions/action.h"
+#include "celeowaf/transaction.h"
+#include "celeowaf/actions/action.h"
 
 
-#include "test/common/modsecurity_test.h"
-#include "test/common/modsecurity_test_results.h"
+#include "test/common/celeowaf_test.h"
+#include "test/common/celeowaf_test_results.h"
 #include "test/common/colors.h"
 #include "test/unit/unit_test.h"
 #include "src/utils/string.h"
@@ -37,11 +37,11 @@
 
 
 
-using modsecurity_test::UnitTest;
-using modsecurity_test::ModSecurityTest;
-using modsecurity_test::ModSecurityTestResults;
-using modsecurity::actions::transformations::Transformation;
-using modsecurity::operators::Operator;
+using celeowaf_test::UnitTest;
+using celeowaf_test::CeleoWAFTest;
+using celeowaf_test::CeleoWAFTestResults;
+using celeowaf::actions::transformations::Transformation;
+using celeowaf::operators::Operator;
 
 std::string default_test_path = "test-cases/secrules-language-tests/operators";
 static std::list<std::string> resources;
@@ -53,8 +53,8 @@ void print_help() {
 }
 
 
-void perform_unit_test(ModSecurityTest<UnitTest> *test, UnitTest *t,
-    ModSecurityTestResults<UnitTest>* res) {
+void perform_unit_test(CeleoWAFTest<UnitTest> *test, UnitTest *t,
+    CeleoWAFTestResults<UnitTest>* res) {
     std::string error;
     bool found = true;
 
@@ -110,7 +110,7 @@ void perform_unit_test(ModSecurityTest<UnitTest> *test, UnitTest *t,
 
     if (test->m_automake_output) {
         std::cout << t->name << " "
-            << modsecurity::utils::string::toHexIfNeeded(t->input)
+            << celeowaf::utils::string::toHexIfNeeded(t->input)
             << std::endl;
     }
 }
@@ -118,8 +118,8 @@ void perform_unit_test(ModSecurityTest<UnitTest> *test, UnitTest *t,
 
 int main(int argc, char **argv) {
     int total = 0;
-    ModSecurityTest<UnitTest> test;
-    ModSecurityTestResults<UnitTest> results;
+    CeleoWAFTest<UnitTest> test;
+    CeleoWAFTestResults<UnitTest> results;
 
 #if defined(WITH_GEOIP) or defined(WITH_MAXMIND)
     resources.push_back("geoip-or-maxmind");
@@ -156,7 +156,7 @@ int main(int argc, char **argv) {
 
         total += tests->size();
         for (UnitTest *t : *tests) {
-            ModSecurityTestResults<UnitTest> r;
+            CeleoWAFTestResults<UnitTest> r;
 
             if (!test.m_automake_output) {
                 std::cout << "  " << a.first << "...\t";

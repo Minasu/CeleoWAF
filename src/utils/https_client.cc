@@ -1,5 +1,5 @@
 /*
- * ModSecurity, http://www.modsecurity.org/
+ * CeleoWAF, http://www.celeowaf.org/
  * Copyright (c) 2015 - 2021 Trustwave Holdings, Inc. (http://www.trustwave.com/)
  *
  * You may not use this file except in compliance with
@@ -9,7 +9,7 @@
  *
  * If any of the files related to licensing are missing or if you have any
  * other questions related to licensing please contact Trustwave Holdings, Inc.
- * directly using the email address security@modsecurity.org.
+ * directly using the email address security@celeowaf.org.
  *
  */
 
@@ -29,10 +29,10 @@
 #include <fstream>
 #include <iostream>
 
-#include "modsecurity/modsecurity.h"
+#include "celeowaf/celeowaf.h"
 #include "src/unique_id.h"
 
-namespace modsecurity {
+namespace celeowaf {
 namespace Utils {
 
 
@@ -64,7 +64,7 @@ bool HttpsClient::download(const std::string &uri) {
     CURL *curl;
     CURLcode res;
     std::string uniqueId = "ModSec-unique-id: " + UniqueId::uniqueId();
-    std::string status = "ModSec-status: " + std::to_string(MODSECURITY_VERSION_NUM);
+    std::string status = "ModSec-status: " + std::to_string(CELEOWAF_VERSION_NUM);
 
     curl = curl_easy_init();
     if (!curl) {
@@ -100,7 +100,7 @@ bool HttpsClient::download(const std::string &uri) {
     /* we pass our 'chunk' struct to the callback function */
     curl_easy_setopt(curl, CURLOPT_WRITEDATA, this);
 
-    curl_easy_setopt(curl, CURLOPT_USERAGENT, "ModSecurity3");
+    curl_easy_setopt(curl, CURLOPT_USERAGENT, "CeleoWAF3");
     curl_easy_setopt(curl, CURLOPT_HTTPHEADER, headers_chunk);
 
     /* We want Curl to return error in case there is an HTTP error code */
@@ -130,5 +130,5 @@ bool HttpsClient::download(const std::string &uri) {
 #endif
 
 }  // namespace Utils
-}  // namespace modsecurity
+}  // namespace celeowaf
 

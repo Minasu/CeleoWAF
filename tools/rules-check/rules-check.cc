@@ -1,5 +1,5 @@
 /*
- * ModSecurity, http://www.modsecurity.org/
+ * CeleoWAF, http://www.celeowaf.org/
  * Copyright (c) 2015 - 2021 Trustwave Holdings, Inc. (http://www.trustwave.com/)
  *
  * You may not use this file except in compliance with
@@ -9,7 +9,7 @@
  *
  * If any of the files related to licensing are missing or if you have any
  * other questions related to licensing please contact Trustwave Holdings, Inc.
- * directly using the email address security@modsecurity.org.
+ * directly using the email address security@celeowaf.org.
  *
  */
 
@@ -21,8 +21,8 @@
 #include <iostream>
 #include <string>
 
-#include "modsecurity/rules_set.h"
-#include "modsecurity/modsecurity.h"
+#include "celeowaf/rules_set.h"
+#include "celeowaf/celeowaf.h"
 
 
 void print_help(const char *name) {
@@ -32,9 +32,9 @@ void print_help(const char *name) {
 
 
 int main(int argc, char **argv) {
-    modsecurity::RulesSet *rules;
+    celeowaf::RulesSet *rules;
     char **args = argv;
-    rules = new modsecurity::RulesSet();
+    rules = new celeowaf::RulesSet();
     int ret = 0;
 
     args++;

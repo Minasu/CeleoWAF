@@ -35,7 +35,7 @@ unit_tests_SOURCES = \
 
 
 noinst_HEADERS = \
-       common/modsecurity_test.cc \
+       common/celeowaf_test.cc \
        common/*.h \
        unit/*.h \
        regression/*.h
@@ -58,7 +58,7 @@ unit_tests_LDADD = \
 unit_tests_LDFLAGS = \
 	-L$(top_builddir)/src/.libs/ \
 	$(GEOIP_LDFLAGS) \
-	-lmodsecurity \
+	-lceleowaf \
 	-lpthread \
 	-lm \
 	-lstdc++ \
@@ -114,7 +114,7 @@ regression_tests_LDADD = \
 regression_tests_LDFLAGS = \
 	-L$(top_builddir)/src/.libs/ \
 	$(GEOIP_LDFLAGS) \
-	-lmodsecurity \
+	-lceleowaf \
 	-lpthread \
 	-lm \
 	-lstdc++ \
@@ -168,7 +168,7 @@ rules_optimization_LDADD = \
 rules_optimization_LDFLAGS = \
 	-L$(top_builddir)/src/.libs/ \
 	$(GEOIP_LDFLAGS) \
-	-lmodsecurity \
+	-lceleowaf \
 	-lpthread \
 	-lm \
 	-lstdc++ \

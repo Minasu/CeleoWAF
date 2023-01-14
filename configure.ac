@@ -1,13 +1,13 @@
-# ModSecurity configure.ac
+# CeleoWAF configure.ac
 
 
 # Get the hash of the last commit, to be used if it is not an
 # official release.
 AC_DEFUN([MSC_GIT_HASH], m4_esyscmd_s(git log -1 --format="%h" --abbrev-commit))
-AC_DEFUN([MSC_MAJOR], m4_esyscmd_s(cat headers/modsecurity/modsecurity.h | grep "define MODSECURITY_MAJOR " | awk {'print $3'} | sed 's/\"//g'))
-AC_DEFUN([MSC_MINOR], m4_esyscmd_s(cat headers/modsecurity/modsecurity.h | grep "define MODSECURITY_MINOR " | awk {'print $3'} | sed 's/\"//g'))
-AC_DEFUN([MSC_PATCHLEVEL], m4_esyscmd_s(cat headers/modsecurity/modsecurity.h | grep "define MODSECURITY_PATCHLEVEL " | awk {'print $3'} | sed 's/\"//g'))
-AC_DEFUN([MSC_TAG], m4_esyscmd_s(cat headers/modsecurity/modsecurity.h | grep "define MODSECURITY_FTAG " | awk {'print $3'} | sed 's/\"//g'))
+AC_DEFUN([MSC_MAJOR], m4_esyscmd_s(cat headers/celeowaf/celeowaf.h | grep "define CELEOWAF_MAJOR " | awk {'print $3'} | sed 's/\"//g'))
+AC_DEFUN([MSC_MINOR], m4_esyscmd_s(cat headers/celeowaf/celeowaf.h | grep "define CELEOWAF_MINOR " | awk {'print $3'} | sed 's/\"//g'))
+AC_DEFUN([MSC_PATCHLEVEL], m4_esyscmd_s(cat headers/celeowaf/celeowaf.h | grep "define CELEOWAF_PATCHLEVEL " | awk {'print $3'} | sed 's/\"//g'))
+AC_DEFUN([MSC_TAG], m4_esyscmd_s(cat headers/celeowaf/celeowaf.h | grep "define CELEOWAF_FTAG " | awk {'print $3'} | sed 's/\"//g'))
 
 
 # Version definition to be further used by AC_INIT and 
@@ -33,12 +33,12 @@ m4_define([msc_version_info],
 
 
 # Project Information
-AC_INIT([modsecurity], [3.0], [security@modsecurity.org])
+AC_INIT([celeowaf], [3.0], [security@celeowaf.org])
 
 
 # General definitions
 AC_CONFIG_MACRO_DIR([build])
-AC_PREFIX_DEFAULT([/usr/local/modsecurity])
+AC_PREFIX_DEFAULT([/usr/local/celeowaf])
 
 
 # General automake options.
@@ -60,9 +60,9 @@ if ! test -f "${srcdir}/others/libinjection/src/libinjection_html5.c"; then
 AC_MSG_ERROR([\
 
 
-  libInjection was not found within ModSecurity source directory.
+  libInjection was not found within CeleoWAF source directory.
 
-  libInjection code is available as part of ModSecurity source code in a format
+  libInjection code is available as part of CeleoWAF source code in a format
   of a git-submodule. git-submodule allow us to specify the correct version of
   libInjection and still uses the libInjection repository to download it.
 
@@ -306,15 +306,15 @@ if test $buildParser = true; then
     AC_PROG_YACC
     AC_PROG_LEX
     AC_PATH_PROG([FLEX], [flex])
-    test "x$FLEX" = "x" && AC_MSG_ERROR([flex is needed to build ModSecurity])
+    test "x$FLEX" = "x" && AC_MSG_ERROR([flex is needed to build CeleoWAF])
 
     AC_PATH_PROG([BISON], [bison])
-    test "x$BISON" = "x" && AC_MSG_ERROR([bison is needed to build ModSecurity])
+    test "x$BISON" = "x" && AC_MSG_ERROR([bison is needed to build CeleoWAF])
 
     AC_PATH_PROG([YACC_INST], $YACC)
     if test ! -f "$srcdir/gram.c"; then
         if test -z "$YACC_INST"; then
-            AC_MSG_ERROR([yacc not found - unable to compile ModSecurity])
+            AC_MSG_ERROR([yacc not found - unable to compile CeleoWAF])
         fi
     fi
 fi
@@ -366,7 +366,7 @@ AC_SUBST(GLOBAL_CFLAGS)
 
 # Files to be generated via autotools.
 AC_CONFIG_FILES([\
-    modsecurity.pc \
+    celeowaf.pc \
     Makefile \
     doc/Makefile \
     src/Makefile \
@@ -408,7 +408,7 @@ DX_XML_FEATURE(OFF)
 DX_PDF_FEATURE(OFF)
 DX_PS_FEATURE(OFF)
 
-DX_INIT_DOXYGEN([ModSecurity],[doc/doxygen.cfg])
+DX_INIT_DOXYGEN([CeleoWAF],[doc/doxygen.cfg])
 
 # make check-valgrind
 AX_VALGRIND_DFLT([sgcheck], [off])
@@ -421,7 +421,7 @@ AC_OUTPUT
 # Print a fancy summary
 echo " "
 echo " "
-echo "ModSecurity - ${MSC_GIT_VERSION} for $PLATFORM"
+echo "CeleoWAF - ${MSC_GIT_VERSION} for $PLATFORM"
 echo " "
 echo " Mandatory dependencies"
 echo -n "   + libInjection                                  ...."

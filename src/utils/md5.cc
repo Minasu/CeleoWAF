@@ -3,7 +3,7 @@
 #include "src/utils/md5.h"
 #include "others/mbedtls/md5.h"
 
-namespace modsecurity {
+namespace celeowaf {
 namespace Utils {
 
 
@@ -36,5 +36,5 @@ std::string Md5::digest(const std::string& input) {
 
 
 }  // namespace Utils
-}  // namespace modsecurity
+}  // namespace celeowaf
 

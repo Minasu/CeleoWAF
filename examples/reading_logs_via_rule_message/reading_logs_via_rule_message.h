@@ -1,5 +1,5 @@
 /*
- * ModSecurity, http://www.modsecurity.org/
+ * CeleoWAF, http://www.celeowaf.org/
  * Copyright (c) 2015 - 2021 Trustwave Holdings, Inc. (http://www.trustwave.com/)
  *
  * You may not use this file except in compliance with
@@ -9,7 +9,7 @@
  *
  * If any of the files related to licensing are missing or if you have any
  * other questions related to licensing please contact Trustwave Holdings, Inc.
- * directly using the email address security@modsecurity.org.
+ * directly using the email address security@celeowaf.org.
  *
  */
 
@@ -61,27 +61,27 @@ char response_body[] = "" \
 
 char ip[] = "200.249.12.31";
 
-#include "modsecurity/rule_message.h"
+#include "celeowaf/rule_message.h"
 
 #ifndef EXAMPLES_READING_LOGS_VIA_RULE_MESSAGE_READING_LOGS_VIA_RULE_MESSAGE_H_
 #define EXAMPLES_READING_LOGS_VIA_RULE_MESSAGE_READING_LOGS_VIA_RULE_MESSAGE_H_
 
 
 struct data_ms {
-    modsecurity::ModSecurity *modsec;
-    modsecurity::RulesSet *rules;
+    celeowaf::CeleoWAF *modsec;
+    celeowaf::RulesSet *rules;
 };
 
 
 static void *process_request(void *data) {
     struct data_ms *a = (struct data_ms *)data;
-    modsecurity::ModSecurity *modsec = a->modsec;
-    modsecurity::RulesSet *rules = a->rules;
+    celeowaf::CeleoWAF *modsec = a->modsec;
+    celeowaf::RulesSet *rules = a->rules;
     int z = 0;
 
     for (z = 0; z < 10000; z++) {
-        modsecurity::Transaction *modsecTransaction = \
-            new modsecurity::Transaction(modsec, rules, NULL);
+        celeowaf::Transaction *modsecTransaction = \
+            new celeowaf::Transaction(modsec, rules, NULL);
         modsecTransaction->processConnection(ip, 12345, "127.0.0.1", 80);
         modsecTransaction->processURI(request_uri, "GET", "1.1");
 
@@ -131,16 +131,16 @@ class ReadingLogsViaRuleMessage {
         struct data_ms dms;
         void *status;
 
-        modsecurity::ModSecurity *modsec;
-        modsecurity::RulesSet *rules;
+        celeowaf::CeleoWAF *modsec;
+        celeowaf::RulesSet *rules;
 
-        modsec = new modsecurity::ModSecurity();
-        modsec->setConnectorInformation("ModSecurity-test v0.0.1-alpha" \
-            " (ModSecurity test)");
-        modsec->setServerLogCb(logCb, modsecurity::RuleMessageLogProperty
-            | modsecurity::IncludeFullHighlightLogProperty);
+        modsec = new celeowaf::CeleoWAF();
+        modsec->setConnectorInformation("CeleoWAF-test v0.0.1-alpha" \
+            " (CeleoWAF test)");
+        modsec->setServerLogCb(logCb, celeowaf::RuleMessageLogProperty
+            | celeowaf::IncludeFullHighlightLogProperty);
 
-        rules = new modsecurity::RulesSet();
+        rules = new celeowaf::RulesSet();
         if (rules->loadFromUri(m_rules.c_str()) < 0) {
             std::cout << "Problems loading the rules..." << std::endl;
             std::cout << rules->m_parserError.str() << std::endl;
@@ -176,21 +176,21 @@ class ReadingLogsViaRuleMessage {
             return;
         }
 
-        const modsecurity::RuleMessage *ruleMessage = \
-            reinterpret_cast<const modsecurity::RuleMessage *>(ruleMessagev);
+        const celeowaf::RuleMessage *ruleMessage = \
+            reinterpret_cast<const celeowaf::RuleMessage *>(ruleMessagev);
 
         std::cout << "Rule Id: " << std::to_string(ruleMessage->m_ruleId);
         std::cout << " phase: " << std::to_string(ruleMessage->m_phase);
         std::cout << std::endl;
         if (ruleMessage->m_isDisruptive) {
             std::cout << " * Disruptive action: ";
-            std::cout << modsecurity::RuleMessage::log(ruleMessage);
+            std::cout << celeowaf::RuleMessage::log(ruleMessage);
             std::cout << std::endl;
             std::cout << " ** %d is meant to be informed by the webserver.";
             std::cout << std::endl;
         } else {
             std::cout << " * Match, but no disruptive action: ";
-            std::cout << modsecurity::RuleMessage::log(ruleMessage);
+            std::cout << celeowaf::RuleMessage::log(ruleMessage);
             std::cout << std::endl;
         }
     }

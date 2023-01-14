@@ -2,7 +2,7 @@
 #include <stdio.h>
 #include <string.h>
 
-#include <modsecurity/modsecurity.h>
+#include <celeowaf/celeowaf.h>
 
 
 // Variable offset - REQUEST_HEADERS_NAMES
@@ -16,7 +16,7 @@ const char *request = "" \
 
 
 int main() {
-    modsecurity::ModSecurity msc;
+    celeowaf::CeleoWAF msc;
     std::string json("");
     const char *err = NULL;
     int ret = 0;

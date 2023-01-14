@@ -4,7 +4,7 @@
     "version_min": 209000,
     "version_max": -1,
     "title": "Failed to load locate the unicode map file from: ... 1/n",
-    "url": "https:\/\/github.com\/SpiderLabs\/ModSecurity\/issues\/1941",
+    "url": "https:\/\/github.com\/SpiderLabs\/CeleoWAF\/issues\/1941",
     "expected": {
       "parser_error": "Failed to locate the unicode map file from: does-not-exist-unicode.mapping"
     },
@@ -18,7 +18,7 @@
     "version_min": 209000,
     "version_max": -1,
     "title": "Failed to load locate the unicode map file from: ... 2/n",
-    "url": "https:\/\/github.com\/SpiderLabs\/ModSecurity\/issues\/1941",
+    "url": "https:\/\/github.com\/SpiderLabs\/CeleoWAF\/issues\/1941",
     "expected": {
      "parser_error": "Failed to locate the unicode map file from: um dois tres does-not-exist-unicode.mapping"
     },
@@ -32,7 +32,7 @@
     "version_min": 209000,
     "version_max": -1,
     "title": "Failed to load locate the unicode map file from: ... 3/n",
-    "url": "https:\/\/github.com\/SpiderLabs\/ModSecurity\/issues\/1941",
+    "url": "https:\/\/github.com\/SpiderLabs\/CeleoWAF\/issues\/1941",
     "expected": {
      "parser_error": "Invalid input:  SecUnicodeMapFile does-not-exist-unicode.mapping eita"
     },

@@ -5127,9 +5127,9 @@ char *yytext;
 #include "src/utils/https_client.h"
 #include "src/utils/string.h"
 
-using modsecurity::Parser::Driver;
-using modsecurity::Utils::HttpsClient;
-using modsecurity::utils::string::parserSanitizer;
+using celeowaf::Parser::Driver;
+using celeowaf::Utils::HttpsClient;
+using celeowaf::utils::string::parserSanitizer;
 
 typedef yy::seclang_parser p;
 static int state_variable_from = 0;
@@ -7753,7 +7753,7 @@ YY_RULE_SETUP
 case 412:
 YY_RULE_SETUP
 #line 1023 "seclang-scanner.ll"
-{ driver.error (*driver.loc.back(), "Variable VARIABLE_WEBSERVER_ERROR_LOG is not supported by libModSecurity", ""); throw p::syntax_error(*driver.loc.back(), "");}
+{ driver.error (*driver.loc.back(), "Variable VARIABLE_WEBSERVER_ERROR_LOG is not supported by libCeleoWAF", ""); throw p::syntax_error(*driver.loc.back(), "");}
 	YY_BREAK
 case 413:
 YY_RULE_SETUP
@@ -8532,17 +8532,17 @@ YY_RULE_SETUP
     std::string err;
     const char *tmpStr = yytext + strlen("include");
     const char *file   = tmpStr + strspn( tmpStr, " \t");
-    std::string fi = modsecurity::utils::find_resource(file, *driver.loc.back()->end.filename, &err);
+    std::string fi = celeowaf::utils::find_resource(file, *driver.loc.back()->end.filename, &err);
     if (fi.empty() == true) {
         BEGIN(INITIAL);
         driver.error (*driver.loc.back(), "", file + std::string(": Not able to open file. ") + err);
         throw p::syntax_error(*driver.loc.back(), "");
     }
-    std::list<std::string> files = modsecurity::utils::expandEnv(fi, 0);
+    std::list<std::string> files = celeowaf::utils::expandEnv(fi, 0);
     files.reverse();
     for (auto& s: files) {
         std::string err;
-        std::string f = modsecurity::utils::find_resource(s, *driver.loc.back()->end.filename, &err);
+        std::string f = celeowaf::utils::find_resource(s, *driver.loc.back()->end.filename, &err);
         driver.loc.push_back(new yy::location());
         driver.loc.back()->begin.filename = driver.loc.back()->end.filename = new std::string(f);
         yyin = fopen(f.c_str(), "r" );
@@ -8564,16 +8564,16 @@ YY_RULE_SETUP
     const char *tmpStr = yytext + strlen("include");
     const char *file   = tmpStr + strspn( tmpStr, " \t");
     char *f = strdup(file);
-    std::string fi = modsecurity::utils::find_resource(f, *driver.loc.back()->end.filename, &err);
+    std::string fi = celeowaf::utils::find_resource(f, *driver.loc.back()->end.filename, &err);
     if (fi.empty() == true) {
         BEGIN(INITIAL);
         driver.error (*driver.loc.back(), "", file + std::string(": Not able to open file. ") + err);
         throw p::syntax_error(*driver.loc.back(), "");
     }
-    std::list<std::string> files = modsecurity::utils::expandEnv(fi, 0);
+    std::list<std::string> files = celeowaf::utils::expandEnv(fi, 0);
     files.reverse();
     for (auto& s: files) {
-        std::string f = modsecurity::utils::find_resource(s, *driver.loc.back()->end.filename, &err);
+        std::string f = celeowaf::utils::find_resource(s, *driver.loc.back()->end.filename, &err);
         driver.loc.push_back(new yy::location());
         driver.loc.back()->begin.filename = driver.loc.back()->end.filename = new std::string(f);
 
@@ -8598,7 +8598,7 @@ YY_RULE_SETUP
     std::string key;
     std::string url;
 
-    std::vector<std::string> conf = modsecurity::utils::string::split(yytext, ' ');
+    std::vector<std::string> conf = celeowaf::utils::string::split(yytext, ' ');
     if (conf.size() < 2) {
         driver.error (*driver.loc.back(), "", "SecRemoteRules demands a key and a URI");
         throw p::syntax_error(*driver.loc.back(), "");
@@ -9741,7 +9741,7 @@ void yyfree (void * ptr )
 #line 1336 "seclang-scanner.ll"
 
 
-namespace modsecurity {
+namespace celeowaf {
 
 bool Driver::scan_begin () {
     yy_flex_debug = trace_scanning;

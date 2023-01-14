@@ -1,5 +1,5 @@
 /*
- * ModSecurity, http://www.modsecurity.org/
+ * CeleoWAF, http://www.celeowaf.org/
  * Copyright (c) 2015 - 2021 Trustwave Holdings, Inc. (http://www.trustwave.com/)
  *
  * You may not use this file except in compliance with
@@ -9,14 +9,14 @@
  *
  * If any of the files related to licensing are missing or if you have any
  * other questions related to licensing please contact Trustwave Holdings, Inc.
- * directly using the email address security@modsecurity.org.
+ * directly using the email address security@celeowaf.org.
  *
  */
 
 
 #include <string.h>
-#include "modsecurity/rules_set.h"
-#include "modsecurity/modsecurity.h"
+#include "celeowaf/rules_set.h"
+#include "celeowaf/celeowaf.h"
 #include "src/actions/transformations/transformation.h"
 
 /**
@@ -108,9 +108,9 @@
 #include "src/operators/within.h"
 
 
-using namespace modsecurity::actions::transformations;
-using namespace modsecurity::operators;
-using namespace modsecurity;
+using namespace celeowaf::actions::transformations;
+using namespace celeowaf::operators;
+using namespace celeowaf;
 
 #include <stdio.h>
 #include <stdlib.h>
@@ -144,7 +144,7 @@ int main(int argc, char** argv) {
         std::string z = lastString;
 #endif
 
-        ModSecurity *ms = new ModSecurity();
+        CeleoWAF *ms = new CeleoWAF();
         RulesSet *rules = new RulesSet();
         // Here it is possible to load a real transaction from a JSON.
         // like we do on the regression tests.

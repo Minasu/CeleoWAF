@@ -10,7 +10,7 @@
 #include "src/utils/regex.h"
 
 
-namespace modsecurity {
+namespace celeowaf {
 using Utils::SMatch;
 using Utils::regex_search;
 using Utils::Regex;
@@ -19,7 +19,7 @@ namespace operators {
 
 class VerifySVNR : public Operator {
  public:
-    /** @ingroup ModSecurity_Operator */
+    /** @ingroup CeleoWAF_Operator */
     explicit VerifySVNR(std::unique_ptr<RunTimeString> param)
         : Operator("VerifySVNR", std::move(param)) {
         m_re = new Regex(m_param);
@@ -56,7 +56,7 @@ class VerifySVNR : public Operator {
 };
 
 }  // namespace operators
-}  // namespace modsecurity
+}  // namespace celeowaf
 
 
 #endif  // SRC_OPERATORS_VERIFY_SVNR_H_

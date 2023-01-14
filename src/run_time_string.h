@@ -1,5 +1,5 @@
 /*
- * ModSecurity, http://www.modsecurity.org/
+ * CeleoWAF, http://www.celeowaf.org/
  * Copyright (c) 2015 - 2021 Trustwave Holdings, Inc. (http://www.trustwave.com/)
  *
  * You may not use this file except in compliance with
@@ -9,7 +9,7 @@
  *
  * If any of the files related to licensing are missing or if you have any
  * other questions related to licensing please contact Trustwave Holdings, Inc.
- * directly using the email address security@modsecurity.org.
+ * directly using the email address security@celeowaf.org.
  *
  */
 
@@ -22,15 +22,15 @@
 #include <list>
 #include <utility>
 
-#include "modsecurity/modsecurity.h"
-#include "modsecurity/transaction.h"
+#include "celeowaf/celeowaf.h"
+#include "celeowaf/transaction.h"
 #include "src/variables/variable.h"
 
 
 #ifndef SRC_RUN_TIME_STRING_H_
 #define SRC_RUN_TIME_STRING_H_
 
-namespace modsecurity {
+namespace celeowaf {
 
 class RunTimeElementHolder {
  public:
@@ -38,7 +38,7 @@ class RunTimeElementHolder {
         m_string("") {
             m_var.reset(NULL);
         }
-    std::unique_ptr<modsecurity::variables::Variable> m_var;
+    std::unique_ptr<celeowaf::variables::Variable> m_var;
     std::string m_string;
 };
 
@@ -47,7 +47,7 @@ class RunTimeString {
     RunTimeString() :
         m_containsMacro(false) { }
     void appendText(const std::string &text);
-    void appendVar(std::unique_ptr<modsecurity::variables::Variable> var);
+    void appendVar(std::unique_ptr<celeowaf::variables::Variable> var);
     std::string evaluate(Transaction *t);
     std::string evaluate(Transaction *t, Rule *r);
     std::string evaluate() {
@@ -61,7 +61,7 @@ class RunTimeString {
 };
 
 
-}  // namespace modsecurity
+}  // namespace celeowaf
 
 
 

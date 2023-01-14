@@ -1,5 +1,5 @@
 /*
- * ModSecurity, http://www.modsecurity.org/
+ * CeleoWAF, http://www.celeowaf.org/
  * Copyright (c) 2015 - 2021 Trustwave Holdings, Inc. (http://www.trustwave.com/)
  *
  * You may not use this file except in compliance with
@@ -9,7 +9,7 @@
  *
  * If any of the files related to licensing are missing or if you have any
  * other questions related to licensing please contact Trustwave Holdings, Inc.
- * directly using the email address security@modsecurity.org.
+ * directly using the email address security@celeowaf.org.
  *
  */
 
@@ -17,13 +17,13 @@
 #include <string>
 #include <utility>
 
-#include "modsecurity/actions/action.h"
+#include "celeowaf/actions/action.h"
 #include "src/run_time_string.h"
 
 #ifndef SRC_ACTIONS_SET_VAR_H_
 #define SRC_ACTIONS_SET_VAR_H_
 
-namespace modsecurity {
+namespace celeowaf {
 class Transaction;
 class RuleWithOperator;
 
@@ -45,7 +45,7 @@ enum SetVarOperation {
 class SetVar : public Action {
  public:
     SetVar(SetVarOperation operation,
-        std::unique_ptr<modsecurity::variables::Variable> variable,
+        std::unique_ptr<celeowaf::variables::Variable> variable,
         std::unique_ptr<RunTimeString> predicate)
         : Action("setvar"),
         m_operation(operation),
@@ -53,7 +53,7 @@ class SetVar : public Action {
         m_string(std::move(predicate)) { }
 
     SetVar(SetVarOperation operation,
-        std::unique_ptr<modsecurity::variables::Variable> variable)
+        std::unique_ptr<celeowaf::variables::Variable> variable)
         : Action("setvar"),
         m_operation(operation),
         m_variable(std::move(variable)) { }
@@ -63,12 +63,12 @@ class SetVar : public Action {
 
  private:
     SetVarOperation m_operation;
-    std::unique_ptr<modsecurity::variables::Variable> m_variable;
+    std::unique_ptr<celeowaf::variables::Variable> m_variable;
     std::unique_ptr<RunTimeString> m_string;
 };
 
 }  // namespace actions
-}  // namespace modsecurity
+}  // namespace celeowaf
 
 
 #endif  // SRC_ACTIONS_SET_VAR_H_

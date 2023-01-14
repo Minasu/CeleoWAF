@@ -1,5 +1,5 @@
 /*
- * ModSecurity, http://www.modsecurity.org/
+ * CeleoWAF, http://www.celeowaf.org/
  * Copyright (c) 2015 - 2021 Trustwave Holdings, Inc. (http://www.trustwave.com/)
  *
  * You may not use this file except in compliance with
@@ -9,7 +9,7 @@
  *
  * If any of the files related to licensing are missing or if you have any
  * other questions related to licensing please contact Trustwave Holdings, Inc.
- * directly using the email address security@modsecurity.org.
+ * directly using the email address security@celeowaf.org.
  *
  */
 
@@ -23,9 +23,9 @@
 #define SRC_VARIABLES_MODSEC_BUILD_H_
 
 #include "src/variables/variable.h"
-#include "modsecurity/modsecurity.h"
+#include "celeowaf/celeowaf.h"
 
-namespace modsecurity {
+namespace celeowaf {
 
 class Transaction;
 namespace variables {
@@ -36,10 +36,10 @@ class ModsecBuild : public Variable {
         : Variable(_name),
         m_retName("MODSEC_BUILD") {
         std::ostringstream ss;
-        ss << std::setw(2) << std::setfill('0') << MODSECURITY_MAJOR;
-        ss << std::setw(2) << std::setfill('0') << MODSECURITY_MINOR;
-        ss << std::setw(2) << std::setfill('0') << MODSECURITY_PATCHLEVEL;
-        ss << std::setw(2) << std::setfill('0') << MODSECURITY_TAG_NUM;
+        ss << std::setw(2) << std::setfill('0') << CELEOWAF_MAJOR;
+        ss << std::setw(2) << std::setfill('0') << CELEOWAF_MINOR;
+        ss << std::setw(2) << std::setfill('0') << CELEOWAF_PATCHLEVEL;
+        ss << std::setw(2) << std::setfill('0') << CELEOWAF_TAG_NUM;
         m_build = ss.str();
     }
 
@@ -53,6 +53,6 @@ class ModsecBuild : public Variable {
 
 
 }  // namespace variables
-}  // namespace modsecurity
+}  // namespace celeowaf
 
 #endif  // SRC_VARIABLES_MODSEC_BUILD_H_

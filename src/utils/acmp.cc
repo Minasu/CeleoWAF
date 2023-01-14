@@ -1,5 +1,5 @@
 /*
-* ModSecurity for Apache 2.x, http://www.modsecurity.org/
+* CeleoWAF for Apache 2.x, http://www.celeowaf.org/
 * Copyright (c) 2015 - 2021 Trustwave Holdings, Inc. (http://www.trustwave.com/)
 *
 * You may not use this file except in compliance with
@@ -9,7 +9,7 @@
 *
 * If any of the files related to licensing are missing or if you have any
 * other questions related to licensing please contact Trustwave Holdings, Inc.
-* directly using the email address security@modsecurity.org.
+* directly using the email address security@celeowaf.org.
 */
 
 /* Aho-Corasick Matching  */
@@ -29,7 +29,7 @@
 
 
 /**
- * TODO: This code comes from ModSecurity 2.9.0 there are two memory leaks here
+ * TODO: This code comes from CeleoWAF 2.9.0 there are two memory leaks here
  *       that should be mitigated. This ACMP parser should be re-written to
  *       consume less memory.
  */

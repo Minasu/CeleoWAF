@@ -1,5 +1,5 @@
 /*
- * ModSecurity, http://www.modsecurity.org/
+ * CeleoWAF, http://www.celeowaf.org/
  * Copyright (c) 2015 - 2021 Trustwave Holdings, Inc. (http://www.trustwave.com/)
  *
  * You may not use this file except in compliance with
@@ -9,7 +9,7 @@
  *
  * If any of the files related to licensing are missing or if you have any
  * other questions related to licensing please contact Trustwave Holdings, Inc.
- * directly using the email address security@modsecurity.org.
+ * directly using the email address security@celeowaf.org.
  *
  */
 
@@ -21,9 +21,9 @@
 #include <vector>
 #include <deque>
 
-#include "modsecurity/rules_set.h"
-#include "modsecurity/transaction.h"
-#include "modsecurity/rule.h"
+#include "celeowaf/rules_set.h"
+#include "celeowaf/transaction.h"
+#include "celeowaf/rule.h"
 #include "src/utils/string.h"
 #include "src/utils/regex.h"
 
@@ -99,7 +99,7 @@ class n : public Variable { \
 };
 
 
-namespace modsecurity {
+namespace celeowaf {
 
 class Transaction;
 namespace variables {
@@ -675,11 +675,11 @@ class VariableModificatorCount : public Variable {
 };
 
 
-std::string operator+(const std::string &a, modsecurity::variables::Variable *v);
-std::string operator+(const std::string &a, modsecurity::variables::Variables *v);
+std::string operator+(const std::string &a, celeowaf::variables::Variable *v);
+std::string operator+(const std::string &a, celeowaf::variables::Variables *v);
 
 
 }  // namespace variables
-}  // namespace modsecurity
+}  // namespace celeowaf
 
 #endif  // SRC_VARIABLES_VARIABLE_H_

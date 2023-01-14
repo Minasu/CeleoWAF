@@ -1,5 +1,5 @@
 /*
- * ModSecurity, http://www.modsecurity.org/
+ * CeleoWAF, http://www.celeowaf.org/
  * Copyright (c) 2015 - 2021 Trustwave Holdings, Inc. (http://www.trustwave.com/)
  *
  * You may not use this file except in compliance with
@@ -9,7 +9,7 @@
  *
  * If any of the files related to licensing are missing or if you have any
  * other questions related to licensing please contact Trustwave Holdings, Inc.
- * directly using the email address security@modsecurity.org.
+ * directly using the email address security@celeowaf.org.
  *
  */
 
@@ -28,17 +28,17 @@
 #include <cstring>
 
 
-#include "modsecurity/transaction.h"
-#include "modsecurity/audit_log.h"
+#include "celeowaf/transaction.h"
+#include "celeowaf/audit_log.h"
 
 #define SERIAL_AUDIT_LOG_BOUNDARY_LENGTH 8
 
-namespace modsecurity {
+namespace celeowaf {
 namespace audit_log {
 namespace writer {
 
 
-/** @ingroup ModSecurity_CPP_API */
+/** @ingroup CeleoWAF_CPP_API */
 class Writer {
  public:
     explicit Writer(AuditLog *audit)
@@ -59,6 +59,6 @@ class Writer {
 
 }  // namespace writer
 }  // namespace audit_log
-}  // namespace modsecurity
+}  // namespace celeowaf
 
 #endif  // SRC_AUDIT_LOG_WRITER_WRITER_H_

@@ -1,5 +1,5 @@
 /*
- * ModSecurity, http://www.modsecurity.org/
+ * CeleoWAF, http://www.celeowaf.org/
  * Copyright (c) 2015 - 2021 Trustwave Holdings, Inc. (http://www.trustwave.com/)
  *
  * You may not use this file except in compliance with
@@ -9,7 +9,7 @@
  *
  * If any of the files related to licensing are missing or if you have any
  * other questions related to licensing please contact Trustwave Holdings, Inc.
- * directly using the email address security@modsecurity.org.
+ * directly using the email address security@celeowaf.org.
  *
  */
 
@@ -19,10 +19,10 @@
 #include <string>
 #include <memory>
 
-#include "modsecurity/actions/action.h"
-#include "modsecurity/transaction.h"
-#include "modsecurity/rule.h"
-#include "modsecurity/rule_message.h"
+#include "celeowaf/actions/action.h"
+#include "celeowaf/transaction.h"
+#include "celeowaf/rule.h"
+#include "celeowaf/rule_message.h"
 
 #ifdef MSC_DOCUMENTATION
 /**
@@ -41,13 +41,13 @@
  * purpose of the tagging mechanism to allow easy automated categorization
  * of events. Multiple tags can be specified on the same rule. Use forward
  * slashes to create a hierarchy of categories (as in the example). Since
- * ModSecurity 2.6.0 tag supports macro expansion.
+ * CeleoWAF 2.6.0 tag supports macro expansion.
  *
  *
  */
 #endif
 
-namespace modsecurity {
+namespace celeowaf {
 namespace actions {
 
 
@@ -69,4 +69,4 @@ bool Tag::evaluate(RuleWithActions *rule, Transaction *transaction,
 
 
 }  // namespace actions
-}  // namespace modsecurity
+}  // namespace celeowaf

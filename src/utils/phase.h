@@ -1,5 +1,5 @@
 /*
- * ModSecurity, http://www.modsecurity.org/
+ * CeleoWAF, http://www.celeowaf.org/
  * Copyright (c) 2015 - 2021 Trustwave Holdings, Inc. (http://www.trustwave.com/)
  *
  * You may not use this file except in compliance with
@@ -9,7 +9,7 @@
  *
  * If any of the files related to licensing are missing or if you have any
  * other questions related to licensing please contact Trustwave Holdings, Inc.
- * directly using the email address security@modsecurity.org.
+ * directly using the email address security@celeowaf.org.
  *
  */
 
@@ -21,32 +21,32 @@
 #ifndef SRC_UTILS_PHASE_H_
 #define SRC_UTILS_PHASE_H_
 
-#include "modsecurity/modsecurity.h"
+#include "celeowaf/celeowaf.h"
 
-namespace modsecurity {
+namespace celeowaf {
 namespace utils {
 
 std::string phase_name(int x) {
     switch (x) {
-        case modsecurity::Phases::ConnectionPhase:
+        case celeowaf::Phases::ConnectionPhase:
             return "Connection Phase";
             break;
-        case modsecurity::Phases::UriPhase:
+        case celeowaf::Phases::UriPhase:
             return "URI Phase";
             break;
-        case modsecurity::Phases::RequestHeadersPhase:
+        case celeowaf::Phases::RequestHeadersPhase:
             return "Request Headers";
             break;
-        case modsecurity::Phases::RequestBodyPhase:
+        case celeowaf::Phases::RequestBodyPhase:
             return "Request Body";
             break;
-        case modsecurity::Phases::ResponseHeadersPhase:
+        case celeowaf::Phases::ResponseHeadersPhase:
             return "Response Headers";
             break;
-        case modsecurity::Phases::ResponseBodyPhase:
+        case celeowaf::Phases::ResponseBodyPhase:
             return "Reponse Body";
             break;
-        case modsecurity::Phases::LoggingPhase:
+        case celeowaf::Phases::LoggingPhase:
             return "Logging";
             break;
     }
@@ -54,6 +54,6 @@ std::string phase_name(int x) {
 }
 
 }  // namespace utils
-}  // namespace modsecurity
+}  // namespace celeowaf
 
 #endif  // SRC_UTILS_PHASE_H_

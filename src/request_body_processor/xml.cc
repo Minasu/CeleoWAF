@@ -1,5 +1,5 @@
 /*
- * ModSecurity, http://www.modsecurity.org/
+ * CeleoWAF, http://www.celeowaf.org/
  * Copyright (c) 2015 - 2021 Trustwave Holdings, Inc. (http://www.trustwave.com/)
  *
  * You may not use this file except in compliance with
@@ -9,7 +9,7 @@
  *
  * If any of the files related to licensing are missing or if you have any
  * other questions related to licensing please contact Trustwave Holdings, Inc.
- * directly using the email address security@modsecurity.org.
+ * directly using the email address security@celeowaf.org.
  *
  */
 
@@ -20,7 +20,7 @@
 #include <string>
 
 
-namespace modsecurity {
+namespace celeowaf {
 namespace RequestBodyProcessor {
 
 #ifdef WITH_LIBXML2
@@ -146,4 +146,4 @@ bool XML::complete(std::string *error) {
 #endif
 
 }  // namespace RequestBodyProcessor
-}  // namespace modsecurity
+}  // namespace celeowaf

@@ -8,10 +8,10 @@ SUBDIRS = \
 	$(MAYBE_PARSER)
 
 
-lib_LTLIBRARIES = libmodsecurity.la
-libmodsecurity_ladir = $(prefix)/include
-libmodsecurity_includesub_collectiondir = $(pkgincludedir)/collection/
-libmodsecurity_includesub_actionsdir = $(pkgincludedir)/actions/
+lib_LTLIBRARIES = libceleowaf.la
+libceleowaf_ladir = $(prefix)/include
+libceleowaf_includesub_collectiondir = $(pkgincludedir)/collection/
+libceleowaf_includesub_actionsdir = $(pkgincludedir)/actions/
 
 
 # pregenerated parser + parser sources
@@ -35,36 +35,36 @@ MAINTAINERCLEANFILES = \
 
 
 pkginclude_HEADERS = \
-	../headers/modsecurity/anchored_set_variable_translation_proxy.h \
-	../headers/modsecurity/anchored_set_variable.h \
-	../headers/modsecurity/anchored_variable.h \
-	../headers/modsecurity/audit_log.h \
-	../headers/modsecurity/debug_log.h \
-	../headers/modsecurity/intervention.h \
-	../headers/modsecurity/modsecurity.h \
-	../headers/modsecurity/rule.h \
-	../headers/modsecurity/rule_marker.h \
-	../headers/modsecurity/rule_unconditional.h \
-	../headers/modsecurity/rule_with_actions.h \
-	../headers/modsecurity/rule_with_operator.h \
-	../headers/modsecurity/rules.h \
-	../headers/modsecurity/rule_message.h \
-	../headers/modsecurity/rules_set.h \
-	../headers/modsecurity/rules_set_phases.h \
-	../headers/modsecurity/rules_set_properties.h \
-	../headers/modsecurity/rules_exceptions.h \
-	../headers/modsecurity/transaction.h \
-	../headers/modsecurity/variable_origin.h \
-	../headers/modsecurity/variable_value.h
+	../headers/celeowaf/anchored_set_variable_translation_proxy.h \
+	../headers/celeowaf/anchored_set_variable.h \
+	../headers/celeowaf/anchored_variable.h \
+	../headers/celeowaf/audit_log.h \
+	../headers/celeowaf/debug_log.h \
+	../headers/celeowaf/intervention.h \
+	../headers/celeowaf/celeowaf.h \
+	../headers/celeowaf/rule.h \
+	../headers/celeowaf/rule_marker.h \
+	../headers/celeowaf/rule_unconditional.h \
+	../headers/celeowaf/rule_with_actions.h \
+	../headers/celeowaf/rule_with_operator.h \
+	../headers/celeowaf/rules.h \
+	../headers/celeowaf/rule_message.h \
+	../headers/celeowaf/rules_set.h \
+	../headers/celeowaf/rules_set_phases.h \
+	../headers/celeowaf/rules_set_properties.h \
+	../headers/celeowaf/rules_exceptions.h \
+	../headers/celeowaf/transaction.h \
+	../headers/celeowaf/variable_origin.h \
+	../headers/celeowaf/variable_value.h
 
 
-libmodsecurity_includesub_collection_HEADERS = \
-	../headers/modsecurity/collection/collection.h \
-	../headers/modsecurity/collection/collections.h
+libceleowaf_includesub_collection_HEADERS = \
+	../headers/celeowaf/collection/collection.h \
+	../headers/celeowaf/collection/collections.h
 
 
-libmodsecurity_includesub_actions_HEADERS = \
-	../headers/modsecurity/actions/action.h
+libceleowaf_includesub_actions_HEADERS = \
+	../headers/celeowaf/actions/action.h
 
 
 noinst_HEADERS = \
@@ -269,7 +269,7 @@ BODY_PROCESSORS = \
 	request_body_processor/json.cc
 
 
-libmodsecurity_la_SOURCES = \
+libceleowaf_la_SOURCES = \
 	parser/seclang-parser.cc \
 	parser/seclang-scanner.cc \
 	parser/driver.cc \
@@ -281,7 +281,7 @@ libmodsecurity_la_SOURCES = \
 	audit_log/writer/https.cc \
 	audit_log/writer/serial.cc \
 	audit_log/writer/parallel.cc \
-	modsecurity.cc \
+	celeowaf.cc \
 	rules_set.cc \
 	rules_set_phases.cc \
 	rules_set_properties.cc \
@@ -305,10 +305,10 @@ libmodsecurity_la_SOURCES = \
 	${VARIABLES}
 
 
-libmodsecurity_la_CFLAGS = 
+libceleowaf_la_CFLAGS = 
 
 
-libmodsecurity_la_CPPFLAGS = \
+libceleowaf_la_CPPFLAGS = \
 	-std=c++11 \
 	-I.. \
 	-g \
@@ -331,7 +331,7 @@ libmodsecurity_la_CPPFLAGS = \
 	$(LIBXML2_CFLAGS)
 
 
-libmodsecurity_la_LDFLAGS = \
+libceleowaf_la_LDFLAGS = \
 	$(CURL_LDFLAGS) \
 	$(GEOIP_LDFLAGS) \
 	$(GLOBAL_LDFLAGS) \
@@ -347,7 +347,7 @@ libmodsecurity_la_LDFLAGS = \
 	-version-info @MSC_VERSION_INFO@
 
 
-libmodsecurity_la_LIBADD = \
+libceleowaf_la_LIBADD = \
 	$(CURL_LDADD) \
 	$(GEOIP_LDADD) \
 	$(GLOBAL_LDADD) \

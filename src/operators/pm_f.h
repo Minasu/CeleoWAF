@@ -1,5 +1,5 @@
 /*
- * ModSecurity, http://www.modsecurity.org/
+ * CeleoWAF, http://www.celeowaf.org/
  * Copyright (c) 2015 - 2021 Trustwave Holdings, Inc. (http://www.trustwave.com/)
  *
  * You may not use this file except in compliance with
@@ -9,7 +9,7 @@
  *
  * If any of the files related to licensing are missing or if you have any
  * other questions related to licensing please contact Trustwave Holdings, Inc.
- * directly using the email address security@modsecurity.org.
+ * directly using the email address security@celeowaf.org.
  *
  */
 
@@ -23,20 +23,20 @@
 #include "src/operators/pm_from_file.h"
 
 
-namespace modsecurity {
+namespace celeowaf {
 namespace operators {
 
 
 class PmF : public PmFromFile {
  public:
-    /** @ingroup ModSecurity_Operator */
+    /** @ingroup CeleoWAF_Operator */
     explicit PmF(std::unique_ptr<RunTimeString> param)
         : PmFromFile("PmFromF", std::move(param)) { }
 };
 
 
 }  // namespace operators
-}  // namespace modsecurity
+}  // namespace celeowaf
 
 
 #endif  // SRC_OPERATORS_PM_F_H_

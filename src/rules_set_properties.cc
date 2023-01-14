@@ -1,5 +1,5 @@
 /*
- * ModSecurity, http://www.modsecurity.org/
+ * CeleoWAF, http://www.celeowaf.org/
  * Copyright (c) 2015 - 2021 Trustwave Holdings, Inc. (http://www.trustwave.com/)
  *
  * You may not use this file except in compliance with
@@ -9,17 +9,17 @@
  *
  * If any of the files related to licensing are missing or if you have any
  * other questions related to licensing please contact Trustwave Holdings, Inc.
- * directly using the email address security@modsecurity.org.
+ * directly using the email address security@celeowaf.org.
  *
  */
 
 #include <string>
 
-#include "modsecurity/rules_set_properties.h"
+#include "celeowaf/rules_set_properties.h"
 #include "src/utils/string.h"
 #include "src/variables/variable.h"
 
-namespace modsecurity {
+namespace celeowaf {
 
 
 void ConfigUnicodeMap::loadConfig(std::string f, double configCodePage,
@@ -38,7 +38,7 @@ void ConfigUnicodeMap::loadConfig(std::string f, double configCodePage,
     driver->m_unicodeMapTable.m_set = true;
     driver->m_unicodeMapTable.m_unicodeCodePage = configCodePage;
 
-    driver->m_unicodeMapTable.m_unicodeMapTable.reset(new modsecurity::UnicodeMapHolder());
+    driver->m_unicodeMapTable.m_unicodeMapTable.reset(new celeowaf::UnicodeMapHolder());
 
     /* Setting some unicode values - http://tools.ietf.org/html/rfc3490#section-3.1 */
     /* Set 0x3002 -> 0x2e */
@@ -124,5 +124,5 @@ void ConfigUnicodeMap::loadConfig(std::string f, double configCodePage,
 }
 
 
-}  // namespace modsecurity
+}  // namespace celeowaf
 

@@ -4,20 +4,20 @@
 %define parser_class_name {seclang_parser}
 %define api.token.constructor
 %define api.value.type variant
-//%define api.namespace {modsecurity::yy}
+//%define api.namespace {celeowaf::yy}
 %define parse.assert
 %code requires
 {
 #include <string>
 #include <iterator>
 
-namespace ModSecurity {
+namespace CeleoWAF {
 namespace Parser {
 class Driver;
 }
 }
 
-#include "modsecurity/rule_unconditional.h"
+#include "celeowaf/rule_unconditional.h"
 #include "src/rule_script.h"
 
 #include "src/actions/accuracy.h"
@@ -150,10 +150,10 @@ class Driver;
 #include "src/operators/within.h"
 
 
-#include "modsecurity/audit_log.h"
-#include "modsecurity/modsecurity.h"
-#include "modsecurity/rules_set_properties.h"
-#include "modsecurity/rule.h"
+#include "celeowaf/audit_log.h"
+#include "celeowaf/celeowaf.h"
+#include "celeowaf/rules_set_properties.h"
+#include "celeowaf/rule.h"
 #include "src/operators/operator.h"
 #include "src/utils/geo_lookup.h"
 #include "src/utils/string.h"
@@ -261,10 +261,10 @@ class Driver;
 #include "src/variables/session.h"
 #include "src/variables/status.h"
 
-using namespace modsecurity;
-using namespace modsecurity::variables;
-using namespace modsecurity::Utils;
-using namespace modsecurity::operators;
+using namespace celeowaf;
+using namespace celeowaf::variables;
+using namespace celeowaf::Utils;
+using namespace celeowaf::operators;
 
 
 #define CHECK_VARIATION_DECL \
@@ -314,7 +314,7 @@ using namespace modsecurity::operators;
 
 }
 // The parsing context.
-%param { modsecurity::Parser::Driver& driver }
+%param { celeowaf::Parser::Driver& driver }
 %locations
 %initial-action
 {
@@ -738,15 +738,15 @@ audit_log:
     /* SecAuditEngine */
     | CONFIG_DIR_AUDIT_ENG CONFIG_VALUE_RELEVANT_ONLY
       {
-        driver.m_auditLog->setStatus(modsecurity::audit_log::AuditLog::RelevantOnlyAuditLogStatus);
+        driver.m_auditLog->setStatus(celeowaf::audit_log::AuditLog::RelevantOnlyAuditLogStatus);
       }
     | CONFIG_DIR_AUDIT_ENG CONFIG_VALUE_OFF
       {
-        driver.m_auditLog->setStatus(modsecurity::audit_log::AuditLog::OffAuditLogStatus);
+        driver.m_auditLog->setStatus(celeowaf::audit_log::AuditLog::OffAuditLogStatus);
       }
     | CONFIG_DIR_AUDIT_ENG CONFIG_VALUE_ON
       {
-        driver.m_auditLog->setStatus(modsecurity::audit_log::AuditLog::OnAuditLogStatus);
+        driver.m_auditLog->setStatus(celeowaf::audit_log::AuditLog::OnAuditLogStatus);
       }
 
     /* SecAuditLogFileMode */
@@ -775,12 +775,12 @@ audit_log:
 
     | CONFIG_DIR_AUDIT_LOG_FMT JSON
       {
-        driver.m_auditLog->setFormat(modsecurity::audit_log::AuditLog::JSONAuditLogFormat);
+        driver.m_auditLog->setFormat(celeowaf::audit_log::AuditLog::JSONAuditLogFormat);
       }
 
     | CONFIG_DIR_AUDIT_LOG_FMT NATIVE
       {
-        driver.m_auditLog->setFormat(modsecurity::audit_log::AuditLog::NativeAuditLogFormat);
+        driver.m_auditLog->setFormat(celeowaf::audit_log::AuditLog::NativeAuditLogFormat);
       }
 
     /* SecAuditLogRelevantStatus */
@@ -793,25 +793,25 @@ audit_log:
     /* SecAuditLogType */
     | CONFIG_DIR_AUDIT_TPE CONFIG_VALUE_SERIAL
       {
-        driver.m_auditLog->setType(modsecurity::audit_log::AuditLog::SerialAuditLogType);
+        driver.m_auditLog->setType(celeowaf::audit_log::AuditLog::SerialAuditLogType);
       }
     | CONFIG_DIR_AUDIT_TPE CONFIG_VALUE_PARALLEL
       {
-        driver.m_auditLog->setType(modsecurity::audit_log::AuditLog::ParallelAuditLogType);
+        driver.m_auditLog->setType(celeowaf::audit_log::AuditLog::ParallelAuditLogType);
       }
     | CONFIG_DIR_AUDIT_TPE CONFIG_VALUE_HTTPS
       {
-        driver.m_auditLog->setType(modsecurity::audit_log::AuditLog::HttpsAuditLogType);
+        driver.m_auditLog->setType(celeowaf::audit_log::AuditLog::HttpsAuditLogType);
       }
 
     /* Upload */
     | CONFIG_UPDLOAD_KEEP_FILES CONFIG_VALUE_ON
       {
-        driver.m_uploadKeepFiles = modsecurity::RulesSetProperties::TrueConfigBoolean;
+        driver.m_uploadKeepFiles = celeowaf::RulesSetProperties::TrueConfigBoolean;
       }
     | CONFIG_UPDLOAD_KEEP_FILES CONFIG_VALUE_OFF
       {
-        driver.m_uploadKeepFiles = modsecurity::RulesSetProperties::FalseConfigBoolean;
+        driver.m_uploadKeepFiles = celeowaf::RulesSetProperties::FalseConfigBoolean;
       }
     | CONFIG_UPDLOAD_KEEP_FILES CONFIG_VALUE_RELEVANT_ONLY
       {
@@ -835,11 +835,11 @@ audit_log:
       }
     | CONFIG_UPDLOAD_SAVE_TMP_FILES CONFIG_VALUE_ON
       {
-        driver.m_tmpSaveUploadedFiles = modsecurity::RulesSetProperties::TrueConfigBoolean;
+        driver.m_tmpSaveUploadedFiles = celeowaf::RulesSetProperties::TrueConfigBoolean;
       }
     | CONFIG_UPDLOAD_SAVE_TMP_FILES CONFIG_VALUE_OFF
       {
-        driver.m_tmpSaveUploadedFiles = modsecurity::RulesSetProperties::FalseConfigBoolean;
+        driver.m_tmpSaveUploadedFiles = celeowaf::RulesSetProperties::FalseConfigBoolean;
       }
     ;
 
@@ -1065,7 +1065,7 @@ op_before_init:
         OPERATOR_CONTAINER($$, new operators::GeoLookup());
 #else
         std::stringstream ss;
-            ss << "This version of ModSecurity was not compiled with GeoIP or MaxMind support.";
+            ss << "This version of CeleoWAF was not compiled with GeoIP or MaxMind support.";
             driver.error(@0, ss.str());
             YYERROR;
 #endif  // WITH_GEOIP
@@ -1203,7 +1203,7 @@ expression:
             }
         }
         if (definedPhase == -1) {
-            definedPhase = modsecurity::Phases::RequestHeadersPhase;
+            definedPhase = celeowaf::Phases::RequestHeadersPhase;
         }
 
         if (hasDisruptive == false) {
@@ -1229,38 +1229,38 @@ expression:
       }
     | CONFIG_DIR_SEC_MARKER
       {
-        driver.addSecMarker(modsecurity::utils::string::removeBracketsIfNeeded($1),
+        driver.addSecMarker(celeowaf::utils::string::removeBracketsIfNeeded($1),
             /* file name */ std::unique_ptr<std::string>(new std::string(*@1.end.filename)),
             /* line number */ @1.end.line
         );
       }
     | CONFIG_DIR_RULE_ENG CONFIG_VALUE_OFF
       {
-        driver.m_secRuleEngine = modsecurity::RulesSet::DisabledRuleEngine;
+        driver.m_secRuleEngine = celeowaf::RulesSet::DisabledRuleEngine;
       }
     | CONFIG_DIR_RULE_ENG CONFIG_VALUE_ON
       {
-        driver.m_secRuleEngine = modsecurity::RulesSet::EnabledRuleEngine;
+        driver.m_secRuleEngine = celeowaf::RulesSet::EnabledRuleEngine;
       }
     | CONFIG_DIR_RULE_ENG CONFIG_VALUE_DETC
       {
-        driver.m_secRuleEngine = modsecurity::RulesSet::DetectionOnlyRuleEngine;
+        driver.m_secRuleEngine = celeowaf::RulesSet::DetectionOnlyRuleEngine;
       }
     | CONFIG_DIR_REQ_BODY CONFIG_VALUE_ON
       {
-        driver.m_secRequestBodyAccess = modsecurity::RulesSetProperties::TrueConfigBoolean;
+        driver.m_secRequestBodyAccess = celeowaf::RulesSetProperties::TrueConfigBoolean;
       }
     | CONFIG_DIR_REQ_BODY CONFIG_VALUE_OFF
       {
-        driver.m_secRequestBodyAccess = modsecurity::RulesSetProperties::FalseConfigBoolean;
+        driver.m_secRequestBodyAccess = celeowaf::RulesSetProperties::FalseConfigBoolean;
       }
     | CONFIG_DIR_RES_BODY CONFIG_VALUE_ON
       {
-        driver.m_secResponseBodyAccess = modsecurity::RulesSetProperties::TrueConfigBoolean;
+        driver.m_secResponseBodyAccess = celeowaf::RulesSetProperties::TrueConfigBoolean;
       }
     | CONFIG_DIR_RES_BODY CONFIG_VALUE_OFF
       {
-        driver.m_secResponseBodyAccess = modsecurity::RulesSetProperties::FalseConfigBoolean;
+        driver.m_secResponseBodyAccess = celeowaf::RulesSetProperties::FalseConfigBoolean;
       }
     | CONFIG_SEC_ARGUMENT_SEPARATOR
       {
@@ -1558,7 +1558,7 @@ expression:
       {
 #if defined(WITH_GEOIP) or defined(WITH_MAXMIND)
         std::string err;
-        std::string file = modsecurity::utils::find_resource($1,
+        std::string file = celeowaf::utils::find_resource($1,
             *@1.end.filename, &err);
         if (file.empty()) {
             std::stringstream ss;
@@ -1576,7 +1576,7 @@ expression:
         }
 #else
         std::stringstream ss;
-        ss << "This version of ModSecurity was not compiled with GeoIP or MaxMind support.";
+        ss << "This version of CeleoWAF was not compiled with GeoIP or MaxMind support.";
         driver.error(@0, ss.str());
         YYERROR;
 #endif  // WITH_GEOIP
@@ -1605,9 +1605,9 @@ expression:
     | CONFIG_DIR_REQ_BODY_IN_MEMORY_LIMIT
       {
         std::stringstream ss;
-        ss << "As of ModSecurity version 3.0, SecRequestBodyInMemoryLimit is no longer ";
+        ss << "As of CeleoWAF version 3.0, SecRequestBodyInMemoryLimit is no longer ";
         ss << "supported. Instead, you can use your web server configurations to control ";
-        ss << "those values. ModSecurity will follow the web server decision.";
+        ss << "those values. CeleoWAF will follow the web server decision.";
         driver.error(@0, ss.str());
         YYERROR;
       }
@@ -1618,19 +1618,19 @@ expression:
       }
     | CONFIG_DIR_REQ_BODY_LIMIT_ACTION CONFIG_VALUE_PROCESS_PARTIAL
       {
-        driver.m_requestBodyLimitAction = modsecurity::RulesSet::BodyLimitAction::ProcessPartialBodyLimitAction;
+        driver.m_requestBodyLimitAction = celeowaf::RulesSet::BodyLimitAction::ProcessPartialBodyLimitAction;
       }
     | CONFIG_DIR_REQ_BODY_LIMIT_ACTION CONFIG_VALUE_REJECT
       {
-        driver.m_requestBodyLimitAction = modsecurity::RulesSet::BodyLimitAction::RejectBodyLimitAction;
+        driver.m_requestBodyLimitAction = celeowaf::RulesSet::BodyLimitAction::RejectBodyLimitAction;
       }
     | CONFIG_DIR_RES_BODY_LIMIT_ACTION CONFIG_VALUE_PROCESS_PARTIAL
       {
-        driver.m_responseBodyLimitAction = modsecurity::RulesSet::BodyLimitAction::ProcessPartialBodyLimitAction;
+        driver.m_responseBodyLimitAction = celeowaf::RulesSet::BodyLimitAction::ProcessPartialBodyLimitAction;
       }
     | CONFIG_DIR_RES_BODY_LIMIT_ACTION CONFIG_VALUE_REJECT
       {
-        driver.m_responseBodyLimitAction = modsecurity::RulesSet::BodyLimitAction::RejectBodyLimitAction;
+        driver.m_responseBodyLimitAction = celeowaf::RulesSet::BodyLimitAction::RejectBodyLimitAction;
       }
     | CONFIG_SEC_REMOTE_RULES_FAIL_ACTION CONFIG_VALUE_ABORT
       {
@@ -1641,12 +1641,12 @@ expression:
         driver.m_remoteRulesActionOnFailed = RulesSet::OnFailedRemoteRulesAction::WarnOnFailedRemoteRulesAction;
       }
     | CONFIG_DIR_PCRE_MATCH_LIMIT_RECURSION
-/* Parser error disabled to avoid breaking default installations with modsecurity.conf-recommended
+/* Parser error disabled to avoid breaking default installations with celeowaf.conf-recommended
         driver.error(@0, "SecPcreMatchLimitRecursion is not currently supported. Default PCRE values are being used for now");
         YYERROR;
 */
     | CONFIG_DIR_PCRE_MATCH_LIMIT
-/* Parser error disabled to avoid breaking default installations with modsecurity.conf-recommended
+/* Parser error disabled to avoid breaking default installations with celeowaf.conf-recommended
         driver.error(@0, "SecPcreMatchLimit is not currently supported. Default PCRE values are being used for now");
         YYERROR;
 */
@@ -1670,25 +1670,25 @@ expression:
       }
     | CONFIG_XML_EXTERNAL_ENTITY CONFIG_VALUE_OFF
       {
-        driver.m_secXMLExternalEntity = modsecurity::RulesSetProperties::FalseConfigBoolean;
+        driver.m_secXMLExternalEntity = celeowaf::RulesSetProperties::FalseConfigBoolean;
       }
     | CONFIG_XML_EXTERNAL_ENTITY CONFIG_VALUE_ON
       {
-        driver.m_secXMLExternalEntity = modsecurity::RulesSetProperties::TrueConfigBoolean;
+        driver.m_secXMLExternalEntity = celeowaf::RulesSetProperties::TrueConfigBoolean;
       }
     | CONGIG_DIR_SEC_TMP_DIR
       {
-/* Parser error disabled to avoid breaking default installations with modsecurity.conf-recommended
+/* Parser error disabled to avoid breaking default installations with celeowaf.conf-recommended
         std::stringstream ss;
-        ss << "As of ModSecurity version 3.0, SecTmpDir is no longer supported.";
+        ss << "As of CeleoWAF version 3.0, SecTmpDir is no longer supported.";
         ss << " Instead, you can use your web server configurations to control when";
-        ss << "and where to swap. ModSecurity will follow the web server decision.";
+        ss << "and where to swap. CeleoWAF will follow the web server decision.";
         driver.error(@0, ss.str());
         YYERROR;
 */
       }
     | CONGIG_DIR_SEC_DATA_DIR
-/* Parser error disabled to avoid breaking default installations with modsecurity.conf-recommended
+/* Parser error disabled to avoid breaking default installations with celeowaf.conf-recommended
         std::stringstream ss;
         ss << "SecDataDir is not currently supported.";
         ss << " Collections are kept in memory (in_memory-per_process) for now.";
@@ -1710,7 +1710,7 @@ expression:
         YYERROR;
       }
     | CONGIG_DIR_SEC_STATUS_ENGINE
-/* Parser error disabled to avoid breaking default installations with modsecurity.conf-recommended
+/* Parser error disabled to avoid breaking default installations with celeowaf.conf-recommended
         driver.error(@0, "SecStatusEngine is not yet supported.");
         YYERROR;
 */
@@ -1751,7 +1751,7 @@ expression:
             param.pop_back();
         }
 
-        file = modsecurity::utils::find_resource(f, *@1.end.filename, &err);
+        file = celeowaf::utils::find_resource(f, *@1.end.filename, &err);
         if (file.empty()) {
             std::stringstream ss;
             ss << "Failed to locate the unicode map file from: " << f << " ";

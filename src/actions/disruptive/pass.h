@@ -1,5 +1,5 @@
 /*
- * ModSecurity, http://www.modsecurity.org/
+ * CeleoWAF, http://www.celeowaf.org/
  * Copyright (c) 2015 - 2021 Trustwave Holdings, Inc. (http://www.trustwave.com/)
  *
  * You may not use this file except in compliance with
@@ -9,20 +9,20 @@
  *
  * If any of the files related to licensing are missing or if you have any
  * other questions related to licensing please contact Trustwave Holdings, Inc.
- * directly using the email address security@modsecurity.org.
+ * directly using the email address security@celeowaf.org.
  *
  */
 
 #include <string>
 #include <memory>
 
-#include "modsecurity/actions/action.h"
-#include "modsecurity/transaction.h"
+#include "celeowaf/actions/action.h"
+#include "celeowaf/transaction.h"
 
 #ifndef SRC_ACTIONS_DISRUPTIVE_PASS_H_
 #define SRC_ACTIONS_DISRUPTIVE_PASS_H_
 
-namespace modsecurity {
+namespace celeowaf {
 namespace actions {
 namespace disruptive {
 
@@ -39,7 +39,7 @@ class Pass : public Action {
 
 }  // namespace disruptive
 }  // namespace actions
-}  // namespace modsecurity
+}  // namespace celeowaf
 
 
 #endif  // SRC_ACTIONS_DISRUPTIVE_PASS_H_

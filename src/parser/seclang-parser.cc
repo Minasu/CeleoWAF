@@ -141,7 +141,7 @@ namespace yy {
 #line 142 "seclang-parser.cc"
 
   /// Build a parser object.
-  seclang_parser::seclang_parser (modsecurity::Parser::Driver& driver_yyarg)
+  seclang_parser::seclang_parser (celeowaf::Parser::Driver& driver_yyarg)
 #if YYDEBUG
     : yydebug_ (false),
       yycdebug_ (&std::cerr),
@@ -1716,7 +1716,7 @@ namespace yy {
   case 8: // audit_log: "CONFIG_DIR_AUDIT_ENG" "CONFIG_VALUE_RELEVANT_ONLY"
 #line 740 "seclang-parser.yy"
       {
-        driver.m_auditLog->setStatus(modsecurity::audit_log::AuditLog::RelevantOnlyAuditLogStatus);
+        driver.m_auditLog->setStatus(celeowaf::audit_log::AuditLog::RelevantOnlyAuditLogStatus);
       }
 #line 1722 "seclang-parser.cc"
     break;
@@ -1724,7 +1724,7 @@ namespace yy {
   case 9: // audit_log: "CONFIG_DIR_AUDIT_ENG" "CONFIG_VALUE_OFF"
 #line 744 "seclang-parser.yy"
       {
-        driver.m_auditLog->setStatus(modsecurity::audit_log::AuditLog::OffAuditLogStatus);
+        driver.m_auditLog->setStatus(celeowaf::audit_log::AuditLog::OffAuditLogStatus);
       }
 #line 1730 "seclang-parser.cc"
     break;
@@ -1732,7 +1732,7 @@ namespace yy {
   case 10: // audit_log: "CONFIG_DIR_AUDIT_ENG" "CONFIG_VALUE_ON"
 #line 748 "seclang-parser.yy"
       {
-        driver.m_auditLog->setStatus(modsecurity::audit_log::AuditLog::OnAuditLogStatus);
+        driver.m_auditLog->setStatus(celeowaf::audit_log::AuditLog::OnAuditLogStatus);
       }
 #line 1738 "seclang-parser.cc"
     break;
@@ -1772,7 +1772,7 @@ namespace yy {
   case 15: // audit_log: CONFIG_DIR_AUDIT_LOG_FMT JSON
 #line 777 "seclang-parser.yy"
       {
-        driver.m_auditLog->setFormat(modsecurity::audit_log::AuditLog::JSONAuditLogFormat);
+        driver.m_auditLog->setFormat(celeowaf::audit_log::AuditLog::JSONAuditLogFormat);
       }
 #line 1778 "seclang-parser.cc"
     break;
@@ -1780,7 +1780,7 @@ namespace yy {
   case 16: // audit_log: CONFIG_DIR_AUDIT_LOG_FMT NATIVE
 #line 782 "seclang-parser.yy"
       {
-        driver.m_auditLog->setFormat(modsecurity::audit_log::AuditLog::NativeAuditLogFormat);
+        driver.m_auditLog->setFormat(celeowaf::audit_log::AuditLog::NativeAuditLogFormat);
       }
 #line 1786 "seclang-parser.cc"
     break;
@@ -1797,7 +1797,7 @@ namespace yy {
   case 18: // audit_log: "CONFIG_DIR_AUDIT_TPE" "CONFIG_VALUE_SERIAL"
 #line 795 "seclang-parser.yy"
       {
-        driver.m_auditLog->setType(modsecurity::audit_log::AuditLog::SerialAuditLogType);
+        driver.m_auditLog->setType(celeowaf::audit_log::AuditLog::SerialAuditLogType);
       }
 #line 1803 "seclang-parser.cc"
     break;
@@ -1805,7 +1805,7 @@ namespace yy {
   case 19: // audit_log: "CONFIG_DIR_AUDIT_TPE" "CONFIG_VALUE_PARALLEL"
 #line 799 "seclang-parser.yy"
       {
-        driver.m_auditLog->setType(modsecurity::audit_log::AuditLog::ParallelAuditLogType);
+        driver.m_auditLog->setType(celeowaf::audit_log::AuditLog::ParallelAuditLogType);
       }
 #line 1811 "seclang-parser.cc"
     break;
@@ -1813,7 +1813,7 @@ namespace yy {
   case 20: // audit_log: "CONFIG_DIR_AUDIT_TPE" "CONFIG_VALUE_HTTPS"
 #line 803 "seclang-parser.yy"
       {
-        driver.m_auditLog->setType(modsecurity::audit_log::AuditLog::HttpsAuditLogType);
+        driver.m_auditLog->setType(celeowaf::audit_log::AuditLog::HttpsAuditLogType);
       }
 #line 1819 "seclang-parser.cc"
     break;
@@ -1821,7 +1821,7 @@ namespace yy {
   case 21: // audit_log: "CONFIG_UPDLOAD_KEEP_FILES" "CONFIG_VALUE_ON"
 #line 809 "seclang-parser.yy"
       {
-        driver.m_uploadKeepFiles = modsecurity::RulesSetProperties::TrueConfigBoolean;
+        driver.m_uploadKeepFiles = celeowaf::RulesSetProperties::TrueConfigBoolean;
       }
 #line 1827 "seclang-parser.cc"
     break;
@@ -1829,7 +1829,7 @@ namespace yy {
   case 22: // audit_log: "CONFIG_UPDLOAD_KEEP_FILES" "CONFIG_VALUE_OFF"
 #line 813 "seclang-parser.yy"
       {
-        driver.m_uploadKeepFiles = modsecurity::RulesSetProperties::FalseConfigBoolean;
+        driver.m_uploadKeepFiles = celeowaf::RulesSetProperties::FalseConfigBoolean;
       }
 #line 1835 "seclang-parser.cc"
     break;
@@ -1873,7 +1873,7 @@ namespace yy {
   case 27: // audit_log: "CONFIG_UPDLOAD_SAVE_TMP_FILES" "CONFIG_VALUE_ON"
 #line 837 "seclang-parser.yy"
       {
-        driver.m_tmpSaveUploadedFiles = modsecurity::RulesSetProperties::TrueConfigBoolean;
+        driver.m_tmpSaveUploadedFiles = celeowaf::RulesSetProperties::TrueConfigBoolean;
       }
 #line 1879 "seclang-parser.cc"
     break;
@@ -1881,7 +1881,7 @@ namespace yy {
   case 28: // audit_log: "CONFIG_UPDLOAD_SAVE_TMP_FILES" "CONFIG_VALUE_OFF"
 #line 841 "seclang-parser.yy"
       {
-        driver.m_tmpSaveUploadedFiles = modsecurity::RulesSetProperties::FalseConfigBoolean;
+        driver.m_tmpSaveUploadedFiles = celeowaf::RulesSetProperties::FalseConfigBoolean;
       }
 #line 1887 "seclang-parser.cc"
     break;
@@ -2275,7 +2275,7 @@ namespace yy {
         OPERATOR_CONTAINER(yylhs.value.as < std::unique_ptr<Operator> > (), new operators::GeoLookup());
 #else
         std::stringstream ss;
-            ss << "This version of ModSecurity was not compiled with GeoIP or MaxMind support.";
+            ss << "This version of CeleoWAF was not compiled with GeoIP or MaxMind support.";
             driver.error(yystack_[1].location, ss.str());
             YYERROR;
 #endif  // WITH_GEOIP
@@ -2429,7 +2429,7 @@ namespace yy {
             }
         }
         if (definedPhase == -1) {
-            definedPhase = modsecurity::Phases::RequestHeadersPhase;
+            definedPhase = celeowaf::Phases::RequestHeadersPhase;
         }
 
         if (hasDisruptive == false) {
@@ -2459,7 +2459,7 @@ namespace yy {
   case 80: // expression: "CONFIG_DIR_SEC_MARKER"
 #line 1231 "seclang-parser.yy"
       {
-        driver.addSecMarker(modsecurity::utils::string::removeBracketsIfNeeded(yystack_[0].value.as < std::string > ()),
+        driver.addSecMarker(celeowaf::utils::string::removeBracketsIfNeeded(yystack_[0].value.as < std::string > ()),
             /* file name */ std::unique_ptr<std::string>(new std::string(*yystack_[0].location.end.filename)),
             /* line number */ yystack_[0].location.end.line
         );
@@ -2470,7 +2470,7 @@ namespace yy {
   case 81: // expression: "CONFIG_DIR_RULE_ENG" "CONFIG_VALUE_OFF"
 #line 1238 "seclang-parser.yy"
       {
-        driver.m_secRuleEngine = modsecurity::RulesSet::DisabledRuleEngine;
+        driver.m_secRuleEngine = celeowaf::RulesSet::DisabledRuleEngine;
       }
 #line 2476 "seclang-parser.cc"
     break;
@@ -2478,7 +2478,7 @@ namespace yy {
   case 82: // expression: "CONFIG_DIR_RULE_ENG" "CONFIG_VALUE_ON"
 #line 1242 "seclang-parser.yy"
       {
-        driver.m_secRuleEngine = modsecurity::RulesSet::EnabledRuleEngine;
+        driver.m_secRuleEngine = celeowaf::RulesSet::EnabledRuleEngine;
       }
 #line 2484 "seclang-parser.cc"
     break;
@@ -2486,7 +2486,7 @@ namespace yy {
   case 83: // expression: "CONFIG_DIR_RULE_ENG" "CONFIG_VALUE_DETC"
 #line 1246 "seclang-parser.yy"
       {
-        driver.m_secRuleEngine = modsecurity::RulesSet::DetectionOnlyRuleEngine;
+        driver.m_secRuleEngine = celeowaf::RulesSet::DetectionOnlyRuleEngine;
       }
 #line 2492 "seclang-parser.cc"
     break;
@@ -2494,7 +2494,7 @@ namespace yy {
   case 84: // expression: "CONFIG_DIR_REQ_BODY" "CONFIG_VALUE_ON"
 #line 1250 "seclang-parser.yy"
       {
-        driver.m_secRequestBodyAccess = modsecurity::RulesSetProperties::TrueConfigBoolean;
+        driver.m_secRequestBodyAccess = celeowaf::RulesSetProperties::TrueConfigBoolean;
       }
 #line 2500 "seclang-parser.cc"
     break;
@@ -2502,7 +2502,7 @@ namespace yy {
   case 85: // expression: "CONFIG_DIR_REQ_BODY" "CONFIG_VALUE_OFF"
 #line 1254 "seclang-parser.yy"
       {
-        driver.m_secRequestBodyAccess = modsecurity::RulesSetProperties::FalseConfigBoolean;
+        driver.m_secRequestBodyAccess = celeowaf::RulesSetProperties::FalseConfigBoolean;
       }
 #line 2508 "seclang-parser.cc"
     break;
@@ -2510,7 +2510,7 @@ namespace yy {
   case 86: // expression: "CONFIG_DIR_RES_BODY" "CONFIG_VALUE_ON"
 #line 1258 "seclang-parser.yy"
       {
-        driver.m_secResponseBodyAccess = modsecurity::RulesSetProperties::TrueConfigBoolean;
+        driver.m_secResponseBodyAccess = celeowaf::RulesSetProperties::TrueConfigBoolean;
       }
 #line 2516 "seclang-parser.cc"
     break;
@@ -2518,7 +2518,7 @@ namespace yy {
   case 87: // expression: "CONFIG_DIR_RES_BODY" "CONFIG_VALUE_OFF"
 #line 1262 "seclang-parser.yy"
       {
-        driver.m_secResponseBodyAccess = modsecurity::RulesSetProperties::FalseConfigBoolean;
+        driver.m_secResponseBodyAccess = celeowaf::RulesSetProperties::FalseConfigBoolean;
       }
 #line 2524 "seclang-parser.cc"
     break;
@@ -2974,7 +2974,7 @@ namespace yy {
       {
 #if defined(WITH_GEOIP) or defined(WITH_MAXMIND)
         std::string err;
-        std::string file = modsecurity::utils::find_resource(yystack_[0].value.as < std::string > (),
+        std::string file = celeowaf::utils::find_resource(yystack_[0].value.as < std::string > (),
             *yystack_[0].location.end.filename, &err);
         if (file.empty()) {
             std::stringstream ss;
@@ -2992,7 +2992,7 @@ namespace yy {
         }
 #else
         std::stringstream ss;
-        ss << "This version of ModSecurity was not compiled with GeoIP or MaxMind support.";
+        ss << "This version of CeleoWAF was not compiled with GeoIP or MaxMind support.";
         driver.error(yystack_[1].location, ss.str());
         YYERROR;
 #endif  // WITH_GEOIP
@@ -3040,9 +3040,9 @@ namespace yy {
 #line 1606 "seclang-parser.yy"
       {
         std::stringstream ss;
-        ss << "As of ModSecurity version 3.0, SecRequestBodyInMemoryLimit is no longer ";
+        ss << "As of CeleoWAF version 3.0, SecRequestBodyInMemoryLimit is no longer ";
         ss << "supported. Instead, you can use your web server configurations to control ";
-        ss << "those values. ModSecurity will follow the web server decision.";
+        ss << "those values. CeleoWAF will follow the web server decision.";
         driver.error(yystack_[1].location, ss.str());
         YYERROR;
       }
@@ -3061,7 +3061,7 @@ namespace yy {
   case 134: // expression: "CONFIG_DIR_REQ_BODY_LIMIT_ACTION" "CONFIG_VALUE_PROCESS_PARTIAL"
 #line 1620 "seclang-parser.yy"
       {
-        driver.m_requestBodyLimitAction = modsecurity::RulesSet::BodyLimitAction::ProcessPartialBodyLimitAction;
+        driver.m_requestBodyLimitAction = celeowaf::RulesSet::BodyLimitAction::ProcessPartialBodyLimitAction;
       }
 #line 3067 "seclang-parser.cc"
     break;
@@ -3069,7 +3069,7 @@ namespace yy {
   case 135: // expression: "CONFIG_DIR_REQ_BODY_LIMIT_ACTION" "CONFIG_VALUE_REJECT"
 #line 1624 "seclang-parser.yy"
       {
-        driver.m_requestBodyLimitAction = modsecurity::RulesSet::BodyLimitAction::RejectBodyLimitAction;
+        driver.m_requestBodyLimitAction = celeowaf::RulesSet::BodyLimitAction::RejectBodyLimitAction;
       }
 #line 3075 "seclang-parser.cc"
     break;
@@ -3077,7 +3077,7 @@ namespace yy {
   case 136: // expression: "CONFIG_DIR_RES_BODY_LIMIT_ACTION" "CONFIG_VALUE_PROCESS_PARTIAL"
 #line 1628 "seclang-parser.yy"
       {
-        driver.m_responseBodyLimitAction = modsecurity::RulesSet::BodyLimitAction::ProcessPartialBodyLimitAction;
+        driver.m_responseBodyLimitAction = celeowaf::RulesSet::BodyLimitAction::ProcessPartialBodyLimitAction;
       }
 #line 3083 "seclang-parser.cc"
     break;
@@ -3085,7 +3085,7 @@ namespace yy {
   case 137: // expression: "CONFIG_DIR_RES_BODY_LIMIT_ACTION" "CONFIG_VALUE_REJECT"
 #line 1632 "seclang-parser.yy"
       {
-        driver.m_responseBodyLimitAction = modsecurity::RulesSet::BodyLimitAction::RejectBodyLimitAction;
+        driver.m_responseBodyLimitAction = celeowaf::RulesSet::BodyLimitAction::RejectBodyLimitAction;
       }
 #line 3091 "seclang-parser.cc"
     break;
@@ -3135,7 +3135,7 @@ namespace yy {
   case 144: // expression: "CONFIG_XML_EXTERNAL_ENTITY" "CONFIG_VALUE_OFF"
 #line 1672 "seclang-parser.yy"
       {
-        driver.m_secXMLExternalEntity = modsecurity::RulesSetProperties::FalseConfigBoolean;
+        driver.m_secXMLExternalEntity = celeowaf::RulesSetProperties::FalseConfigBoolean;
       }
 #line 3141 "seclang-parser.cc"
     break;
@@ -3143,7 +3143,7 @@ namespace yy {
   case 145: // expression: "CONFIG_XML_EXTERNAL_ENTITY" "CONFIG_VALUE_ON"
 #line 1676 "seclang-parser.yy"
       {
-        driver.m_secXMLExternalEntity = modsecurity::RulesSetProperties::TrueConfigBoolean;
+        driver.m_secXMLExternalEntity = celeowaf::RulesSetProperties::TrueConfigBoolean;
       }
 #line 3149 "seclang-parser.cc"
     break;
@@ -3151,11 +3151,11 @@ namespace yy {
   case 146: // expression: "CONGIG_DIR_SEC_TMP_DIR"
 #line 1680 "seclang-parser.yy"
       {
-/* Parser error disabled to avoid breaking default installations with modsecurity.conf-recommended
+/* Parser error disabled to avoid breaking default installations with celeowaf.conf-recommended
         std::stringstream ss;
-        ss << "As of ModSecurity version 3.0, SecTmpDir is no longer supported.";
+        ss << "As of CeleoWAF version 3.0, SecTmpDir is no longer supported.";
         ss << " Instead, you can use your web server configurations to control when";
-        ss << "and where to swap. ModSecurity will follow the web server decision.";
+        ss << "and where to swap. CeleoWAF will follow the web server decision.";
         driver.error(@0, ss.str());
         YYERROR;
 */
@@ -3221,7 +3221,7 @@ namespace yy {
             param.pop_back();
         }
 
-        file = modsecurity::utils::find_resource(f, *yystack_[0].location.end.filename, &err);
+        file = celeowaf::utils::find_resource(f, *yystack_[0].location.end.filename, &err);
         if (file.empty()) {
             std::stringstream ss;
             ss << "Failed to locate the unicode map file from: " << f << " ";

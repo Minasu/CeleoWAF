@@ -80,11 +80,11 @@
       ]
     },
     "expected":{
-      "debug_log":"regression tests\" .Variable: ENV:MODSECURITY."
+      "debug_log":"regression tests\" .Variable: ENV:CELEOWAF."
     },
     "rules":[
       "SecRuleEngine On",
-      "SecRule ENV:MODSECURITY \"@contains test\" \"id:1,phase:3,pass,t:trim\""
+      "SecRule ENV:CELEOWAF \"@contains test\" \"id:1,phase:3,pass,t:trim\""
     ]
   },
   {

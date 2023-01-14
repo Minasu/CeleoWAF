@@ -1,5 +1,5 @@
 /*
- * ModSecurity, http://www.modsecurity.org/
+ * CeleoWAF, http://www.celeowaf.org/
  * Copyright (c) 2015 - 2021 Trustwave Holdings, Inc. (http://www.trustwave.com/)
  *
  * You may not use this file except in compliance with
@@ -9,18 +9,18 @@
  *
  * If any of the files related to licensing are missing or if you have any
  * other questions related to licensing please contact Trustwave Holdings, Inc.
- * directly using the email address security@modsecurity.org.
+ * directly using the email address security@celeowaf.org.
  *
  */
 
-#include "modsecurity/rules_exceptions.h"
+#include "celeowaf/rules_exceptions.h"
 
 #include <string>
 
 #include "src/utils/string.h"
 #include "src/variables/variable.h"
 
-namespace modsecurity {
+namespace celeowaf {
 
 
 RulesExceptions::RulesExceptions() {
@@ -123,7 +123,7 @@ bool RulesExceptions::load(const std::string &a, std::string *error) {
     bool added = false;
     std::vector<std::string> toRemove = utils::string::ssplit(a, ' ');
     for (std::string &r : toRemove) {
-        std::string b = modsecurity::utils::string::parserSanitizer(r);
+        std::string b = celeowaf::utils::string::parserSanitizer(r);
         if (b.size() == 0) {
             continue;
         }
@@ -265,5 +265,5 @@ bool RulesExceptions::merge(RulesExceptions *from) {
     return true;
 }
 
-}  // namespace modsecurity
+}  // namespace celeowaf
 

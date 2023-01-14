@@ -1,5 +1,5 @@
 /*
- * ModSecurity, http://www.modsecurity.org/
+ * CeleoWAF, http://www.celeowaf.org/
  * Copyright (c) 2015 - 2021 Trustwave Holdings, Inc. (http://www.trustwave.com/)
  *
  * You may not use this file except in compliance with
@@ -9,7 +9,7 @@
  *
  * If any of the files related to licensing are missing or if you have any
  * other questions related to licensing please contact Trustwave Holdings, Inc.
- * directly using the email address security@modsecurity.org.
+ * directly using the email address security@celeowaf.org.
  *
  */
 
@@ -23,7 +23,7 @@
 #ifndef TEST_UNIT_UNIT_TEST_H_
 #define TEST_UNIT_UNIT_TEST_H_
 
-namespace modsecurity_test {
+namespace celeowaf_test {
 
 class UnitTest {
  public:
@@ -44,6 +44,6 @@ class UnitTest {
     std::string obtainedOutput;
 };
 
-}  // namespace modsecurity_test
+}  // namespace celeowaf_test
 
 #endif  // TEST_UNIT_UNIT_TEST_H_

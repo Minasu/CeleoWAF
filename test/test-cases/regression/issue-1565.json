@@ -4,7 +4,7 @@
   "version_min": 209000,
   "version_max": -1,
   "title": "Problem with OWASP CRS rule 920160 when msc_process_request_headers called (1/2)",
-  "url": "https:\/\/github.com\/SpiderLabs\/ModSecurity\/issues\/1565",
+  "url": "https:\/\/github.com\/SpiderLabs\/CeleoWAF\/issues\/1565",
   "gihub_issue": 394,
   "client": {
     "ip": "200.249.12.31",
@@ -42,7 +42,7 @@
   "version_min": 209000,
   "version_max": -1,
   "title": "Problem with OWASP CRS rule 920160 when msc_process_request_headers called (2/2)",
-  "url": "https:\/\/github.com\/SpiderLabs\/ModSecurity\/issues\/1565",
+  "url": "https:\/\/github.com\/SpiderLabs\/CeleoWAF\/issues\/1565",
   "gihub_issue": 394,
   "client": {
     "ip": "200.249.12.31",

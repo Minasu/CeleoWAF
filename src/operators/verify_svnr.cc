@@ -5,12 +5,12 @@
 
 #include "src/operators/operator.h"
 
-#include "modsecurity/rule.h"
-#include "modsecurity/rule_message.h"
-#include "modsecurity/rules_set_properties.h"
+#include "celeowaf/rule.h"
+#include "celeowaf/rule_message.h"
+#include "celeowaf/rules_set_properties.h"
 
 
-namespace modsecurity {
+namespace celeowaf {
 namespace operators {
 
 
@@ -112,4 +112,4 @@ out:
 
 
 }  // namespace operators
-}  // namespace modsecurity
+}  // namespace celeowaf

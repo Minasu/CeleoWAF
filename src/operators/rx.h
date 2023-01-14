@@ -1,5 +1,5 @@
 /*
- * ModSecurity, http://www.modsecurity.org/
+ * CeleoWAF, http://www.celeowaf.org/
  * Copyright (c) 2015 - 2021 Trustwave Holdings, Inc. (http://www.trustwave.com/)
  *
  * You may not use this file except in compliance with
@@ -9,7 +9,7 @@
  *
  * If any of the files related to licensing are missing or if you have any
  * other questions related to licensing please contact Trustwave Holdings, Inc.
- * directly using the email address security@modsecurity.org.
+ * directly using the email address security@celeowaf.org.
  *
  */
 
@@ -25,7 +25,7 @@
 #include "src/utils/regex.h"
 
 
-namespace modsecurity {
+namespace celeowaf {
 using Utils::SMatch;
 using Utils::regex_search;
 using Utils::Regex;
@@ -35,7 +35,7 @@ namespace operators {
 
 class Rx : public Operator {
  public:
-    /** @ingroup ModSecurity_Operator */
+    /** @ingroup CeleoWAF_Operator */
     explicit Rx(std::unique_ptr<RunTimeString> param)
         : m_re(nullptr),
         Operator("Rx", std::move(param)) {
@@ -61,7 +61,7 @@ class Rx : public Operator {
 
 
 }  // namespace operators
-}  // namespace modsecurity
+}  // namespace celeowaf
 
 
 #endif  // SRC_OPERATORS_RX_H_

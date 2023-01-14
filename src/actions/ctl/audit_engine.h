@@ -1,5 +1,5 @@
 /*
- * ModSecurity, http://www.modsecurity.org/
+ * CeleoWAF, http://www.celeowaf.org/
  * Copyright (c) 2022 Trustwave Holdings, Inc. (http://www.trustwave.com/)
  *
  * You may not use this file except in compliance with
@@ -9,22 +9,22 @@
  *
  * If any of the files related to licensing are missing or if you have any
  * other questions related to licensing please contact Trustwave Holdings, Inc.
- * directly using the email address security@modsecurity.org.
+ * directly using the email address security@celeowaf.org.
  *
  */
 
 #include <string>
 
-#include "modsecurity/rules_set_properties.h"
-#include "modsecurity/actions/action.h"
+#include "celeowaf/rules_set_properties.h"
+#include "celeowaf/actions/action.h"
 
-#include "modsecurity/audit_log.h"
+#include "celeowaf/audit_log.h"
 
 
 #ifndef SRC_ACTIONS_CTL_AUDIT_ENGINE_H_
 #define SRC_ACTIONS_CTL_AUDIT_ENGINE_H_
 
-namespace modsecurity {
+namespace celeowaf {
 class Transaction;
 
 namespace actions {
@@ -46,6 +46,6 @@ class AuditEngine : public Action {
 
 }  // namespace ctl
 }  // namespace actions
-}  // namespace modsecurity
+}  // namespace celeowaf
 
 #endif  // SRC_ACTIONS_CTL_AUDIT_ENGINE_H_

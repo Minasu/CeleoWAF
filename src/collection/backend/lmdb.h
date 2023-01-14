@@ -1,5 +1,5 @@
 /*
- * ModSecurity, http://www.modsecurity.org/
+ * CeleoWAF, http://www.celeowaf.org/
  * Copyright (c) 2015 - 2021 Trustwave Holdings, Inc. (http://www.trustwave.com/)
  *
  * You may not use this file except in compliance with
@@ -9,7 +9,7 @@
  *
  * If any of the files related to licensing are missing or if you have any
  * other questions related to licensing please contact Trustwave Holdings, Inc.
- * directly using the email address security@modsecurity.org.
+ * directly using the email address security@celeowaf.org.
  *
  */
 
@@ -34,8 +34,8 @@
 #include <fcntl.h>
 #include <pthread.h>
 
-#include "modsecurity/variable_value.h"
-#include "modsecurity/collection/collection.h"
+#include "celeowaf/variable_value.h"
+#include "celeowaf/collection/collection.h"
 #include "src/variables/variable.h"
 
 #ifndef SRC_COLLECTION_BACKEND_LMDB_H_
@@ -44,7 +44,7 @@
 #ifdef WITH_LMDB
 
 #ifdef __cplusplus
-namespace modsecurity {
+namespace celeowaf {
 namespace collection {
 namespace backend {
 
@@ -131,7 +131,7 @@ class LMDB :
 
 }  // namespace backend
 }  // namespace collection
-}  // namespace modsecurity
+}  // namespace celeowaf
 #endif
 
 #endif  // WITH_LMDB

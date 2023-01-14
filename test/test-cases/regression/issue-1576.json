@@ -4,7 +4,7 @@
     "version_min": 209000,
     "version_max": -1,
     "title": "JSON array should be handled even without a key (1)",
-    "url": "https:\/\/github.com\/SpiderLabs\/ModSecurity\/issues\/1576",
+    "url": "https:\/\/github.com\/SpiderLabs\/CeleoWAF\/issues\/1576",
     "client":{
       "ip":"200.249.12.31",
       "port":123
@@ -52,7 +52,7 @@
     "version_min": 209000,
     "version_max": -1,
     "title": "JSON array should be handled even without a key (2)",
-    "url": "https:\/\/github.com\/SpiderLabs\/ModSecurity\/issues\/1576",
+    "url": "https:\/\/github.com\/SpiderLabs\/CeleoWAF\/issues\/1576",
     "client":{
       "ip":"200.249.12.31",
       "port":123
@@ -94,7 +94,7 @@
     "version_min": 209000,
     "version_max": -1,
     "title": "JSON array should be handled even without a key (3)",
-    "url": "https:\/\/github.com\/SpiderLabs\/ModSecurity\/issues\/1576",
+    "url": "https:\/\/github.com\/SpiderLabs\/CeleoWAF\/issues\/1576",
     "client":{
       "ip":"200.249.12.31",
       "port":123

@@ -1,5 +1,5 @@
 /*
- * ModSecurity, http://www.modsecurity.org/
+ * CeleoWAF, http://www.celeowaf.org/
  * Copyright (c) 2015 - 2021 Trustwave Holdings, Inc. (http://www.trustwave.com/)
  *
  * You may not use this file except in compliance with
@@ -9,7 +9,7 @@
  *
  * If any of the files related to licensing are missing or if you have any
  * other questions related to licensing please contact Trustwave Holdings, Inc.
- * directly using the email address security@modsecurity.org.
+ * directly using the email address security@celeowaf.org.
  *
  */
 
@@ -20,15 +20,15 @@
 #include <string>
 #include <list>
 
-#include "modsecurity/rules_set_properties.h"
-#include "modsecurity/rules_set.h"
-#include "modsecurity/modsecurity.h"
+#include "celeowaf/rules_set_properties.h"
+#include "celeowaf/rules_set.h"
+#include "celeowaf/celeowaf.h"
 #include "src/utils/system.h"
 #include "src/parser/driver.h"
 #include "src/utils/https_client.h"
-#include "modsecurity/transaction.h"
-#include "modsecurity/rule_unconditional.h"
-#include "modsecurity/rule_with_operator.h"
+#include "celeowaf/transaction.h"
+#include "celeowaf/rule_unconditional.h"
+#include "celeowaf/rule_with_operator.h"
 
 
 void print_help() {
@@ -39,13 +39,13 @@ void print_help() {
 
 
 int main(int argc, char **argv) {
-    modsecurity::RulesSet *modsecRules = new modsecurity::RulesSet();
+    celeowaf::RulesSet *modsecRules = new celeowaf::RulesSet();
     std::list<std::string> files;
     int total = 0;
 
     int p = 1;
     while (p < argc) {
-        std::list<std::string> tfiles = modsecurity::utils::expandEnv(
+        std::list<std::string> tfiles = celeowaf::utils::expandEnv(
             argv[p], 0);
         for (const auto &file : tfiles) {
             files.insert(files.begin(), file);
@@ -69,7 +69,7 @@ int main(int argc, char **argv) {
     std::cout << "Rules optimization" << std::endl;
     std::cout << std::endl;
 
-    int nphases = modsecurity::Phases::NUMBER_OF_PHASES;
+    int nphases = celeowaf::Phases::NUMBER_OF_PHASES;
     for (int j = 0; j < nphases; j++) {
         Rules *rules = modsecRules->m_rulesSetPhases[j];
         if (rules->size() == 0) {
@@ -87,7 +87,7 @@ int main(int argc, char **argv) {
                 continue;
             }
 
-            if (dynamic_cast<modsecurity::RuleUnconditional *>(z.get()) != nullptr) {
+            if (dynamic_cast<celeowaf::RuleUnconditional *>(z.get()) != nullptr) {
                 std::string op = "Unconditional";
                 if (operators.count(op) > 0) {
                     operators[op] = 1 + operators[op];
@@ -96,8 +96,8 @@ int main(int argc, char **argv) {
                 }
             }
 
-            if (dynamic_cast<modsecurity::RuleWithOperator *>(z.get()) != nullptr) {
-                auto *rwo = dynamic_cast<modsecurity::RuleWithOperator *>(z.get());
+            if (dynamic_cast<celeowaf::RuleWithOperator *>(z.get()) != nullptr) {
+                auto *rwo = dynamic_cast<celeowaf::RuleWithOperator *>(z.get());
 
                 std::string op = rwo->getOperatorName();
                 if (operators.count(op) > 0) {

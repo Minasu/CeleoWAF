@@ -1,5 +1,5 @@
 /*
- * ModSecurity, http://www.modsecurity.org/
+ * CeleoWAF, http://www.celeowaf.org/
  * Copyright (c) 2015 - 2021 Trustwave Holdings, Inc. (http://www.trustwave.com/)
  *
  * You may not use this file except in compliance with
@@ -9,7 +9,7 @@
  *
  * If any of the files related to licensing are missing or if you have any
  * other questions related to licensing please contact Trustwave Holdings, Inc.
- * directly using the email address security@modsecurity.org.
+ * directly using the email address security@celeowaf.org.
  *
  */
 
@@ -25,7 +25,7 @@
 #ifndef SRC_ENGINE_LUA_H_
 #define SRC_ENGINE_LUA_H_
 
-namespace modsecurity {
+namespace celeowaf {
 class Transaction;
 namespace engine {
 
@@ -98,7 +98,7 @@ static const struct luaL_Reg mscLuaLib[] = {
 #endif
 
 }  // namespace engine
-}  // namespace modsecurity
+}  // namespace celeowaf
 
 #ifdef WITH_LUA
 #if defined LUA_VERSION_NUM && LUA_VERSION_NUM < 502 && !defined WITH_LUA_JIT_2_1

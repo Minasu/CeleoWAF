@@ -1,5 +1,5 @@
 /*
- * ModSecurity, http://www.modsecurity.org/
+ * CeleoWAF, http://www.celeowaf.org/
  * Copyright (c) 2015 - 2021 Trustwave Holdings, Inc. (http://www.trustwave.com/)
  *
  * You may not use this file except in compliance with
@@ -9,21 +9,21 @@
  *
  * If any of the files related to licensing are missing or if you have any
  * other questions related to licensing please contact Trustwave Holdings, Inc.
- * directly using the email address security@modsecurity.org.
+ * directly using the email address security@celeowaf.org.
  *
  */
 
 #include "src/parser/driver.h"
 
-#include "modsecurity/rules_set_properties.h"
+#include "celeowaf/rules_set_properties.h"
 #include "src/parser/seclang-parser.hh"
-#include "modsecurity/audit_log.h"
-#include "modsecurity/rule_marker.h"
+#include "celeowaf/audit_log.h"
+#include "celeowaf/rule_marker.h"
 
-using modsecurity::audit_log::AuditLog;
-using modsecurity::RuleWithOperator;
+using celeowaf::audit_log::AuditLog;
+using celeowaf::RuleWithOperator;
 
-namespace modsecurity {
+namespace celeowaf {
 namespace Parser {
 
 Driver::Driver()
@@ -44,7 +44,7 @@ Driver::~Driver() {
 
 int Driver::addSecMarker(std::string marker, std::unique_ptr<std::string> fileName, int lineNumber) {
     // FIXME: we might move this to the parser.
-    for (int i = 0; i < modsecurity::Phases::NUMBER_OF_PHASES; i++) {
+    for (int i = 0; i < celeowaf::Phases::NUMBER_OF_PHASES; i++) {
         RuleMarker *r = new RuleMarker(marker, std::unique_ptr<std::string>(new std::string(*fileName)), lineNumber);
         std::unique_ptr<RuleMarker> rule(r);
         rule->setPhase(i);
@@ -55,7 +55,7 @@ int Driver::addSecMarker(std::string marker, std::unique_ptr<std::string> fileNa
 
 
 int Driver::addSecAction(std::unique_ptr<RuleWithActions> rule) {
-    if (rule->getPhase() >= modsecurity::Phases::NUMBER_OF_PHASES) {
+    if (rule->getPhase() >= celeowaf::Phases::NUMBER_OF_PHASES) {
         m_parserError << "Unknown phase: " << std::to_string(rule->getPhase());
         m_parserError << std::endl;
         return false;
@@ -74,7 +74,7 @@ int Driver::addSecRuleScript(std::unique_ptr<RuleScript> rule) {
 
 
 int Driver::addSecRule(std::unique_ptr<RuleWithActions> r) {
-    if (r->getPhase() >= modsecurity::Phases::NUMBER_OF_PHASES) {
+    if (r->getPhase() >= celeowaf::Phases::NUMBER_OF_PHASES) {
         m_parserError << "Unknown phase: " << std::to_string(r->getPhase());
         m_parserError << std::endl;
         return false;
@@ -106,7 +106,7 @@ int Driver::addSecRule(std::unique_ptr<RuleWithActions> r) {
         return false;
     }
 
-    for (int i = 0; i < modsecurity::Phases::NUMBER_OF_PHASES; i++) {
+    for (int i = 0; i < celeowaf::Phases::NUMBER_OF_PHASES; i++) {
         Rules *rules = m_rulesSetPhases[i];
         for (int j = 0; j < rules->size(); j++) {
             RuleWithOperator *lr = dynamic_cast<RuleWithOperator *>(rules->at(j).get());
@@ -215,4 +215,4 @@ void Driver::error(const yy::location& l, const std::string& m,
 
 
 }  // namespace Parser
-}  // namespace modsecurity
+}  // namespace celeowaf

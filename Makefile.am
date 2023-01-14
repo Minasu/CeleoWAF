@@ -345,8 +345,8 @@ TESTS+=test/test-cases/secrules-language-tests/transformations/utf8toUnicode.jso
 
 
 pkgconfigdir = $(libdir)/pkgconfig
-pkgconfig_DATA = modsecurity.pc
-EXTRA_DIST = modsecurity.pc.in \
-             modsecurity.conf-recommended \
+pkgconfig_DATA = celeowaf.pc
+EXTRA_DIST = celeowaf.pc.in \
+             celeowaf.conf-recommended \
              unicode.mapping
 

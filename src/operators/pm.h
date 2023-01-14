@@ -1,5 +1,5 @@
 /*
- * ModSecurity, http://www.modsecurity.org/
+ * CeleoWAF, http://www.celeowaf.org/
  * Copyright (c) 2015 - 2021 Trustwave Holdings, Inc. (http://www.trustwave.com/)
  *
  * You may not use this file except in compliance with
@@ -9,7 +9,7 @@
  *
  * If any of the files related to licensing are missing or if you have any
  * other questions related to licensing please contact Trustwave Holdings, Inc.
- * directly using the email address security@modsecurity.org.
+ * directly using the email address security@celeowaf.org.
  *
  */
 
@@ -25,13 +25,13 @@
 #include "src/utils/acmp.h"
 
 
-namespace modsecurity {
+namespace celeowaf {
 namespace operators {
 
 
 class Pm : public Operator {
  public:
-    /** @ingroup ModSecurity_Operator */
+    /** @ingroup CeleoWAF_Operator */
     explicit Pm(std::unique_ptr<RunTimeString> param)
         : Operator("Pm", std::move(param)) {
         m_p = acmp_create(0);
@@ -62,7 +62,7 @@ class Pm : public Operator {
 
 
 }  // namespace operators
-}  // namespace modsecurity
+}  // namespace celeowaf
 
 
 #endif  // SRC_OPERATORS_PM_H_

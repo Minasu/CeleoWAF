@@ -20,7 +20,7 @@ simple_request_LDADD = \
 simple_request_LDFLAGS = \
 	-L$(top_builddir)/src/.libs/ \
 	$(GEOIP_LDFLAGS) \
-	-lmodsecurity \
+	-lceleowaf \
 	-lpthread \
 	-lm \
 	-lstdc++ \

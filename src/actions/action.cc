@@ -1,5 +1,5 @@
 /*
- * ModSecurity, http://www.modsecurity.org/
+ * CeleoWAF, http://www.celeowaf.org/
  * Copyright (c) 2015 - 2021 Trustwave Holdings, Inc. (http://www.trustwave.com/)
  *
  * You may not use this file except in compliance with
@@ -9,17 +9,17 @@
  *
  * If any of the files related to licensing are missing or if you have any
  * other questions related to licensing please contact Trustwave Holdings, Inc.
- * directly using the email address security@modsecurity.org.
+ * directly using the email address security@celeowaf.org.
  *
  */
 
-#include "modsecurity/actions/action.h"
+#include "celeowaf/actions/action.h"
 
 #include <iostream>
 #include <string>
 
-#include "modsecurity/transaction.h"
-#include "modsecurity/rule.h"
+#include "celeowaf/transaction.h"
+#include "celeowaf/rule.h"
 #include "src/utils/string.h"
 
 #include "src/actions/block.h"
@@ -41,7 +41,7 @@
 #define IF_MATCH(a) \
     if (op.compare(1, std::strlen(#a), #a) == 0)
 
-namespace modsecurity {
+namespace celeowaf {
 namespace actions {
 
 
@@ -57,4 +57,4 @@ bool Action::evaluate(RuleWithActions *rule, Transaction *transaction) {
 
 
 }  // namespace actions
-}  // namespace modsecurity
+}  // namespace celeowaf

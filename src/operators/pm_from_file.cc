@@ -1,5 +1,5 @@
 /*
- * ModSecurity, http://www.modsecurity.org/
+ * CeleoWAF, http://www.celeowaf.org/
  * Copyright (c) 2015 - 2021 Trustwave Holdings, Inc. (http://www.trustwave.com/)
  *
  * You may not use this file except in compliance with
@@ -9,7 +9,7 @@
  *
  * If any of the files related to licensing are missing or if you have any
  * other questions related to licensing please contact Trustwave Holdings, Inc.
- * directly using the email address security@modsecurity.org.
+ * directly using the email address security@celeowaf.org.
  *
  */
 
@@ -22,7 +22,7 @@
 #include "src/utils/system.h"
 
 
-namespace modsecurity {
+namespace celeowaf {
 namespace operators {
 
 bool PmFromFile::isComment(const std::string &s) {
@@ -82,4 +82,4 @@ bool PmFromFile::init(const std::string &config, std::string *error) {
 
 
 }  // namespace operators
-}  // namespace modsecurity
+}  // namespace celeowaf

@@ -1,5 +1,5 @@
 /*
- * ModSecurity, http://www.modsecurity.org/
+ * CeleoWAF, http://www.celeowaf.org/
  * Copyright (c) 2015 - 2021 Trustwave Holdings, Inc. (http://www.trustwave.com/)
  *
  * You may not use this file except in compliance with
@@ -9,14 +9,14 @@
  *
  * If any of the files related to licensing are missing or if you have any
  * other questions related to licensing please contact Trustwave Holdings, Inc.
- * directly using the email address security@modsecurity.org.
+ * directly using the email address security@celeowaf.org.
  *
  */
 
 #include "src/rule_script.h"
 
 
-namespace modsecurity {
+namespace celeowaf {
 
 bool RuleScript::init(std::string *err) {
     return m_lua.load(m_name, err);
@@ -41,4 +41,4 @@ bool RuleScript::evaluate(Transaction *trans,
     return ret;
 }
 
-}  // namespace modsecurity
+}  // namespace celeowaf

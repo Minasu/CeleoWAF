@@ -1,5 +1,5 @@
 /*
- * ModSecurity, http://www.modsecurity.org/
+ * CeleoWAF, http://www.celeowaf.org/
  * Copyright (c) 2015 - 2021 Trustwave Holdings, Inc. (http://www.trustwave.com/)
  *
  * You may not use this file except in compliance with
@@ -9,7 +9,7 @@
  *
  * If any of the files related to licensing are missing or if you have any
  * other questions related to licensing please contact Trustwave Holdings, Inc.
- * directly using the email address security@modsecurity.org.
+ * directly using the email address security@celeowaf.org.
  *
  */
 #ifndef SRC_OPERATORS_IP_MATCH_FROM_FILE_H_
@@ -21,12 +21,12 @@
 
 #include "src/operators/ip_match.h"
 
-namespace modsecurity {
+namespace celeowaf {
 namespace operators {
 
 class IpMatchFromFile : public IpMatch {
  public:
-    /** @ingroup ModSecurity_Operator */
+    /** @ingroup CeleoWAF_Operator */
     explicit IpMatchFromFile(std::unique_ptr<RunTimeString> param)
         : IpMatch("IpMatchFromFile", std::move(param)) { }
     IpMatchFromFile(const std::string &n, std::unique_ptr<RunTimeString> param)
@@ -35,7 +35,7 @@ class IpMatchFromFile : public IpMatch {
 };
 
 }  // namespace operators
-}  // namespace modsecurity
+}  // namespace celeowaf
 
 
 #endif  // SRC_OPERATORS_IP_MATCH_FROM_FILE_H_

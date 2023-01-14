@@ -1,5 +1,5 @@
 /*
- * ModSecurity, http://www.modsecurity.org/
+ * CeleoWAF, http://www.celeowaf.org/
  * Copyright (c) 2015 - 2021 Trustwave Holdings, Inc. (http://www.trustwave.com/)
  *
  * You may not use this file except in compliance with
@@ -9,7 +9,7 @@
  *
  * If any of the files related to licensing are missing or if you have any
  * other questions related to licensing please contact Trustwave Holdings, Inc.
- * directly using the email address security@modsecurity.org.
+ * directly using the email address security@celeowaf.org.
  *
  */
 
@@ -31,7 +31,7 @@
 #include <fstream>
 #include <string>
 
-namespace modsecurity {
+namespace celeowaf {
 namespace utils {
 
 
@@ -42,7 +42,7 @@ std::pair<msc_file_handler *, FILE *> SharedFiles::find_handler(
             return i.second;
         }
     }
-    return std::pair<modsecurity::utils::msc_file_handler *,
+    return std::pair<celeowaf::utils::msc_file_handler *,
         FILE *>(NULL, NULL);
 }
 
@@ -119,7 +119,7 @@ err_shmget1:
 err_mem_key:
     fclose(fp);
 err_fh:
-    return std::pair<modsecurity::utils::msc_file_handler *,
+    return std::pair<celeowaf::utils::msc_file_handler *,
         FILE *>(NULL, NULL);
 }
 
@@ -251,4 +251,4 @@ bool SharedFiles::write(const std::string& fileName,
 
 
 }  // namespace utils
-}  // namespace modsecurity
+}  // namespace celeowaf

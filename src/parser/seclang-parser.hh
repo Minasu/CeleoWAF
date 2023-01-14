@@ -50,13 +50,13 @@
 #include <string>
 #include <iterator>
 
-namespace ModSecurity {
+namespace CeleoWAF {
 namespace Parser {
 class Driver;
 }
 }
 
-#include "modsecurity/rule_unconditional.h"
+#include "celeowaf/rule_unconditional.h"
 #include "src/rule_script.h"
 
 #include "src/actions/accuracy.h"
@@ -189,10 +189,10 @@ class Driver;
 #include "src/operators/within.h"
 
 
-#include "modsecurity/audit_log.h"
-#include "modsecurity/modsecurity.h"
-#include "modsecurity/rules_set_properties.h"
-#include "modsecurity/rule.h"
+#include "celeowaf/audit_log.h"
+#include "celeowaf/celeowaf.h"
+#include "celeowaf/rules_set_properties.h"
+#include "celeowaf/rule.h"
 #include "src/operators/operator.h"
 #include "src/utils/geo_lookup.h"
 #include "src/utils/string.h"
@@ -300,10 +300,10 @@ class Driver;
 #include "src/variables/session.h"
 #include "src/variables/status.h"
 
-using namespace modsecurity;
-using namespace modsecurity::variables;
-using namespace modsecurity::Utils;
-using namespace modsecurity::operators;
+using namespace celeowaf;
+using namespace celeowaf::variables;
+using namespace celeowaf::Utils;
+using namespace celeowaf::operators;
 
 
 #define CHECK_VARIATION_DECL \
@@ -2443,7 +2443,7 @@ switch (yykind)
     };
 
     /// Build a parser object.
-    seclang_parser (modsecurity::Parser::Driver& driver_yyarg);
+    seclang_parser (celeowaf::Parser::Driver& driver_yyarg);
     virtual ~seclang_parser ();
 
 #if 201103L <= YY_CPLUSPLUS
@@ -8000,7 +8000,7 @@ switch (yykind)
 
 
     // User arguments.
-    modsecurity::Parser::Driver& driver;
+    celeowaf::Parser::Driver& driver;
 
   };
 

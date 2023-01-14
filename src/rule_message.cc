@@ -1,5 +1,5 @@
 /*
- * ModSecurity, http://www.modsecurity.org/
+ * CeleoWAF, http://www.celeowaf.org/
  * Copyright (c) 2015 - 2021 Trustwave Holdings, Inc. (http://www.trustwave.com/)
  *
  * You may not use this file except in compliance with
@@ -9,18 +9,18 @@
  *
  * If any of the files related to licensing are missing or if you have any
  * other questions related to licensing please contact Trustwave Holdings, Inc.
- * directly using the email address security@modsecurity.org.
+ * directly using the email address security@celeowaf.org.
  *
  */
 
-#include "modsecurity/rule_message.h"
+#include "celeowaf/rule_message.h"
 
-#include "modsecurity/rules_set.h"
-#include "modsecurity/modsecurity.h"
-#include "modsecurity/transaction.h"
+#include "celeowaf/rules_set.h"
+#include "celeowaf/celeowaf.h"
+#include "celeowaf/transaction.h"
 #include "src/utils/string.h"
 
-namespace modsecurity {
+namespace celeowaf {
 
 
 std::string RuleMessage::_details(const RuleMessage *rm) {
@@ -72,7 +72,7 @@ std::string RuleMessage::log(const RuleMessage *rm, int props, int code) {
     }
 
     if (rm->m_isDisruptive) {
-        msg.append("ModSecurity: Access denied with code ");
+        msg.append("CeleoWAF: Access denied with code ");
         if (code == -1) {
             msg.append("%d");
         } else {
@@ -81,7 +81,7 @@ std::string RuleMessage::log(const RuleMessage *rm, int props, int code) {
         msg.append(" (phase ");
         msg.append(std::to_string(rm->m_rule->getPhase() - 1) + "). ");
     } else {
-        msg.append("ModSecurity: Warning. ");
+        msg.append("CeleoWAF: Warning. ");
     }
 
     msg.append(rm->m_match);
@@ -91,8 +91,8 @@ std::string RuleMessage::log(const RuleMessage *rm, int props, int code) {
         msg.append(" " + _errorLogTail(rm));
     }
 
-    return modsecurity::utils::string::toHexIfNeeded(msg);
+    return celeowaf::utils::string::toHexIfNeeded(msg);
 }
 
 
-}  // namespace modsecurity
+}  // namespace celeowaf

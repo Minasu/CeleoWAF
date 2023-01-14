@@ -1,5 +1,5 @@
 /*
- * ModSecurity, http://www.modsecurity.org/
+ * CeleoWAF, http://www.celeowaf.org/
  * Copyright (c) 2015 - 2021 Trustwave Holdings, Inc. (http://www.trustwave.com/)
  *
  * You may not use this file except in compliance with
@@ -9,7 +9,7 @@
  *
  * If any of the files related to licensing are missing or if you have any
  * other questions related to licensing please contact Trustwave Holdings, Inc.
- * directly using the email address security@modsecurity.org.
+ * directly using the email address security@celeowaf.org.
  *
  */
 
@@ -19,18 +19,18 @@
 #include <string>
 #include <vector>
 
-#include "modsecurity/rules_set_phases.h"
-#include "modsecurity/rule.h"
-#include "modsecurity/rules.h"
-#include "modsecurity/modsecurity.h"
+#include "celeowaf/rules_set_phases.h"
+#include "celeowaf/rule.h"
+#include "celeowaf/rules.h"
+#include "celeowaf/celeowaf.h"
 
 
 
-namespace modsecurity {
+namespace celeowaf {
 
 
 bool RulesSetPhases::insert(std::shared_ptr<Rule> rule) {
-    if (rule->getPhase() >= modsecurity::Phases::NUMBER_OF_PHASES) {
+    if (rule->getPhase() >= celeowaf::Phases::NUMBER_OF_PHASES) {
         return false;
     }
     m_rulesAtPhase[rule->getPhase()].insert(rule);
@@ -43,7 +43,7 @@ int RulesSetPhases::append(RulesSetPhases *from, std::ostringstream *err) {
     int amount_of_rules = 0;
     std::vector<int64_t> v;
 
-    for (int i = 0; i < modsecurity::Phases::NUMBER_OF_PHASES; i++) {
+    for (int i = 0; i < celeowaf::Phases::NUMBER_OF_PHASES; i++) {
         v.reserve(m_rulesAtPhase[i].size());
         for (size_t z = 0; z < m_rulesAtPhase[i].size(); z++) {
             RuleWithOperator *rule_ckc = dynamic_cast<RuleWithOperator *>(m_rulesAtPhase[i].at(z).get());
@@ -55,7 +55,7 @@ int RulesSetPhases::append(RulesSetPhases *from, std::ostringstream *err) {
     }
     std::sort (v.begin(), v.end());
 
-    for (int phase = 0; phase < modsecurity::Phases::NUMBER_OF_PHASES; phase++) {
+    for (int phase = 0; phase < celeowaf::Phases::NUMBER_OF_PHASES; phase++) {
         int res = m_rulesAtPhase[phase].append(from->at(phase), v, err);
         if (res < 0) {
             return res;
@@ -67,7 +67,7 @@ int RulesSetPhases::append(RulesSetPhases *from, std::ostringstream *err) {
 }
 
 void RulesSetPhases::dump() const {
-    for (int i = 0; i <= modsecurity::Phases::NUMBER_OF_PHASES; i++) {
+    for (int i = 0; i <= celeowaf::Phases::NUMBER_OF_PHASES; i++) {
         std::cout << "Phase: " << std::to_string(i);
         std::cout << " (" << std::to_string(m_rulesAtPhase[i].size());
         std::cout << " rules)" << std::endl;
@@ -76,5 +76,5 @@ void RulesSetPhases::dump() const {
 }
 
 
-}  // namespace modsecurity
+}  // namespace celeowaf
 

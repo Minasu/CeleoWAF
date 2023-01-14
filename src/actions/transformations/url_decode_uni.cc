@@ -1,5 +1,5 @@
 /*
- * ModSecurity, http://www.modsecurity.org/
+ * CeleoWAF, http://www.celeowaf.org/
  * Copyright (c) 2015 - 2021 Trustwave Holdings, Inc. (http://www.trustwave.com/)
  *
  * You may not use this file except in compliance with
@@ -9,7 +9,7 @@
  *
  * If any of the files related to licensing are missing or if you have any
  * other questions related to licensing please contact Trustwave Holdings, Inc.
- * directly using the email address security@modsecurity.org.
+ * directly using the email address security@celeowaf.org.
  *
  */
 
@@ -25,15 +25,15 @@
 #include <locale>
 #include <cstring>
 
-#include "modsecurity/rules_set_properties.h"
-#include "modsecurity/rules_set.h"
-#include "modsecurity/transaction.h"
+#include "celeowaf/rules_set_properties.h"
+#include "celeowaf/rules_set.h"
+#include "celeowaf/transaction.h"
 #include "src/actions/transformations/transformation.h"
 #include "src/utils/string.h"
 #include "src/utils/system.h"
 
 
-namespace modsecurity {
+namespace celeowaf {
 namespace actions {
 namespace transformations {
 
@@ -192,4 +192,4 @@ int UrlDecodeUni::inplace(unsigned char *input, uint64_t input_len,
 
 }  // namespace transformations
 }  // namespace actions
-}  // namespace modsecurity
+}  // namespace celeowaf

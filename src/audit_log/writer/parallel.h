@@ -1,5 +1,5 @@
 /*
- * ModSecurity, http://www.modsecurity.org/
+ * CeleoWAF, http://www.celeowaf.org/
  * Copyright (c) 2015 - 2021 Trustwave Holdings, Inc. (http://www.trustwave.com/)
  *
  * You may not use this file except in compliance with
@@ -9,7 +9,7 @@
  *
  * If any of the files related to licensing are missing or if you have any
  * other questions related to licensing please contact Trustwave Holdings, Inc.
- * directly using the email address security@modsecurity.org.
+ * directly using the email address security@celeowaf.org.
  *
  */
 
@@ -19,18 +19,18 @@
 #define SRC_AUDIT_LOG_WRITER_PARALLEL_H_
 
 #include "src/audit_log/writer/writer.h"
-#include "modsecurity/transaction.h"
-#include "modsecurity/audit_log.h"
+#include "celeowaf/transaction.h"
+#include "celeowaf/audit_log.h"
 #include "src/utils/shared_files.h"
-#include "modsecurity/rules_set.h"
+#include "celeowaf/rules_set.h"
 
 #ifdef __cplusplus
 
-namespace modsecurity {
+namespace celeowaf {
 namespace audit_log {
 namespace writer {
 
-/** @ingroup ModSecurity_CPP_API */
+/** @ingroup CeleoWAF_CPP_API */
 class Parallel : public Writer {
  public:
     explicit Parallel(AuditLog *audit)
@@ -46,7 +46,7 @@ class Parallel : public Writer {
      *
      * Audit log file is saved into a directory structure. This directory
      * structure is based on the timestamp of the transaction creation, at
-     * the exact moment that ModSecurity be aware of a particular
+     * the exact moment that CeleoWAF be aware of a particular
      * request/transaction.
      * The expect fromat is:
      *
@@ -70,7 +70,7 @@ class Parallel : public Writer {
 
 }  // namespace writer
 }  // namespace audit_log
-}  // namespace modsecurity
+}  // namespace celeowaf
 #endif
 
 #endif  // SRC_AUDIT_LOG_WRITER_PARALLEL_H_

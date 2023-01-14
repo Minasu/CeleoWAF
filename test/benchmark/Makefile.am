@@ -20,7 +20,7 @@ benchmark_LDADD = \
 benchmark_LDFLAGS = \
 	-L$(top_builddir)/src/.libs/ \
 	$(GEOIP_LDFLAGS) \
-	-lmodsecurity \
+	-lceleowaf \
 	-lpthread \
 	-lm \
 	-lstdc++ \

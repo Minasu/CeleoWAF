@@ -1,5 +1,5 @@
 /*
- * ModSecurity, http://www.modsecurity.org/
+ * CeleoWAF, http://www.celeowaf.org/
  * Copyright (c) 2015 - 2021 Trustwave Holdings, Inc. (http://www.trustwave.com/)
  *
  * You may not use this file except in compliance with
@@ -9,7 +9,7 @@
  *
  * If any of the files related to licensing are missing or if you have any
  * other questions related to licensing please contact Trustwave Holdings, Inc.
- * directly using the email address security@modsecurity.org.
+ * directly using the email address security@celeowaf.org.
  *
  */
 
@@ -27,13 +27,13 @@
 #include <fstream>
 #include <mutex>
 
-#include "modsecurity/audit_log.h"
-#include "modsecurity/transaction.h"
+#include "celeowaf/audit_log.h"
+#include "celeowaf/transaction.h"
 #include "src/utils/system.h"
 #include "src/utils/md5.h"
 
 
-namespace modsecurity {
+namespace celeowaf {
 namespace audit_log {
 namespace writer {
 
@@ -193,4 +193,4 @@ bool Parallel::write(Transaction *transaction, int parts, std::string *error) {
 
 }  // namespace writer
 }  // namespace audit_log
-}  // namespace modsecurity
+}  // namespace celeowaf

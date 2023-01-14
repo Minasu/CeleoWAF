@@ -1,5 +1,5 @@
 /*
- * ModSecurity, http://www.modsecurity.org/
+ * CeleoWAF, http://www.celeowaf.org/
  * Copyright (c) 2015 - 2021 Trustwave Holdings, Inc. (http://www.trustwave.com/)
  *
  * You may not use this file except in compliance with
@@ -9,7 +9,7 @@
  *
  * If any of the files related to licensing are missing or if you have any
  * other questions related to licensing please contact Trustwave Holdings, Inc.
- * directly using the email address security@modsecurity.org.
+ * directly using the email address security@celeowaf.org.
  *
  */
 
@@ -35,15 +35,15 @@
 #include <list>
 #include <utility>
 
-#include "modsecurity/transaction.h"
-#include "modsecurity/rules_set_properties.h"
-#include "modsecurity/rules_set.h"
+#include "celeowaf/transaction.h"
+#include "celeowaf/rules_set_properties.h"
+#include "celeowaf/rules_set.h"
 
 #include "src/request_body_processor/xml.h"
-#include "modsecurity/actions/action.h"
+#include "celeowaf/actions/action.h"
 #include "src/actions/xmlns.h"
 
-namespace modsecurity {
+namespace celeowaf {
 namespace variables {
 
 #ifndef WITH_LIBXML2
@@ -141,4 +141,4 @@ void XML::evaluate(Transaction *t,
 #endif
 
 }  // namespace variables
-}  // namespace modsecurity
+}  // namespace celeowaf

@@ -1,5 +1,5 @@
 /*
- * ModSecurity, http://www.modsecurity.org/
+ * CeleoWAF, http://www.celeowaf.org/
  * Copyright (c) 2015 - 2021 Trustwave Holdings, Inc. (http://www.trustwave.com/)
  *
  * You may not use this file except in compliance with
@@ -9,7 +9,7 @@
  *
  * If any of the files related to licensing are missing or if you have any
  * other questions related to licensing please contact Trustwave Holdings, Inc.
- * directly using the email address security@modsecurity.org.
+ * directly using the email address security@celeowaf.org.
  *
  */
 
@@ -27,12 +27,12 @@
 #include <string>
 #include <utility>
 
-#include "modsecurity/rules_set.h"
-#include "modsecurity/collection/collections.h"
+#include "celeowaf/rules_set.h"
+#include "celeowaf/collection/collections.h"
 #include "src/utils/string.h"
 
 
-namespace modsecurity {
+namespace celeowaf {
 namespace RequestBodyProcessor {
 
 static const char* mime_charset_special = "!#$%&+-^_`{}~";
@@ -1774,4 +1774,4 @@ bool Multipart::process(const std::string& data, std::string *error,
 
 
 }  // namespace RequestBodyProcessor
-}  // namespace modsecurity
+}  // namespace celeowaf

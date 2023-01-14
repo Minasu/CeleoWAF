@@ -1,5 +1,5 @@
 /*
- * ModSecurity, http://www.modsecurity.org/
+ * CeleoWAF, http://www.celeowaf.org/
  * Copyright (c) 2015 - 2021 Trustwave Holdings, Inc. (http://www.trustwave.com/)
  *
  * You may not use this file except in compliance with
@@ -9,11 +9,11 @@
  *
  * If any of the files related to licensing are missing or if you have any
  * other questions related to licensing please contact Trustwave Holdings, Inc.
- * directly using the email address security@modsecurity.org.
+ * directly using the email address security@celeowaf.org.
  *
  */
 
-#include "modsecurity/rule.h"
+#include "celeowaf/rule.h"
 
 #include <stdio.h>
 
@@ -25,14 +25,14 @@
 #include <utility>
 #include <memory>
 
-#include "modsecurity/rules_set.h"
+#include "celeowaf/rules_set.h"
 #include "src/operators/operator.h"
-#include "modsecurity/actions/action.h"
-#include "modsecurity/modsecurity.h"
+#include "celeowaf/actions/action.h"
+#include "celeowaf/celeowaf.h"
 #include "src/actions/transformations/none.h"
 #include "src/actions/tag.h"
 #include "src/utils/string.h"
-#include "modsecurity/rule_message.h"
+#include "celeowaf/rule_message.h"
 #include "src/actions/msg.h"
 #include "src/actions/log_data.h"
 #include "src/actions/severity.h"

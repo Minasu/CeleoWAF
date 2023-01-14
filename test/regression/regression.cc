@@ -1,5 +1,5 @@
 /*
- * ModSecurity, http://www.modsecurity.org/
+ * CeleoWAF, http://www.celeowaf.org/
  * Copyright (c) 2015 - 2021 Trustwave Holdings, Inc. (http://www.trustwave.com/)
  *
  * You may not use this file except in compliance with
@@ -9,7 +9,7 @@
  *
  * If any of the files related to licensing are missing or if you have any
  * other questions related to licensing please contact Trustwave Holdings, Inc.
- * directly using the email address security@modsecurity.org.
+ * directly using the email address security@celeowaf.org.
  *
  */
 
@@ -23,24 +23,24 @@
 #include <list>
 #include <algorithm>
 
-#include "modsecurity/rules_set.h"
-#include "modsecurity/modsecurity.h"
-#include "test/common/modsecurity_test.h"
+#include "celeowaf/rules_set.h"
+#include "celeowaf/celeowaf.h"
+#include "test/common/celeowaf_test.h"
 #include "test/common/colors.h"
 #include "test/regression/regression_test.h"
-#include "test/common/modsecurity_test_results.h"
+#include "test/common/celeowaf_test_results.h"
 #include "test/regression/custom_debug_log.h"
 #include "src/utils/regex.h"
 
-using modsecurity_test::CustomDebugLog;
-using modsecurity_test::ModSecurityTest;
-using modsecurity_test::ModSecurityTestResults;
-using modsecurity_test::RegressionTest;
-using modsecurity_test::RegressionTestResult;
+using celeowaf_test::CustomDebugLog;
+using celeowaf_test::CeleoWAFTest;
+using celeowaf_test::CeleoWAFTestResults;
+using celeowaf_test::RegressionTest;
+using celeowaf_test::RegressionTestResult;
 
-using modsecurity::Utils::regex_search;
-using modsecurity::Utils::SMatch;
-using modsecurity::Utils::Regex;
+using celeowaf::Utils::regex_search;
+using celeowaf::Utils::SMatch;
+using celeowaf::Utils::Regex;
 
 std::string default_test_path = "test-cases/regression";
 std::list<std::string> resources;
@@ -53,8 +53,8 @@ void print_help() {
 
 bool contains(const std::string &s, const std::string &pattern) {
     bool ret;
-    modsecurity::Utils::Regex re(pattern);
-    ret = modsecurity::Utils::regex_search(s, re);
+    celeowaf::Utils::Regex re(pattern);
+    ret = celeowaf::Utils::regex_search(s, re);
     return ret;
 }
 
@@ -83,10 +83,10 @@ std::string getAuditLogContent(const std::string &filename) {
 }
 
 
-void actions(ModSecurityTestResults<RegressionTest> *r,
-    modsecurity::Transaction *a, std::stringstream *serverLog) {
-    modsecurity::ModSecurityIntervention it;
-    memset(&it, '\0', sizeof(modsecurity::ModSecurityIntervention));
+void actions(CeleoWAFTestResults<RegressionTest> *r,
+    celeowaf::Transaction *a, std::stringstream *serverLog) {
+    celeowaf::CeleoWAFIntervention it;
+    memset(&it, '\0', sizeof(celeowaf::CeleoWAFIntervention));
     it.status = 200;
     if (a->intervention(&it) == true) {
         if (it.pause != 0) {
@@ -115,16 +115,16 @@ void logCb(void *data, const void *msgv) {
 }
 
 
-void perform_unit_test(ModSecurityTest<RegressionTest> *test,
+void perform_unit_test(CeleoWAFTest<RegressionTest> *test,
     std::vector<RegressionTest *> *tests,
-    ModSecurityTestResults<RegressionTestResult> *res, int *count) {
+    CeleoWAFTestResults<RegressionTestResult> *res, int *count) {
 
     for (RegressionTest *t : *tests) {
         CustomDebugLog *debug_log = new CustomDebugLog();
-        modsecurity::ModSecurity *modsec = NULL;
-        modsecurity::RulesSet *modsec_rules = NULL;
-        modsecurity::Transaction *modsec_transaction = NULL;
-        ModSecurityTestResults<RegressionTest> r;
+        celeowaf::CeleoWAF *modsec = NULL;
+        celeowaf::RulesSet *modsec_rules = NULL;
+        celeowaf::Transaction *modsec_transaction = NULL;
+        CeleoWAFTestResults<RegressionTest> r;
         std::stringstream serverLog;
         RegressionTestResult *testRes = new RegressionTestResult();
 
@@ -167,11 +167,11 @@ void perform_unit_test(ModSecurityTest<RegressionTest> *test,
         unlink("./modsec-shared-collections-lock");
 #endif
 
-        modsec = new modsecurity::ModSecurity();
-        modsec->setConnectorInformation("ModSecurity-regression v0.0.1-alpha" \
-            " (ModSecurity regression test utility)");
+        modsec = new celeowaf::CeleoWAF();
+        modsec->setConnectorInformation("CeleoWAF-regression v0.0.1-alpha" \
+            " (CeleoWAF regression test utility)");
         modsec->setServerLogCb(logCb);
-        modsec_rules = new modsecurity::RulesSet(debug_log);
+        modsec_rules = new celeowaf::RulesSet(debug_log);
 
         bool found = true;
         if (t->resource.empty() == false) {
@@ -182,7 +182,7 @@ void perform_unit_test(ModSecurityTest<RegressionTest> *test,
         if (!found) {
             testRes->passed = false;
             testRes->skipped = true;
-            testRes->reason << KCYN << "ModSecurity was not " << std::endl;
+            testRes->reason << KCYN << "CeleoWAF was not " << std::endl;
             testRes->reason << KCYN << "compiled with support " << std::endl;
             testRes->reason << KCYN << "to: " << t->resource << std::endl;
             testRes->reason << RESET << std::endl;
@@ -299,7 +299,7 @@ void perform_unit_test(ModSecurityTest<RegressionTest> *test,
             }
         }
 
-        modsec_transaction = new modsecurity::Transaction(modsec, modsec_rules,
+        modsec_transaction = new celeowaf::Transaction(modsec, modsec_rules,
             &serverLog);
 
         clearAuditLog(modsec_transaction->m_rules->m_auditLog->m_path1);
@@ -471,10 +471,10 @@ after_debug_log:
 
 
 int main(int argc, char **argv) {
-    ModSecurityTest<RegressionTest> test;
+    CeleoWAFTest<RegressionTest> test;
 
-    std::string ver(MODSECURITY_VERSION);
-    std::string envvar("MODSECURITY=ModSecurity " + ver + " regression tests");
+    std::string ver(CELEOWAF_VERSION);
+    std::string envvar("CELEOWAF=CeleoWAF " + ver + " regression tests");
 
     putenv(strdup(envvar.c_str()));
 #ifndef NO_LOGS
@@ -539,7 +539,7 @@ int main(int argc, char **argv) {
         exit(0);
     }
 
-    ModSecurityTestResults<RegressionTestResult> res;
+    CeleoWAFTestResults<RegressionTestResult> res;
     for (std::string &a : keyList) {
         test_number++;
         if ((test.m_test_number == 0)

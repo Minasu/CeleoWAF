@@ -1,5 +1,5 @@
 /*
- * ModSecurity, http://www.modsecurity.org/
+ * CeleoWAF, http://www.celeowaf.org/
  * Copyright (c) 2015 - 2021 Trustwave Holdings, Inc. (http://www.trustwave.com/)
  *
  * You may not use this file except in compliance with
@@ -9,7 +9,7 @@
  *
  * If any of the files related to licensing are missing or if you have any
  * other questions related to licensing please contact Trustwave Holdings, Inc.
- * directly using the email address security@modsecurity.org.
+ * directly using the email address security@celeowaf.org.
  *
  */
 
@@ -19,13 +19,13 @@
 #include <string>
 #include <vector>
 
-#include "modsecurity/anchored_set_variable.h"
-#include "modsecurity/modsecurity.h"
-#include "modsecurity/transaction.h"
+#include "celeowaf/anchored_set_variable.h"
+#include "celeowaf/celeowaf.h"
+#include "celeowaf/transaction.h"
 #include "src/utils/regex.h"
 #include "src/variables/variable.h"
 
-namespace modsecurity {
+namespace celeowaf {
 
 
 AnchoredSetVariable::AnchoredSetVariable(Transaction *t,
@@ -153,4 +153,4 @@ void AnchoredSetVariable::resolveRegularExpression(Utils::Regex *r,
 }
 
 
-}  // namespace modsecurity
+}  // namespace celeowaf

@@ -1,5 +1,5 @@
 /*
- * ModSecurity, http://www.modsecurity.org/
+ * CeleoWAF, http://www.celeowaf.org/
  * Copyright (c) 2015 - 2021 Trustwave Holdings, Inc. (http://www.trustwave.com/)
  *
  * You may not use this file except in compliance with
@@ -9,7 +9,7 @@
  *
  * If any of the files related to licensing are missing or if you have any
  * other questions related to licensing please contact Trustwave Holdings, Inc.
- * directly using the email address security@modsecurity.org.
+ * directly using the email address security@celeowaf.org.
  *
  */
 
@@ -18,11 +18,11 @@
 #include <iostream>
 #include <string>
 
-#include "modsecurity/transaction.h"
-#include "modsecurity/rule.h"
+#include "celeowaf/transaction.h"
+#include "celeowaf/rule.h"
 
 
-namespace modsecurity {
+namespace celeowaf {
 namespace actions {
 
 
@@ -43,4 +43,4 @@ bool SetRSC::evaluate(RuleWithActions *rule, Transaction *t) {
 }
 
 }  // namespace actions
-}  // namespace modsecurity
+}  // namespace celeowaf

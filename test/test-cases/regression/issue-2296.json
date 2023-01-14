@@ -3,7 +3,7 @@
     "enabled":1,
     "version_min":300000,
     "title":"Variable key selection using a regular expression (1/n)",
-    "url": "https:\/\/github.com\/SpiderLabs\/ModSecurity\/issues\/2296",
+    "url": "https:\/\/github.com\/SpiderLabs\/CeleoWAF\/issues\/2296",
     "gihub_issue": 2296,
     "client":{
       "ip":"200.249.12.31",
@@ -46,7 +46,7 @@
     "enabled":1,
     "version_min":300000,
     "title":"Variable key selection using a regular expression (2/n)",
-    "url": "https:\/\/github.com\/SpiderLabs\/ModSecurity\/issues\/2296",
+    "url": "https:\/\/github.com\/SpiderLabs\/CeleoWAF\/issues\/2296",
     "gihub_issue": 2296,
     "client":{
       "ip":"200.249.12.31",
@@ -89,7 +89,7 @@
     "enabled":1,
     "version_min":300000,
     "title":"Variable key selection using a regular expression - msg (3/n)",
-    "url": "https:\/\/github.com\/SpiderLabs\/ModSecurity\/issues\/2296",
+    "url": "https:\/\/github.com\/SpiderLabs\/CeleoWAF\/issues\/2296",
     "gihub_issue": 2296,
     "client":{
       "ip":"200.249.12.31",
@@ -132,7 +132,7 @@
     "enabled":1,
     "version_min":300000,
     "title":"Variable key selection using a regular expression - matched_vars (4/n)",
-    "url": "https:\/\/github.com\/SpiderLabs\/ModSecurity\/issues\/2296",
+    "url": "https:\/\/github.com\/SpiderLabs\/CeleoWAF\/issues\/2296",
     "gihub_issue": 2296,
     "client":{
       "ip":"200.249.12.31",
@@ -176,7 +176,7 @@
     "enabled":1,
     "version_min":300000,
     "title":"Variable key selection using a regular expression - rule (5/n)",
-    "url": "https:\/\/github.com\/SpiderLabs\/ModSecurity\/issues\/2296",
+    "url": "https:\/\/github.com\/SpiderLabs\/CeleoWAF\/issues\/2296",
     "gihub_issue": 2296,
     "client":{
       "ip":"200.249.12.31",
@@ -219,7 +219,7 @@
     "enabled":1,
     "version_min":300000,
     "title":"Variable key selection using a regular expression - TX (6/n)",
-    "url": "https:\/\/github.com\/SpiderLabs\/ModSecurity\/issues\/2296",
+    "url": "https:\/\/github.com\/SpiderLabs\/CeleoWAF\/issues\/2296",
     "gihub_issue": 2296,
     "client":{
       "ip":"200.249.12.31",
@@ -263,7 +263,7 @@
     "enabled":1,
     "version_min":300000,
     "title":"Variable key selection using a regular expression - TX (7/n)",
-    "url": "https:\/\/github.com\/SpiderLabs\/ModSecurity\/issues\/2296",
+    "url": "https:\/\/github.com\/SpiderLabs\/CeleoWAF\/issues\/2296",
     "gihub_issue": 2296,
     "client":{
       "ip":"200.249.12.31",
@@ -307,7 +307,7 @@
     "enabled":1,
     "version_min":300000,
     "title":"Variable key selection using a regular expression - exclusion (8/n)",
-    "url": "https:\/\/github.com\/SpiderLabs\/ModSecurity\/issues\/2296",
+    "url": "https:\/\/github.com\/SpiderLabs\/CeleoWAF\/issues\/2296",
     "gihub_issue": 2296,
     "client":{
       "ip":"200.249.12.31",
@@ -350,7 +350,7 @@
     "enabled":1,
     "version_min":300000,
     "title":"Variable key selection using a regular expression - exclusion/ARGS (9/n)",
-    "url": "https:\/\/github.com\/SpiderLabs\/ModSecurity\/issues\/2296",
+    "url": "https:\/\/github.com\/SpiderLabs\/CeleoWAF\/issues\/2296",
     "gihub_issue": 2296,
     "client":{
       "ip":"200.249.12.31",
@@ -392,7 +392,7 @@
     "enabled":1,
     "version_min":300000,
     "title":"Variable key selection using a regular expression - exclusion/TX (10/n)",
-    "url": "https:\/\/github.com\/SpiderLabs\/ModSecurity\/issues\/2296",
+    "url": "https:\/\/github.com\/SpiderLabs\/CeleoWAF\/issues\/2296",
     "gihub_issue": 2296,
     "client":{
       "ip":"200.249.12.31",

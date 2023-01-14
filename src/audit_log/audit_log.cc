@@ -1,5 +1,5 @@
 /*
- * ModSecurity, http://www.modsecurity.org/
+ * CeleoWAF, http://www.celeowaf.org/
  * Copyright (c) 2015 - 2021 Trustwave Holdings, Inc. (http://www.trustwave.com/)
  *
  * You may not use this file except in compliance with
@@ -9,11 +9,11 @@
  *
  * If any of the files related to licensing are missing or if you have any
  * other questions related to licensing please contact Trustwave Holdings, Inc.
- * directly using the email address security@modsecurity.org.
+ * directly using the email address security@celeowaf.org.
  *
  */
 
-#include "modsecurity/audit_log.h"
+#include "celeowaf/audit_log.h"
 
 #include <stddef.h>
 #include <stdio.h>
@@ -21,8 +21,8 @@
 
 #include <fstream>
 
-#include "modsecurity/transaction.h"
-#include "modsecurity/rule_message.h"
+#include "celeowaf/transaction.h"
+#include "celeowaf/rule_message.h"
 #include "src/audit_log/writer/https.h"
 #include "src/audit_log/writer/parallel.h"
 #include "src/audit_log/writer/serial.h"
@@ -47,7 +47,7 @@
     }
 
 
-namespace modsecurity {
+namespace celeowaf {
 namespace audit_log {
 
 
@@ -371,4 +371,4 @@ bool AuditLog::merge(AuditLog *from, std::string *error) {
 
 
 }  // namespace audit_log
-}  // namespace modsecurity
+}  // namespace celeowaf

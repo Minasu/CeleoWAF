@@ -4,7 +4,7 @@
   "version_min": 209000,
   "version_max": -1,
   "title": "ctl:ruleRemoveById doesn't handle all ranges equally 1",
-  "url": "https:\/\/github.com\/SpiderLabs\/ModSecurity\/issues\/1956",
+  "url": "https:\/\/github.com\/SpiderLabs\/CeleoWAF\/issues\/1956",
   "gihub_issue": 1956,
   "client": {
     "ip": "200.249.12.31",
@@ -42,7 +42,7 @@
   "version_min": 209000,
   "version_max": -1,
   "title": "ctl:ruleRemoveById doesn't handle all ranges equally 2",
-  "url": "https:\/\/github.com\/SpiderLabs\/ModSecurity\/issues\/1956",
+  "url": "https:\/\/github.com\/SpiderLabs\/CeleoWAF\/issues\/1956",
   "gihub_issue": 1956,
   "client": {
     "ip": "200.249.12.31",
@@ -80,7 +80,7 @@
   "version_min": 209000,
   "version_max": -1,
   "title": "ctl:ruleRemoveById doesn't handle all ranges equally 3",
-  "url": "https:\/\/github.com\/SpiderLabs\/ModSecurity\/issues\/1956",
+  "url": "https:\/\/github.com\/SpiderLabs\/CeleoWAF\/issues\/1956",
   "gihub_issue": 1956,
   "client": {
     "ip": "200.249.12.31",
@@ -118,7 +118,7 @@
   "version_min": 209000,
   "version_max": -1,
   "title": "ctl:ruleRemoveById doesn't handle all ranges equally 4",
-  "url": "https:\/\/github.com\/SpiderLabs\/ModSecurity\/issues\/1956",
+  "url": "https:\/\/github.com\/SpiderLabs\/CeleoWAF\/issues\/1956",
   "gihub_issue": 1956,
   "client": {
     "ip": "200.249.12.31",
@@ -156,7 +156,7 @@
   "version_min": 209000,
   "version_max": -1,
   "title": "ctl:ruleRemoveById doesn't handle all ranges equally 5",
-  "url": "https:\/\/github.com\/SpiderLabs\/ModSecurity\/issues\/1956",
+  "url": "https:\/\/github.com\/SpiderLabs\/CeleoWAF\/issues\/1956",
   "gihub_issue": 1956,
   "client": {
     "ip": "200.249.12.31",

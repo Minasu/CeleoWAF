@@ -4,7 +4,7 @@
     "version_min": 209000,
     "version_max": -1,
     "title": "Invalid actions break CRS 3.1 on rule 912160 - 1",
-    "url": "https:\/\/github.com\/SpiderLabs\/ModSecurity\/issues\/1830",
+    "url": "https:\/\/github.com\/SpiderLabs\/CeleoWAF\/issues\/1830",
     "client": {
       "ip": "200.249.12.31",
       "port": 2313
@@ -51,7 +51,7 @@
     "version_min": 209000,
     "version_max": -1,
     "title": "Invalid actions break CRS 3.1 on rule 912160 - 2",
-    "url": "https:\/\/github.com\/SpiderLabs\/ModSecurity\/issues\/1830",
+    "url": "https:\/\/github.com\/SpiderLabs\/CeleoWAF\/issues\/1830",
     "client": {
       "ip": "200.249.12.31",
       "port": 2313
@@ -101,7 +101,7 @@
     "version_min": 209000,
     "version_max": -1,
     "title": "Invalid actions break CRS 3.1 on rule 912160 - 3",
-    "url": "https:\/\/github.com\/SpiderLabs\/ModSecurity\/issues\/1830",
+    "url": "https:\/\/github.com\/SpiderLabs\/CeleoWAF\/issues\/1830",
     "client": {
       "ip": "200.249.12.31",
       "port": 2313
@@ -150,7 +150,7 @@
     "version_min": 209000,
     "version_max": -1,
     "title": "Invalid actions break CRS 3.1 on rule 912160 - 4",
-    "url": "https:\/\/github.com\/SpiderLabs\/ModSecurity\/issues\/1830",
+    "url": "https:\/\/github.com\/SpiderLabs\/CeleoWAF\/issues\/1830",
     "client": {
       "ip": "200.249.12.31",
       "port": 2313
