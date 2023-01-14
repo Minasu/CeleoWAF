@@ -2,7 +2,7 @@
   {
     "enabled":1,
     "version_min":300000,
-    "title":"Testing Variables :: MODSEC_BUILD (1/1)",
+    "title":"Testing Variables :: CWAF_BUILD (1/1)",
     "client":{
       "ip":"200.249.12.31",
       "port":123
@@ -36,11 +36,11 @@
       ]
     },
     "expected":{
-      "debug_log":"Target value: \"03([0-9]+)\" \\(Variable: MODSEC_BUILD\\)"
+      "debug_log":"Target value: \"03([0-9]+)\" \\(Variable: CWAF_BUILD\\)"
     },
     "rules":[
       "SecRuleEngine On",
-      "SecRule MODSEC_BUILD \"@contains test\" \"id:1,phase:3,pass,t:trim\""
+      "SecRule CWAF_BUILD \"@contains test\" \"id:1,phase:3,pass,t:trim\""
     ]
   }
 ]

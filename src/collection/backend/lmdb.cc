@@ -510,7 +510,7 @@ MDBEnvProvider::MDBEnvProvider() : m_env(NULL), valid(false) {
     int rc;
     MDB_txn *txn;
     mdb_env_create(&m_env);
-    rc = mdb_env_open(m_env, "./modsec-shared-collections",
+    rc = mdb_env_open(m_env, "./cwaf-shared-collections",
         MDB_WRITEMAP | MDB_NOSUBDIR, 0664);
 
     if (rc == 0) {

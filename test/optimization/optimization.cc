@@ -39,7 +39,7 @@ void print_help() {
 
 
 int main(int argc, char **argv) {
-    celeowaf::RulesSet *modsecRules = new celeowaf::RulesSet();
+    celeowaf::RulesSet *cwafRules = new celeowaf::RulesSet();
     std::list<std::string> files;
     int total = 0;
 
@@ -56,10 +56,10 @@ int main(int argc, char **argv) {
 
     for (auto &x : files) {
         std::cout << "Loading file: " << x << std::endl;
-        if (modsecRules->loadFromUri(x.c_str()) < 0) {
+        if (cwafRules->loadFromUri(x.c_str()) < 0) {
             std::cout << "Not able to load the rules" << std::endl;
-            std::cout << modsecRules->getParserError() << std::endl;
-            delete modsecRules;
+            std::cout << cwafRules->getParserError() << std::endl;
+            delete cwafRules;
             return -1;
         }
     }
@@ -71,7 +71,7 @@ int main(int argc, char **argv) {
 
     int nphases = celeowaf::Phases::NUMBER_OF_PHASES;
     for (int j = 0; j < nphases; j++) {
-        Rules *rules = modsecRules->m_rulesSetPhases[j];
+        Rules *rules = cwafRules->m_rulesSetPhases[j];
         if (rules->size() == 0) {
             continue;
         }
@@ -130,7 +130,7 @@ int main(int argc, char **argv) {
     std::cout << std::endl;
     std::cout << std::endl;
 
-    delete modsecRules;
+    delete cwafRules;
 
     return 0;
 }

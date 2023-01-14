@@ -53,7 +53,7 @@ class Pm : public Operator {
  protected:
     ACMP *m_p;
 
-#ifdef MODSEC_MUTEX_ON_PM
+#ifdef CWAF_MUTEX_ON_PM
 
  private:
     pthread_mutex_t m_lock;

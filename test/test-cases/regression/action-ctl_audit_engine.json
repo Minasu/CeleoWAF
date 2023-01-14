@@ -40,7 +40,7 @@
       "SecDefaultAction \"phase:2,nolog,pass\"",
       "SecAuditEngine Off",
       "SecAuditLogParts ABCFHZ",
-      "SecAuditLog /tmp/modsec_test_ctl_auditengine_auditlog_1.log",
+      "SecAuditLog /tmp/cwaf_test_ctl_auditengine_auditlog_1.log",
       "SecAuditLogDirMode 0766",
       "SecAuditLogFileMode 0666",
       "SecAuditLogType Serial",

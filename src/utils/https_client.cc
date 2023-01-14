@@ -47,7 +47,7 @@ size_t HttpsClient::handle_impl(char* data, size_t size, size_t nmemb) {
 }
 
 void HttpsClient::setKey(const std::string& key) {
-    m_key = "ModSec-key: " + key;
+    m_key = "CWaf-key: " + key;
 }
 
 void HttpsClient::setRequestBody(const std::string& requestBody) {
@@ -63,8 +63,8 @@ void HttpsClient::setRequestType(const std::string& requestType) {
 bool HttpsClient::download(const std::string &uri) {
     CURL *curl;
     CURLcode res;
-    std::string uniqueId = "ModSec-unique-id: " + UniqueId::uniqueId();
-    std::string status = "ModSec-status: " + std::to_string(CELEOWAF_VERSION_NUM);
+    std::string uniqueId = "CWaf-unique-id: " + UniqueId::uniqueId();
+    std::string status = "CWaf-status: " + std::to_string(CELEOWAF_VERSION_NUM);
 
     curl = curl_easy_init();
     if (!curl) {

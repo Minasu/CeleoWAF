@@ -78,23 +78,23 @@ namespace celeowaf {
  * using CeleoWAF::Rules;
  * using CeleoWAF::Transaction;
  *
- * CeleoWAF *modsec;
+ * CeleoWAF *cwaf;
  * CeleoWAF::Rules *rules;
  *
- * modsec = new CeleoWAF();
+ * cwaf = new CeleoWAF();
  * rules = new Rules();
  * rules->loadFromUri(rules_file);
  *
- * Transaction *modsecTransaction = new Transaction(modsec, rules);
- * modsecTransaction->processConnection("127.0.0.1", 33333, "127.0.0.1", 8080);
+ * Transaction *cwafTransaction = new Transaction(cwaf, rules);
+ * cwafTransaction->processConnection("127.0.0.1", 33333, "127.0.0.1", 8080);
  *
- * if (modsecTransaction->intervention()) {
+ * if (cwafTransaction->intervention()) {
  *     std::cout << "There is an intervention" << std::endl;
  * }
  *
  * ...
  *
- * delete modsecTransaction;
+ * delete cwafTransaction;
  *
  * @endcode
  *
@@ -653,7 +653,7 @@ int Transaction::addRequestHeader(const std::string& key,
                 cval = c.substr(pos+1);
             }
 
-            // ltrim the key - following the modsec v2 way
+            // ltrim the key - following the cwaf v2 way
             while (ckey.empty() == false && isspace(ckey.at(0))) {
                 ckey.erase(0, 1);
                 localOffset++;

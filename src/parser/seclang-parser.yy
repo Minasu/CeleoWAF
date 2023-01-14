@@ -183,7 +183,7 @@ class Driver;
 #include "src/variables/matched_var_name.h"
 #include "src/variables/matched_vars.h"
 #include "src/variables/matched_vars_names.h"
-#include "src/variables/modsec_build.h"
+#include "src/variables/cwaf_build.h"
 #include "src/variables/multipart_boundary_quoted.h"
 #include "src/variables/multipart_boundary_whitespace.h"
 #include "src/variables/multipart_crlf_lf_lines.h"
@@ -2527,7 +2527,7 @@ var:
       {
         std::string name($1);
         char z = name.at(0);
-        std::unique_ptr<Variable> c(new ModsecBuild(name));
+        std::unique_ptr<Variable> c(new CWafBuild(name));
         $$ = std::move(c);
       }
     | RUN_TIME_VAR_HSV

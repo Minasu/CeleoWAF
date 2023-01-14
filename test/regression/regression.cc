@@ -121,9 +121,9 @@ void perform_unit_test(CeleoWAFTest<RegressionTest> *test,
 
     for (RegressionTest *t : *tests) {
         CustomDebugLog *debug_log = new CustomDebugLog();
-        celeowaf::CeleoWAF *modsec = NULL;
-        celeowaf::RulesSet *modsec_rules = NULL;
-        celeowaf::Transaction *modsec_transaction = NULL;
+        celeowaf::CeleoWAF *cwaf = NULL;
+        celeowaf::RulesSet *cwaf_rules = NULL;
+        celeowaf::Transaction *cwaf_transaction = NULL;
         CeleoWAFTestResults<RegressionTest> r;
         std::stringstream serverLog;
         RegressionTestResult *testRes = new RegressionTestResult();
@@ -163,15 +163,15 @@ void perform_unit_test(CeleoWAFTest<RegressionTest> *test,
 
 #ifdef WITH_LMDB
         // some tests (e.g. issue-1831.json)  don't like it when data persists between runs
-        unlink("./modsec-shared-collections");
-        unlink("./modsec-shared-collections-lock");
+        unlink("./cwaf-shared-collections");
+        unlink("./cwaf-shared-collections-lock");
 #endif
 
-        modsec = new celeowaf::CeleoWAF();
-        modsec->setConnectorInformation("CeleoWAF-regression v0.0.1-alpha" \
+        cwaf = new celeowaf::CeleoWAF();
+        cwaf->setConnectorInformation("CeleoWAF-regression v0.0.1-alpha" \
             " (CeleoWAF regression test utility)");
-        modsec->setServerLogCb(logCb);
-        modsec_rules = new celeowaf::RulesSet(debug_log);
+        cwaf->setServerLogCb(logCb);
+        cwaf_rules = new celeowaf::RulesSet(debug_log);
 
         bool found = true;
         if (t->resource.empty() == false) {
@@ -194,15 +194,15 @@ void perform_unit_test(CeleoWAFTest<RegressionTest> *test,
             }
             res->push_back(testRes);
 
-            delete modsec_transaction;
-            delete modsec_rules;
-            delete modsec;
+            delete cwaf_transaction;
+            delete cwaf_rules;
+            delete cwaf;
 
             continue;
         }
 
-        modsec_rules->load("SecDebugLogLevel 9");
-        if (modsec_rules->load(t->rules.c_str(), filename) < 0) {
+        cwaf_rules->load("SecDebugLogLevel 9");
+        if (cwaf_rules->load(t->rules.c_str(), filename) < 0) {
             /* Parser error */
             if (t->parser_error.empty() == true) {
                 /*
@@ -217,21 +217,21 @@ void perform_unit_test(CeleoWAFTest<RegressionTest> *test,
                 }
                 testRes->reason << KRED << "parse failed." << RESET \
                     << std::endl;
-                testRes->reason << modsec_rules->getParserError() \
+                testRes->reason << cwaf_rules->getParserError() \
                     << std::endl;
                 testRes->passed = false;
                 res->push_back(testRes);
 
-                delete modsec_transaction;
-                delete modsec_rules;
-                delete modsec;
+                delete cwaf_transaction;
+                delete cwaf_rules;
+                delete cwaf;
 
                 continue;
             }
 
             Regex re(t->parser_error);
             SMatch match;
-            std::string s = modsec_rules->getParserError();
+            std::string s = cwaf_rules->getParserError();
 
             if (regex_search(s, &match, re)) {
                 if (test->m_automake_output) {
@@ -245,9 +245,9 @@ void perform_unit_test(CeleoWAFTest<RegressionTest> *test,
                 testRes->passed = true;
                 res->push_back(testRes);
 
-                delete modsec_transaction;
-                delete modsec_rules;
-                delete modsec;
+                delete cwaf_transaction;
+                delete cwaf_rules;
+                delete cwaf;
 
                 continue;
             } else {
@@ -269,9 +269,9 @@ void perform_unit_test(CeleoWAFTest<RegressionTest> *test,
                 testRes->passed = false;
                 res->push_back(testRes);
 
-                delete modsec_transaction;
-                delete modsec_rules;
-                delete modsec;
+                delete cwaf_transaction;
+                delete cwaf_rules;
+                delete cwaf;
 
                 continue;
             }
@@ -291,33 +291,33 @@ void perform_unit_test(CeleoWAFTest<RegressionTest> *test,
                 testRes->passed = false;
                 res->push_back(testRes);
 
-                delete modsec_transaction;
-                delete modsec_rules;
-                delete modsec;
+                delete cwaf_transaction;
+                delete cwaf_rules;
+                delete cwaf;
 
                 continue;
             }
         }
 
-        modsec_transaction = new celeowaf::Transaction(modsec, modsec_rules,
+        cwaf_transaction = new celeowaf::Transaction(cwaf, cwaf_rules,
             &serverLog);
 
-        clearAuditLog(modsec_transaction->m_rules->m_auditLog->m_path1);
+        clearAuditLog(cwaf_transaction->m_rules->m_auditLog->m_path1);
 
-        modsec_transaction->processConnection(t->clientIp.c_str(),
+        cwaf_transaction->processConnection(t->clientIp.c_str(),
             t->clientPort, t->serverIp.c_str(), t->serverPort);
 
-        actions(&r, modsec_transaction, &serverLog);
+        actions(&r, cwaf_transaction, &serverLog);
 #if 0
         if (r.status != 200) {
              goto end;
         }
 #endif
 
-        modsec_transaction->processURI(t->uri.c_str(), t->method.c_str(),
+        cwaf_transaction->processURI(t->uri.c_str(), t->method.c_str(),
             t->httpVersion.c_str());
 
-        actions(&r, modsec_transaction, &serverLog);
+        actions(&r, cwaf_transaction, &serverLog);
 #if 0
         if (r.status != 200) {
             goto end;
@@ -326,23 +326,23 @@ void perform_unit_test(CeleoWAFTest<RegressionTest> *test,
 
         for (std::pair<std::string, std::string> headers :
             t->request_headers) {
-            modsec_transaction->addRequestHeader(headers.first.c_str(),
+            cwaf_transaction->addRequestHeader(headers.first.c_str(),
                 headers.second.c_str());
         }
 
-        modsec_transaction->processRequestHeaders();
-        actions(&r, modsec_transaction, &serverLog);
+        cwaf_transaction->processRequestHeaders();
+        actions(&r, cwaf_transaction, &serverLog);
 #if 0
         if (r.status != 200) {
             goto end;
         }
 #endif
 
-        modsec_transaction->appendRequestBody(
+        cwaf_transaction->appendRequestBody(
             (unsigned char *)t->request_body.c_str(),
             t->request_body.size());
-        modsec_transaction->processRequestBody();
-        actions(&r, modsec_transaction, &serverLog);
+        cwaf_transaction->processRequestBody();
+        actions(&r, cwaf_transaction, &serverLog);
 #if 0
         if (r.status != 200) {
             goto end;
@@ -351,24 +351,24 @@ void perform_unit_test(CeleoWAFTest<RegressionTest> *test,
 
         for (std::pair<std::string, std::string> headers :
             t->response_headers) {
-            modsec_transaction->addResponseHeader(headers.first.c_str(),
+            cwaf_transaction->addResponseHeader(headers.first.c_str(),
                 headers.second.c_str());
         }
 
-        modsec_transaction->processResponseHeaders(r.status,
+        cwaf_transaction->processResponseHeaders(r.status,
             t->response_protocol);
-        actions(&r, modsec_transaction, &serverLog);
+        actions(&r, cwaf_transaction, &serverLog);
 #if 0
         if (r.status != 200) {
             goto end;
         }
 #endif
 
-        modsec_transaction->appendResponseBody(
+        cwaf_transaction->appendResponseBody(
             (unsigned char *)t->response_body.c_str(),
             t->response_body.size());
-        modsec_transaction->processResponseBody();
-        actions(&r, modsec_transaction, &serverLog);
+        cwaf_transaction->processResponseBody();
+        actions(&r, cwaf_transaction, &serverLog);
 #if 0
         if (r.status != 200) {
             goto end;
@@ -378,10 +378,10 @@ void perform_unit_test(CeleoWAFTest<RegressionTest> *test,
 #if 0
 end:
 #endif
-        modsec_transaction->processLogging();
+        cwaf_transaction->processLogging();
 
         CustomDebugLog *d = reinterpret_cast<CustomDebugLog *>
-            (modsec_rules->m_debugLog);
+            (cwaf_rules->m_debugLog);
 
         if (d != NULL) {
             if (!d->contains(t->debug_log)) {
@@ -420,7 +420,7 @@ end:
                     << t->error_log + "";
                 testRes->passed = false;
             } else if (!t->audit_log.empty()
-                && !contains(getAuditLogContent(modsec_transaction->m_rules->m_auditLog->m_path1), t->audit_log)) {
+                && !contains(getAuditLogContent(cwaf_transaction->m_rules->m_auditLog->m_path1), t->audit_log)) {
                 if (test->m_automake_output) {
                     std::cout << ":test-result: FAIL " << filename \
                         << ":" << t->name << ":" << *count << std::endl;
@@ -450,7 +450,7 @@ end:
                 testRes->reason << KWHT << "Error log:" << RESET << std::endl;
                 testRes->reason << serverLog.str() << std::endl;
                 testRes->reason << KWHT << "Audit log:" << RESET << std::endl;
-                testRes->reason << getAuditLogContent(modsec_transaction->m_rules->m_auditLog->m_path1) << std::endl;
+                testRes->reason << getAuditLogContent(cwaf_transaction->m_rules->m_auditLog->m_path1) << std::endl;
             }
         }
 
@@ -460,9 +460,9 @@ after_debug_log:
             r.log_raw_debug_log = d->log_messages();
         }
 
-        delete modsec_transaction;
-        delete modsec_rules;
-        delete modsec;
+        delete cwaf_transaction;
+        delete cwaf_rules;
+        delete cwaf;
         /* delete debug_log; */
 
         res->push_back(testRes);

@@ -24,17 +24,17 @@
  * using CeleoWAF::Rules;
  * using CeleoWAF::Transaction;
  *
- * CeleoWAF *modsec;
+ * CeleoWAF *cwaf;
  * CeleoWAF::Rules *rules;
  *
- * modsec = new CeleoWAF();
+ * cwaf = new CeleoWAF();
  * rules = new Rules();
  * rules->loadFromUri(rules_file);
  *
- * Transaction *modsecTransaction = new Transaction(modsec, rules);
- * modsecTransaction->processConnection("127.0.0.1");
+ * Transaction *cwafTransaction = new Transaction(cwaf, rules);
+ * cwafTransaction->processConnection("127.0.0.1");
  *
- * if (modsecTransaction->intervention()) {
+ * if (cwafTransaction->intervention()) {
  *     std::cout << "There is an intervention" << std::endl;
  * }
  *
@@ -203,7 +203,7 @@ namespace celeowaf {
 #define CELEOWAF_CHECK_VERSION(a) (CELEOWAF_VERSION_NUM <= a)
 
 /*
- * @name    ModSecLogCb
+ * @name    CWafLogCb
  * @brief   Callback to be function on every log generation
  *
  *
@@ -218,7 +218,7 @@ namespace celeowaf {
  * @note    Vide LogProperty enum to learn more about Log Properties.
  *
  */
-typedef void (*ModSecLogCb) (void *, const void *);
+typedef void (*CWafLogCb) (void *, const void *);
 
 
 #ifdef __cplusplus
@@ -283,14 +283,14 @@ class CeleoWAF {
 
     const std::string& whoAmI();
     void setConnectorInformation(const std::string &connector);
-    void setServerLogCb(ModSecLogCb cb);
+    void setServerLogCb(CWafLogCb cb);
     /**
      *
      * properties   Properties to inform CeleoWAF what kind of infornation
      *              is expected be returned.
      *
      */
-    void setServerLogCb(ModSecLogCb cb, int properties);
+    void setServerLogCb(CWafLogCb cb, int properties);
 
     void serverLog(void *data, std::shared_ptr<RuleMessage> rm);
 
@@ -308,7 +308,7 @@ class CeleoWAF {
  private:
     std::string m_connector;
     std::string m_whoami;
-    ModSecLogCb m_logCb;
+    CWafLogCb m_logCb;
     int m_logProperties;
 };
 
@@ -326,7 +326,7 @@ const char *msc_who_am_i(CeleoWAF *msc);
 /** @ingroup CeleoWAF_C_API */
 void msc_set_connector_info(CeleoWAF *msc, const char *connector);
 /** @ingroup CeleoWAF_C_API */
-void msc_set_log_cb(CeleoWAF *msc, ModSecLogCb cb);
+void msc_set_log_cb(CeleoWAF *msc, CWafLogCb cb);
 /** @ingroup CeleoWAF_C_API */
 void msc_cleanup(CeleoWAF *msc);
 

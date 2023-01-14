@@ -4672,7 +4672,7 @@ namespace yy {
       {
         std::string name(yystack_[0].value.as < std::string > ());
         char z = name.at(0);
-        std::unique_ptr<Variable> c(new ModsecBuild(name));
+        std::unique_ptr<Variable> c(new CWafBuild(name));
         yylhs.value.as < std::unique_ptr<Variable> > () = std::move(c);
       }
 #line 4679 "seclang-parser.cc"

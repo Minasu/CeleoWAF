@@ -125,7 +125,7 @@ int process_intervention(celeowaf::Transaction *transaction) {
 }
 
 int main(int argc, char **argv) {
-    celeowaf::CeleoWAF *modsec;
+    celeowaf::CeleoWAF *cwaf;
     celeowaf::RulesSet *rules;
 
     if (argc < 2) {
@@ -140,10 +140,10 @@ int main(int argc, char **argv) {
      * CeleoWAF initial setup
      *
      */
-    modsec = new celeowaf::CeleoWAF();
-    modsec->setConnectorInformation("CeleoWAF-test v0.0.1-alpha" \
+    cwaf = new celeowaf::CeleoWAF();
+    cwaf->setConnectorInformation("CeleoWAF-test v0.0.1-alpha" \
         " (CeleoWAF test)");
-    modsec->setServerLogCb(logCb, celeowaf::RuleMessageLogProperty
+    cwaf->setServerLogCb(logCb, celeowaf::RuleMessageLogProperty
         | celeowaf::IncludeFullHighlightLogProperty);
 
     /**
@@ -162,117 +162,117 @@ int main(int argc, char **argv) {
      * We are going to have a transaction
      *
      */
-    celeowaf::Transaction *modsecTransaction = \
-        new celeowaf::Transaction(modsec, rules, NULL);
-    process_intervention(modsecTransaction);
+    celeowaf::Transaction *cwafTransaction = \
+        new celeowaf::Transaction(cwaf, rules, NULL);
+    process_intervention(cwafTransaction);
 
     /**
      * Initial connection setup
      *
      */
-    modsecTransaction->processConnection(ip, 12345, "127.0.0.1", 80);
-    process_intervention(modsecTransaction);
+    cwafTransaction->processConnection(ip, 12345, "127.0.0.1", 80);
+    process_intervention(cwafTransaction);
 
     /**
      * Finally we've got the URI
      *
      */
-    modsecTransaction->processURI(request_uri, "GET", "1.1");
-    process_intervention(modsecTransaction);
+    cwafTransaction->processURI(request_uri, "GET", "1.1");
+    process_intervention(cwafTransaction);
 
     /**
      * Lets add our request headers.
      *
      */
-    modsecTransaction->addRequestHeader("Host",
+    cwafTransaction->addRequestHeader("Host",
         "net.tutsplus.com");
-    process_intervention(modsecTransaction);
+    process_intervention(cwafTransaction);
 
     /**
      * No other reuqest header to add, let process it.
      *
      */
-    modsecTransaction->processRequestHeaders();
-    process_intervention(modsecTransaction);
+    cwafTransaction->processRequestHeaders();
+    process_intervention(cwafTransaction);
 
     /**
      * There is a request body to be informed...
      *
      */
-    modsecTransaction->appendRequestBody(
+    cwafTransaction->appendRequestBody(
         (const unsigned char*)request_body_first,
         strlen((const char*)request_body_first));
-    process_intervention(modsecTransaction);
+    process_intervention(cwafTransaction);
 
-    modsecTransaction->appendRequestBody(
+    cwafTransaction->appendRequestBody(
         (const unsigned char*)request_body_second,
         strlen((const char*)request_body_second));
-    process_intervention(modsecTransaction);
+    process_intervention(cwafTransaction);
 
-    modsecTransaction->appendRequestBody(
+    cwafTransaction->appendRequestBody(
         (const unsigned char*)request_body_third,
         strlen((const char*)request_body_third));
-    process_intervention(modsecTransaction);
+    process_intervention(cwafTransaction);
 
     /**
      * Request body is there ;) lets process it.
      *
      */
-    modsecTransaction->processRequestBody();
-    process_intervention(modsecTransaction);
+    cwafTransaction->processRequestBody();
+    process_intervention(cwafTransaction);
 
     /**
      * The webserver is giving back the response headers.
      */
-    modsecTransaction->addResponseHeader("HTTP/1.1",
+    cwafTransaction->addResponseHeader("HTTP/1.1",
         "200 OK");
-    process_intervention(modsecTransaction);
+    process_intervention(cwafTransaction);
 
     /**
      * The response headers are filled in, lets process.
      *
      */
-    modsecTransaction->processResponseHeaders(200, "HTTP 1.2");
-    process_intervention(modsecTransaction);
+    cwafTransaction->processResponseHeaders(200, "HTTP 1.2");
+    process_intervention(cwafTransaction);
 
     /**
-     * It is time to let modsec aware of the response body
+     * It is time to let cwaf aware of the response body
      *
      */
-    modsecTransaction->appendResponseBody(
+    cwafTransaction->appendResponseBody(
         (const unsigned char*)response_body_first,
         strlen((const char*)response_body_first));
-    process_intervention(modsecTransaction);
+    process_intervention(cwafTransaction);
 
-    modsecTransaction->appendResponseBody(
+    cwafTransaction->appendResponseBody(
         (const unsigned char*)response_body_second,
         strlen((const char*)response_body_second));
-    process_intervention(modsecTransaction);
+    process_intervention(cwafTransaction);
 
-    modsecTransaction->appendResponseBody(
+    cwafTransaction->appendResponseBody(
         (const unsigned char*)response_body_third,
         strlen((const char*)response_body_third));
-    process_intervention(modsecTransaction);
+    process_intervention(cwafTransaction);
 
     /**
      * Finally, lets have the response body processed.
      *
      */
-    modsecTransaction->processResponseBody();
-    process_intervention(modsecTransaction);
+    cwafTransaction->processResponseBody();
+    process_intervention(cwafTransaction);
 
     /**
      * Keeping track of everything: saving the logs.
      *
      */
-    modsecTransaction->processLogging();
-    process_intervention(modsecTransaction);
+    cwafTransaction->processLogging();
+    process_intervention(cwafTransaction);
 
 
     /**
      * cleanup.
      */
-    delete modsecTransaction;
+    delete cwafTransaction;
     delete rules;
-    delete modsec;
+    delete cwaf;
 }

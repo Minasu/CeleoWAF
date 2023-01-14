@@ -76,7 +76,7 @@ unit_tests_CPPFLAGS = \
 	-g \
 	-I$(top_builddir)/headers \
 	$(CURL_CFLAGS) \
-	$(MODSEC_NO_LOGS) \
+	$(CWAF_NO_LOGS) \
 	$(GEOIP_CFLAGS) \
 	$(MAXMIND_CFLAGS) \
 	$(GLOBAL_CPPFLAGS) \
@@ -132,7 +132,7 @@ regression_tests_CPPFLAGS = \
 	-g \
 	-I$(top_builddir)/headers \
 	$(CURL_CFLAGS) \
-	$(MODSEC_NO_LOGS) \
+	$(CWAF_NO_LOGS) \
 	$(GEOIP_CFLAGS) \
 	$(MAXMIND_CFLAGS) \
 	$(GLOBAL_CPPFLAGS) \
@@ -185,7 +185,7 @@ rules_optimization_CPPFLAGS = \
 	-g \
 	-I$(top_builddir)/headers \
 	$(CURL_CFLAGS) \
-	$(MODSEC_NO_LOGS) \
+	$(CWAF_NO_LOGS) \
 	$(GEOIP_CFLAGS) \
 	$(MAXMIND_CFLAGS) \
 	$(GLOBAL_CPPFLAGS) \

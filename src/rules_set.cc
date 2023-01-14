@@ -35,7 +35,7 @@ namespace celeowaf {
 /**
  * @name    loadFromUri
  * @brief   load rules from a give uri
- * @ingroup ModSecCore
+ * @ingroup CWafCore
  *
  * Load the rules from a given uri into memory in
  * the format expected by CeleoWAF core.

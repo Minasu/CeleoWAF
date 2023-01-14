@@ -1,11 +1,11 @@
 
 
-bin_PROGRAMS = modsec-rules-check
+bin_PROGRAMS = cwaf-rules-check
 
-modsec_rules_check_SOURCES = \
+cwaf_rules_check_SOURCES = \
         rules-check.cc
 
-modsec_rules_check_LDADD = \
+cwaf_rules_check_LDADD = \
 	$(top_builddir)/src/.libs/libceleowaf.la \
 	$(CURL_LDADD) \
 	$(GEOIP_LDADD) \
@@ -18,7 +18,7 @@ modsec_rules_check_LDADD = \
 	$(SSDEEP_LDADD) \
 	$(YAJL_LDADD)
 
-modsec_rules_check_LDFLAGS = \
+cwaf_rules_check_LDFLAGS = \
 	$(GEOIP_LDFLAGS) \
 	$(MAXMIND_LDFLAGS) \
 	$(LDFLAGS) \
@@ -27,7 +27,7 @@ modsec_rules_check_LDFLAGS = \
 	$(SSDEEP_LDFLAGS) \
 	$(YAJL_LDFLAGS)
 
-modsec_rules_check_CPPFLAGS = \
+cwaf_rules_check_CPPFLAGS = \
 	-std=c++11 \
 	-I$(top_builddir)/headers \
 	$(GLOBAL_CPPFLAGS) \

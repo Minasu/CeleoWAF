@@ -19,8 +19,8 @@
 #include <utility>
 #include <iostream>
 
-#ifndef SRC_VARIABLES_MODSEC_BUILD_H_
-#define SRC_VARIABLES_MODSEC_BUILD_H_
+#ifndef SRC_VARIABLES_CWAF_BUILD_H_
+#define SRC_VARIABLES_CWAF_BUILD_H_
 
 #include "src/variables/variable.h"
 #include "celeowaf/celeowaf.h"
@@ -30,11 +30,11 @@ namespace celeowaf {
 class Transaction;
 namespace variables {
 
-class ModsecBuild : public Variable {
+class CWafBuild : public Variable {
  public:
-    explicit ModsecBuild(const std::string &_name)
+    explicit CWafBuild(const std::string &_name)
         : Variable(_name),
-        m_retName("MODSEC_BUILD") {
+        m_retName("CWAF_BUILD") {
         std::ostringstream ss;
         ss << std::setw(2) << std::setfill('0') << CELEOWAF_MAJOR;
         ss << std::setw(2) << std::setfill('0') << CELEOWAF_MINOR;
@@ -55,4 +55,4 @@ class ModsecBuild : public Variable {
 }  // namespace variables
 }  // namespace celeowaf
 
-#endif  // SRC_VARIABLES_MODSEC_BUILD_H_
+#endif  // SRC_VARIABLES_CWAF_BUILD_H_

@@ -402,13 +402,13 @@ int CeleoWAF::processContentOffset(const char *content, size_t len,
 }
 
 
-void CeleoWAF::setServerLogCb(ModSecLogCb cb) {
+void CeleoWAF::setServerLogCb(CWafLogCb cb) {
     setServerLogCb(cb, TextLogProperty);
 }
 
 
-void CeleoWAF::setServerLogCb(ModSecLogCb cb, int properties) {
-    m_logCb = (ModSecLogCb) cb;
+void CeleoWAF::setServerLogCb(CWafLogCb cb, int properties) {
+    m_logCb = (CWafLogCb) cb;
     m_logProperties = properties;
 }
 
@@ -420,11 +420,11 @@ void CeleoWAF::setServerLogCb(ModSecLogCb cb, int properties) {
  * connector should be called when logging is required.
  *
  * @oarm msc The current CeleoWAF instance
- * @param ModSecLogCb The callback function to which a reference to the log msgs 
+ * @param CWafLogCb The callback function to which a reference to the log msgs 
  * will be passed.
  *
  */
-extern "C" void msc_set_log_cb(CeleoWAF *msc, ModSecLogCb cb) {
+extern "C" void msc_set_log_cb(CeleoWAF *msc, CWafLogCb cb) {
     msc->setServerLogCb(cb);
 }
 

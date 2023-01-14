@@ -44,7 +44,7 @@ simple_request_CPPFLAGS = \
 	$(CURL_CFLAGS) \
 	$(MAXMIND_CFLAGS) \
 	$(GLOBAL_CPPFLAGS) \
-	$(MODSEC_NO_LOGS) \
+	$(CWAF_NO_LOGS) \
 	$(YAJL_CFLAGS) \
 	$(LMDB_CFLAGS) \
 	$(LUA_CFLAGS) \

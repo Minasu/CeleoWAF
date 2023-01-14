@@ -25,7 +25,7 @@ Steps to reproduce the behavior:
 
 A **curl** command line that mimics the original request and reproduces the problem. Or a CeleoWAF v3 test case.
 
-[e.g: curl "modsec-full/ca/..\\..\\..\\..\\..\\..\\/\\etc/\\passwd" or [issue-394.json](https://github.com/SpiderLabs/CeleoWAF/blob/v3/master/test/test-cases/regression/issue-394.json)]
+[e.g: curl "cwaf-full/ca/..\\..\\..\\..\\..\\..\\/\\etc/\\passwd" or [issue-394.json](https://github.com/SpiderLabs/CeleoWAF/blob/v3/master/test/test-cases/regression/issue-394.json)]
 
 
 **Expected behavior**

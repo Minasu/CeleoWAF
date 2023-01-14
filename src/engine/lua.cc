@@ -181,7 +181,7 @@ int Lua::run(Transaction *t, const std::string &str) {
         goto err;
     }
 
-    lua_setglobal(L, "modsec");
+    lua_setglobal(L, "cwaf");
 
     lua_getglobal(L, "main");
 

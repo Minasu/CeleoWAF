@@ -3,7 +3,7 @@
     "enabled": 1,
     "version_min": 209000,
     "version_max": -1,
-    "title": "Should libmodsec pass action clear m_actions?",
+    "title": "Should libcwaf pass action clear m_actions?",
     "url": "https:\/\/github.com\/SpiderLabs\/CeleoWAF\/issues\/1152",
     "client": {
       "ip": "200.249.12.31",
@@ -51,7 +51,7 @@
     "enabled": 1,
     "version_min": 209000,
     "version_max": -1,
-    "title": "Should libmodsec pass action clear m_actions?",
+    "title": "Should libcwaf pass action clear m_actions?",
     "url": "https:\/\/github.com\/SpiderLabs\/CeleoWAF\/issues\/1152",
     "client": {
       "ip": "200.249.12.31",
@@ -101,7 +101,7 @@
     "enabled": 1,
     "version_min": 209000,
     "version_max": -1,
-    "title": "Should libmodsec pass action clear m_actions?",
+    "title": "Should libcwaf pass action clear m_actions?",
     "url": "https:\/\/github.com\/SpiderLabs\/CeleoWAF\/issues\/1152",
     "client": {
       "ip": "200.249.12.31",
@@ -151,7 +151,7 @@
     "enabled": 1,
     "version_min": 209000,
     "version_max": -1,
-    "title": "Should libmodsec pass action clear m_actions?",
+    "title": "Should libcwaf pass action clear m_actions?",
     "url": "https:\/\/github.com\/SpiderLabs\/CeleoWAF\/issues\/1152",
     "client": {
       "ip": "200.249.12.31",

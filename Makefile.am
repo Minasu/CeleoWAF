@@ -43,8 +43,8 @@ MAINTAINERCLEANFILES = \
 	ltmain.sh \
 	Makefile.in \
 	missing \
-	test/modsec-shared-collections \
-	test/modsec-shared-collections-lock \
+	test/cwaf-shared-collections \
+	test/cwaf-shared-collections-lock \
 	test-suite-drd.log \
 	test-suite-helgrind.log \
 	test-suite-memcheck.log \
@@ -220,7 +220,7 @@ TESTS+=test/test-cases/regression/variable-MATCHED_VAR.json
 TESTS+=test/test-cases/regression/variable-MATCHED_VAR_NAME.json
 TESTS+=test/test-cases/regression/variable-MATCHED_VARS.json
 TESTS+=test/test-cases/regression/variable-MATCHED_VARS_NAMES.json
-TESTS+=test/test-cases/regression/variable-MODSEC_BUILD.json
+TESTS+=test/test-cases/regression/variable-CWAF_BUILD.json
 TESTS+=test/test-cases/regression/variable-MULTIPART_CRLF_LF_LINES.json
 TESTS+=test/test-cases/regression/variable-MULTIPART_FILENAME.json
 TESTS+=test/test-cases/regression/variable-MULTIPART_INVALID_HEADER_FOLDING.json

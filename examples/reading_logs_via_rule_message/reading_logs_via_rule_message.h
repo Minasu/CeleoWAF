@@ -68,38 +68,38 @@ char ip[] = "200.249.12.31";
 
 
 struct data_ms {
-    celeowaf::CeleoWAF *modsec;
+    celeowaf::CeleoWAF *cwaf;
     celeowaf::RulesSet *rules;
 };
 
 
 static void *process_request(void *data) {
     struct data_ms *a = (struct data_ms *)data;
-    celeowaf::CeleoWAF *modsec = a->modsec;
+    celeowaf::CeleoWAF *cwaf = a->cwaf;
     celeowaf::RulesSet *rules = a->rules;
     int z = 0;
 
     for (z = 0; z < 10000; z++) {
-        celeowaf::Transaction *modsecTransaction = \
-            new celeowaf::Transaction(modsec, rules, NULL);
-        modsecTransaction->processConnection(ip, 12345, "127.0.0.1", 80);
-        modsecTransaction->processURI(request_uri, "GET", "1.1");
+        celeowaf::Transaction *cwafTransaction = \
+            new celeowaf::Transaction(cwaf, rules, NULL);
+        cwafTransaction->processConnection(ip, 12345, "127.0.0.1", 80);
+        cwafTransaction->processURI(request_uri, "GET", "1.1");
 
         usleep(10);
-        modsecTransaction->addRequestHeader("Host",
+        cwafTransaction->addRequestHeader("Host",
             "net.tutsplus.com");
-        modsecTransaction->processRequestHeaders();
-        modsecTransaction->processRequestBody();
-        modsecTransaction->addResponseHeader("HTTP/1.1",
+        cwafTransaction->processRequestHeaders();
+        cwafTransaction->processRequestBody();
+        cwafTransaction->addResponseHeader("HTTP/1.1",
             "200 OK");
-        modsecTransaction->processResponseHeaders(200, "HTTP 1.2");
-        modsecTransaction->appendResponseBody(
+        cwafTransaction->processResponseHeaders(200, "HTTP 1.2");
+        cwafTransaction->appendResponseBody(
             (const unsigned char*)response_body,
             strlen((const char*)response_body));
-        modsecTransaction->processResponseBody();
-        modsecTransaction->processLogging();
+        cwafTransaction->processResponseBody();
+        cwafTransaction->processLogging();
 
-        delete modsecTransaction;
+        delete cwafTransaction;
     }
 
     pthread_exit(NULL);
@@ -131,13 +131,13 @@ class ReadingLogsViaRuleMessage {
         struct data_ms dms;
         void *status;
 
-        celeowaf::CeleoWAF *modsec;
+        celeowaf::CeleoWAF *cwaf;
         celeowaf::RulesSet *rules;
 
-        modsec = new celeowaf::CeleoWAF();
-        modsec->setConnectorInformation("CeleoWAF-test v0.0.1-alpha" \
+        cwaf = new celeowaf::CeleoWAF();
+        cwaf->setConnectorInformation("CeleoWAF-test v0.0.1-alpha" \
             " (CeleoWAF test)");
-        modsec->setServerLogCb(logCb, celeowaf::RuleMessageLogProperty
+        cwaf->setServerLogCb(logCb, celeowaf::RuleMessageLogProperty
             | celeowaf::IncludeFullHighlightLogProperty);
 
         rules = new celeowaf::RulesSet();
@@ -147,7 +147,7 @@ class ReadingLogsViaRuleMessage {
             return -1;
         }
 
-        dms.modsec = modsec;
+        dms.cwaf = cwaf;
         dms.rules = rules;
 
         for (i = 0; i < NUM_THREADS; i++) {
@@ -164,7 +164,7 @@ class ReadingLogsViaRuleMessage {
         }
 
         delete rules;
-        delete modsec;
+        delete cwaf;
         pthread_exit(NULL);
         return 0;
     }

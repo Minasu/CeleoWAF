@@ -1,5 +1,5 @@
 
-<img src="https://github.com/SpiderLabs/CeleoWAF/raw/v3/master/others/modsec.png" width="50%">
+<img src="https://github.com/SpiderLabs/CeleoWAF/raw/v3/master/others/cwaf.png" width="50%">
 
 ![Quality Assurance](https://github.com/SpiderLabs/CeleoWAF/workflows/Quality%20Assurance/badge.svg)
 [![Build Status](https://sonarcloud.io/api/project_badges/measure?project=USHvY32Uy62L&metric=alert_status)](https://sonarcloud.io/dashboard?id=USHvY32Uy62L)
@@ -108,19 +108,19 @@ using CeleoWAF::CeleoWAF;
 using CeleoWAF::Rules;
 using CeleoWAF::Transaction;
 
-CeleoWAF *modsec;
+CeleoWAF *cwaf;
 CeleoWAF::Rules *rules;
 
-modsec = new CeleoWAF();
+cwaf = new CeleoWAF();
 
 rules = new Rules();
 
 rules->loadFromUri(rules_file);
 
-Transaction *modsecTransaction = new Transaction(modsec, rules);
+Transaction *cwafTransaction = new Transaction(cwaf, rules);
 
-modsecTransaction->processConnection("127.0.0.1");
-if (modsecTransaction->intervention()) {
+cwafTransaction->processConnection("127.0.0.1");
+if (cwafTransaction->intervention()) {
    std::cout << "There is an intervention" << std::endl;
 }
 ```
@@ -136,16 +136,16 @@ char main_rule_uri[] = "basic_rules.conf";
 
 int main (int argc, char **argv)
 {
-    CeleoWAF *modsec = NULL;
+    CeleoWAF *cwaf = NULL;
     Transaction *transaction = NULL;
     Rules *rules = NULL;
 
-    modsec = msc_init();
+    cwaf = msc_init();
 
     rules = msc_create_rules_set();
     msc_rules_add_file(rules, main_rule_uri);
 
-    transaction = msc_new_transaction(modsec, rules);
+    transaction = msc_new_transaction(cwaf, rules);
 
     msc_process_connection(transaction, "127.0.0.1");
     msc_process_uri(transaction, "http://www.celeowaf.org/test?key1=value1&key2=value2&key3=value3&test=args&test=test");

@@ -240,8 +240,8 @@ AC_ARG_ENABLE(debug-logs,
     [debugLogs=true]
     )
 if test "$debugLogs" != "true"; then
-    MODSEC_NO_LOGS="-DNO_LOGS=1"
-    AC_SUBST(MODSEC_NO_LOGS)
+    CWAF_NO_LOGS="-DNO_LOGS=1"
+    AC_SUBST(CWAF_NO_LOGS)
 fi
 
 
@@ -297,8 +297,8 @@ AC_ARG_ENABLE(mutex-on-pm,
     [mutexPm=false]
     )
 if test "$mutexPm" == "true"; then
-    MODSEC_MUTEX_ON_PM="-DMUTEX_ON_PM=1"
-    AC_SUBST(MODSEC_MUTEX_ON_PM)
+    CWAF_MUTEX_ON_PM="-DMUTEX_ON_PM=1"
+    AC_SUBST(CWAF_MUTEX_ON_PM)
 fi
 
 

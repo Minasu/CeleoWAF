@@ -128,7 +128,7 @@ bool SharedFiles::open(const std::string& fileName, std::string *error) {
     std::pair<msc_file_handler *, FILE *> a;
     bool ret = true;
 
-    #if MODSEC_USE_GENERAL_LOCK
+    #if CWAF_USE_GENERAL_LOCK
     pthread_mutex_lock(m_generalLock);
 #endif
 
@@ -147,7 +147,7 @@ bool SharedFiles::open(const std::string& fileName, std::string *error) {
     }
 
 out:
-#if MODSEC_USE_GENERAL_LOCK
+#if CWAF_USE_GENERAL_LOCK
     pthread_mutex_unlock(m_generalLock);
 #endif
 
@@ -162,7 +162,7 @@ void SharedFiles::close(const std::string& fileName) {
     /* struct shmid_ds shared_mem_info; */
     /* int j = 0; */
 
-#if MODSEC_USE_GENERAL_LOCK
+#if CWAF_USE_GENERAL_LOCK
     pthread_mutex_lock(m_generalLock);
 #endif
 
@@ -209,7 +209,7 @@ void SharedFiles::close(const std::string& fileName) {
     */
 
 out:
-#if MODSEC_USE_GENERAL_LOCK
+#if CWAF_USE_GENERAL_LOCK
     pthread_mutex_unlock(m_generalLock);
 #endif
     return;

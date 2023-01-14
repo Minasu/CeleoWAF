@@ -13,7 +13,7 @@
  *
  */
 
-#include "src/variables/modsec_build.h"
+#include "src/variables/cwaf_build.h"
 
 #include <vector>
 #include <list>
@@ -24,7 +24,7 @@
 namespace celeowaf {
 namespace variables {
 
-void ModsecBuild::evaluate(Transaction *transaction,
+void CWafBuild::evaluate(Transaction *transaction,
     RuleWithActions *rule,
     std::vector<const VariableValue *> *l) {
 

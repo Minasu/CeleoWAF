@@ -12,7 +12,7 @@ echo 'Include "owasp-v2/slr_rules/celeowaf_crs_46_slr_et_sqli_attacks.conf"' >> 
 echo 'Include "owasp-v2/slr_rules/celeowaf_crs_46_slr_et_rfi_attacks.conf"' >> basic_rules.conf
 
 
-# Content injection not support in modsec v3
+# Content injection not support in cwaf v3
 rm owasp-v2/optional_rules/celeowaf_crs_43_csrf_protection.conf
 
 

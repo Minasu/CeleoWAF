@@ -70,12 +70,12 @@ int main(int argc, char *argv[]) {
         }
     }
     std::cout << "Doing " << NUM_REQUESTS << " transactions...\n";
-    celeowaf::CeleoWAF *modsec;
+    celeowaf::CeleoWAF *cwaf;
     celeowaf::RulesSet *rules;
     celeowaf::CeleoWAFIntervention it;
     celeowaf::intervention::reset(&it);
-    modsec = new celeowaf::CeleoWAF();
-    modsec->setConnectorInformation("CeleoWAF-benchmark v0.0.1-alpha" \
+    cwaf = new celeowaf::CeleoWAF();
+    cwaf->setConnectorInformation("CeleoWAF-benchmark v0.0.1-alpha" \
             " (CeleoWAF benchmark utility)");
 
     rules = new celeowaf::RulesSet();
@@ -88,87 +88,87 @@ int main(int argc, char *argv[]) {
     for (unsigned long long i = 0; i < NUM_REQUESTS; i++) {
         //std::cout << "Proceeding with request " << i << std::endl;
 
-        Transaction *modsecTransaction = new Transaction(modsec, rules, NULL);
-        modsecTransaction->processConnection(ip, 12345, "127.0.0.1", 80);
+        Transaction *cwafTransaction = new Transaction(cwaf, rules, NULL);
+        cwafTransaction->processConnection(ip, 12345, "127.0.0.1", 80);
 
-        if (modsecTransaction->intervention(&it)) {
+        if (cwafTransaction->intervention(&it)) {
             std::cout << "There is an intervention" << std::endl;
             goto next_request;
         }
-        modsecTransaction->processURI(request_uri, "GET", "1.1");
-        if (modsecTransaction->intervention(&it)) {
+        cwafTransaction->processURI(request_uri, "GET", "1.1");
+        if (cwafTransaction->intervention(&it)) {
             std::cout << "There is an intervention" << std::endl;
             goto next_request;
         }
 
-        modsecTransaction->addRequestHeader("Host",
+        cwafTransaction->addRequestHeader("Host",
             "net.tutsplus.com");
-        modsecTransaction->addRequestHeader("User-Agent",
+        cwafTransaction->addRequestHeader("User-Agent",
             "Mozilla/5.0 (Windows; U; Windows NT 6.1; en-US; rv:1.9.1.5) " \
             "Gecko/20091102 Firefox/3.5.5 (.NET CLR 3.5.30729)");
-        modsecTransaction->addRequestHeader("Accept",
+        cwafTransaction->addRequestHeader("Accept",
             "text/html,application/xhtml+xml,application/xml;" \
             "q=0.9,*/*;q=0.8");
-        modsecTransaction->addRequestHeader("Accept-Language",
+        cwafTransaction->addRequestHeader("Accept-Language",
             "en-us,en;q=0.5");
-        modsecTransaction->addRequestHeader("Accept-Encoding",
+        cwafTransaction->addRequestHeader("Accept-Encoding",
             "gzip,deflate");
-        modsecTransaction->addRequestHeader("Accept-Charset",
+        cwafTransaction->addRequestHeader("Accept-Charset",
             "ISO-8859-1,utf-8;q=0.7,*;q=0.7");
-        modsecTransaction->addRequestHeader("Keep-Alive",
+        cwafTransaction->addRequestHeader("Keep-Alive",
             "300");
-        modsecTransaction->addRequestHeader("Connection",
+        cwafTransaction->addRequestHeader("Connection",
             "keep-alive");
-        modsecTransaction->addRequestHeader("Cookie",
+        cwafTransaction->addRequestHeader("Cookie",
             "PHPSESSID=r2t5uvjq435r4q7ib3vtdjq120");
-        modsecTransaction->addRequestHeader("Pragma",
+        cwafTransaction->addRequestHeader("Pragma",
             "no-cache");
-        modsecTransaction->addRequestHeader("Cache-Control",
+        cwafTransaction->addRequestHeader("Cache-Control",
             "no-cache");
-        modsecTransaction->processRequestHeaders();
+        cwafTransaction->processRequestHeaders();
 
-        if (modsecTransaction->intervention(&it)) {
+        if (cwafTransaction->intervention(&it)) {
             std::cout << "There is an intervention" << std::endl;
             goto next_request;
         }
 
 
-        modsecTransaction->processRequestBody();
+        cwafTransaction->processRequestBody();
 
-        if (modsecTransaction->intervention(&it)) {
+        if (cwafTransaction->intervention(&it)) {
             std::cout << "There is an intervention" << std::endl;
             goto next_request;
         }
 
-        modsecTransaction->addResponseHeader("HTTP/1.1",
+        cwafTransaction->addResponseHeader("HTTP/1.1",
             "200 OK");
-        modsecTransaction->addResponseHeader("Content-Type",
+        cwafTransaction->addResponseHeader("Content-Type",
             "text/xml; charset=utf-8");
-        modsecTransaction->addResponseHeader("Content-Length",
+        cwafTransaction->addResponseHeader("Content-Length",
             "200");
 
-        modsecTransaction->processResponseHeaders(200, "HTTP 1.2");
+        cwafTransaction->processResponseHeaders(200, "HTTP 1.2");
 
-        if (modsecTransaction->intervention(&it)) {
+        if (cwafTransaction->intervention(&it)) {
             std::cout << "There is an intervention" << std::endl;
             goto next_request;
         }
 
 
-        modsecTransaction->appendResponseBody(response_body,
+        cwafTransaction->appendResponseBody(response_body,
             strlen((const char*)response_body));
-        modsecTransaction->processResponseBody();
+        cwafTransaction->processResponseBody();
 
-        if (modsecTransaction->intervention(&it)) {
+        if (cwafTransaction->intervention(&it)) {
             std::cout << "There is an intervention" << std::endl;
             goto next_request;
         }
 
 next_request:
-        modsecTransaction->processLogging();
-        delete modsecTransaction;
+        cwafTransaction->processLogging();
+        delete cwafTransaction;
     }
 
     delete rules;
-    delete modsec;
+    delete cwaf;
 }

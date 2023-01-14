@@ -1,16 +1,16 @@
 
-noinst_LTLIBRARIES = libmodsec_parser.la
+noinst_LTLIBRARIES = libcwaf_parser.la
 
 BUILT_SOURCES = \
 	seclang-parser.cc \
 	test.cc
 
-libmodsec_parser_la_SOURCES = \
+libcwaf_parser_la_SOURCES = \
 	seclang-parser.yy \
 	seclang-scanner.ll \
 	test.cc
 
-libmodsec_parser_la_CPPFLAGS = \
+libcwaf_parser_la_CPPFLAGS = \
 	-std=c++11 \
 	-I../.. \
 	-I../../headers \
@@ -23,7 +23,7 @@ libmodsec_parser_la_CPPFLAGS = \
 	$(CURL_CFLAGS) \
 	$(GEOIP_CFLAGS) \
 	$(GLOBAL_CPPFLAGS) \
-	$(MODSEC_NO_LOGS) \
+	$(CWAF_NO_LOGS) \
 	$(YAJL_CFLAGS) \
 	$(LMDB_CFLAGS) \
 	$(PCRE_CFLAGS) \

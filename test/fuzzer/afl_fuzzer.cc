@@ -244,7 +244,7 @@ op_test("Within", s);
 
 
         /**
-        * ModSec API
+        * CWaf API
         *
         */
 #if 0

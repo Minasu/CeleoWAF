@@ -42,7 +42,7 @@
  * Not using this critical section yet.
  *
  */
-/* #define MODSEC_USE_GENERAL_LOCK */
+/* #define CWAF_USE_GENERAL_LOCK */
 
 namespace celeowaf {
 namespace utils {
@@ -74,12 +74,12 @@ class SharedFiles {
 
  private:
     SharedFiles()
-#ifdef MODSEC_USE_GENERAL_LOCK
+#ifdef CWAF_USE_GENERAL_LOCK
         : m_generalLock(NULL),
         m_memKeyStructure(0)
 #endif
     {
-#ifdef MODSEC_USE_GENERAL_LOCK
+#ifdef CWAF_USE_GENERAL_LOCK
         int shm_id;
         bool toBeCreated(false);
         bool err = false;
@@ -126,7 +126,7 @@ err_shmat1:
 #endif
     }
     ~SharedFiles() {
-#if MODSEC_USE_GENERAL_LOCK
+#if CWAF_USE_GENERAL_LOCK
         shmdt(m_generalLock);
         shmctl(m_memKeyStructure, IPC_RMID, NULL);
 #endif
@@ -142,7 +142,7 @@ err_shmat1:
 
     std::vector<std::pair<std::string,
         std::pair<msc_file_handler *, FILE *>>> m_handlers;
-#if MODSEC_USE_GENERAL_LOCK
+#if CWAF_USE_GENERAL_LOCK
     pthread_mutex_t *m_generalLock;
     key_t m_memKeyStructure;
 #endif

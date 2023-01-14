@@ -93,7 +93,7 @@ VARIABLES = \
 	variables/duration.cc \
 	variables/env.cc \
 	variables/highest_severity.cc \
-	variables/modsec_build.cc \
+	variables/cwaf_build.cc \
 	variables/remote_user.cc \
 	variables/rule.cc \
 	variables/time.cc \
@@ -319,8 +319,8 @@ libceleowaf_la_CPPFLAGS = \
 	$(CURL_CFLAGS) \
 	$(GEOIP_CFLAGS) \
 	$(GLOBAL_CPPFLAGS) \
-	$(MODSEC_NO_LOGS) \
-	$(MODSEC_MUTEX_ON_PM) \
+	$(CWAF_NO_LOGS) \
+	$(CWAF_MUTEX_ON_PM) \
 	$(YAJL_CFLAGS) \
 	$(LMDB_CFLAGS) \
 	$(PCRE_CFLAGS) \

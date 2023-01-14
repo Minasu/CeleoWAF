@@ -31,12 +31,12 @@
 
 char main_rule_uri[] = "basic_rules.conf";
 RulesSet *rules = NULL;
-CeleoWAF *modsec = NULL;
+CeleoWAF *cwaf = NULL;
 
 
 void process_special_request (int j) {
     Transaction *transaction;
-    transaction = msc_new_transaction(modsec, rules, NULL);
+    transaction = msc_new_transaction(cwaf, rules, NULL);
 
     msc_process_connection(transaction, "127.0.0.1", 12345, "127.0.0.1", 80);
     msc_process_uri(transaction,
@@ -67,7 +67,7 @@ void process_request (int j) {
         struct timeval tv;
 
         Transaction *transaction;
-        transaction = msc_new_transaction(modsec, rules, NULL);
+        transaction = msc_new_transaction(cwaf, rules, NULL);
 
         msc_process_connection(transaction, "127.0.0.1", 12345, "127.0.0.1", 80);
         msc_process_uri(transaction,
@@ -100,9 +100,9 @@ int main (int argc, char **argv)
     pid_t pid;
     int f;
 
-    modsec = msc_init();
+    cwaf = msc_init();
 
-    msc_set_connector_info(modsec, "CeleoWAF-test v0.0.1-alpha (Simple " \
+    msc_set_connector_info(cwaf, "CeleoWAF-test v0.0.1-alpha (Simple " \
         "example on how to use CeleoWAF API");
 
     rules = msc_create_rules_set();
@@ -138,7 +138,7 @@ child:
     }
 end:
     msc_rules_cleanup(rules);
-    msc_cleanup(modsec);
+    msc_cleanup(cwaf);
 
     return 0;
 }

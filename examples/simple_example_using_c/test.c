@@ -27,13 +27,13 @@ int main (int argc, char **argv)
 {
     int ret;
     const char *error = NULL;
-    CeleoWAF *modsec;
+    CeleoWAF *cwaf;
     Transaction *transaction = NULL;
     RulesSet *rules;
 
-    modsec = msc_init();
+    cwaf = msc_init();
 
-    msc_set_connector_info(modsec, "CeleoWAF-test v0.0.1-alpha (Simple " \
+    msc_set_connector_info(cwaf, "CeleoWAF-test v0.0.1-alpha (Simple " \
         "example on how to use CeleoWAF API");
 
     rules = msc_create_rules_set();
@@ -56,7 +56,7 @@ int main (int argc, char **argv)
     }
     msc_rules_dump(rules);
 
-    transaction = msc_new_transaction(modsec, rules, NULL);
+    transaction = msc_new_transaction(cwaf, rules, NULL);
 
     msc_process_connection(transaction, "127.0.0.1", 12345, "127.0.0.1", 80);
     msc_process_uri(transaction,
@@ -69,7 +69,7 @@ int main (int argc, char **argv)
     msc_process_logging(transaction);
 end:
     msc_rules_cleanup(rules);
-    msc_cleanup(modsec);
+    msc_cleanup(cwaf);
 
     return 0;
 }

@@ -216,7 +216,7 @@ v3.0.4 - 2020-Jan-13
    [Issue #1980 - @airween]
  - Fix tests on FreeBSD
    [Issue #1973 - @defanator]
- - Changes ENV test case to read the default MODSECURTIY env var
+ - Changes ENV test case to read the default CWAFURTIY env var
    [Issue #1969 - @zimmerle, @airween, @inittab]
  - Regression: Sets CELEOWAF env var during the tests execution
    [Issue #1969 - @zimmerle, @airween, @inittab]
@@ -302,7 +302,7 @@ v3.0.3 - 2018-Nov-05
    [Issue #1831 - @zimmerle, @csanders-git]
  - Fix pc file
    [Issue #1847 - @gquintard]
- - modsec_rules_check: uses the gnu `.la' instead of `.a' file
+ - cwaf_rules_check: uses the gnu `.la' instead of `.a' file
    [Issue #1853 - @ste7677, @victorhora, @zimmerle]
  - good practices: Initialize variables before use it
    [Issue #1889 - Marc Stern]
