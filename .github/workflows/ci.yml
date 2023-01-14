@@ -25,14 +25,12 @@ jobs:
       - name: Setup Dependencies
         run: |
           sudo yum -y install yajl-devel
-      - uses: actions/checkout@v2
         with:
           submodules: true
       - name: build.sh
         run: ./build.sh
       - name: configure ${{ matrix.configure.label }}
         run: ./configure ${{ matrix.configure.opt }}
-      - uses: ammaraskar/gcc-problem-matcher@master
       - name: make
         run: make -j `nproc`
       - name: check
