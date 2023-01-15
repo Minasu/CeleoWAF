@@ -462,7 +462,10 @@ class VariableMonkeyResolution {
             } else if (comp(variable, "GLOBAL")) {
                 vv = t->m_collections.m_global_collection->resolveFirst("",
                     t->m_collections.m_global_collection_key, t->m_rules->m_secWebAppId.m_value);
-            } else {
+			} else if (comp(variable, "REQLIMIT")) {
+                vv = t->m_collections.m_reqlimit_collection->resolveFirst("",
+                    t->m_collections.m_reqlimit_collection_key, t->m_rules->m_secWebAppId.m_value);
+			} else {
                 throw std::invalid_argument("Variable not found.");
             }
         } else {
@@ -530,7 +533,10 @@ class VariableMonkeyResolution {
             } else if (comp(col, "GLOBAL")) {
                 vv = t->m_collections.m_global_collection->resolveFirst(var,
                     t->m_collections.m_global_collection_key, t->m_rules->m_secWebAppId.m_value);
-            } else {
+            } else if (comp(col, "REQLIMIT")) {
+                vv = t->m_collections.m_reqlimit_collection->resolveFirst(var,
+                    t->m_collections.m_reqlimit_collection_key, t->m_rules->m_secWebAppId.m_value);			
+			} else {
                 throw std::invalid_argument("Variable not found.");
             }
         }

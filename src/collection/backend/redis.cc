@@ -56,11 +56,6 @@ REDIS::~REDIS() {
 
 std::unique_ptr<std::string> REDIS::resolveFirst(const std::string& var) {
     std::unique_ptr<std::string> ret = NULL;
-	redisReply *reply;
-	
-	reply = (redisReply *) redisCommand(connect, "GET %s %s", var.c_str());
-	
-	ret = std::unique_ptr<std::string>(new std::string(reply->str));
 	
 	return ret;
 }
@@ -79,27 +74,26 @@ void REDIS::resolveSingleMatch(const std::string& var,
     std::vector<const VariableValue *> *l) {
 	redisReply *reply;
 	
-	reply = (redisReply *) redisCommand(connect, "GET %s %s", var.c_str());
+	reply = (redisReply *) redisCommand(connect, "KEYS %s:*", var.c_str());
 	
-	VariableValue *v = new VariableValue(&var, new std::string(reply->str));
-	l->push_back(v);
+	l->insert(l->begin(), new VariableValue(
+		&m_name,
+		&var,
+		new std::string(std::to_string(reply->elements))
+	));
 		
     return;
 }
 
 
 void REDIS::store(std::string key, std::string value) {
-	
-	printf("store");
-    
+
     return;
 }
 
 
 bool REDIS::updateFirst(const std::string &key,
     const std::string &value) {
-		
-	printf("updateFirst");
     
     return true;
 }
@@ -153,10 +147,42 @@ void REDIS::resolveMultiMatches(const std::string& var,
 void REDIS::resolveRegularExpression(const std::string& var,
     std::vector<const VariableValue *> *l,
     variables::KeyExclusions &ke) {
-		
 	
-    
     return;
+}
+
+void REDIS::countReqLimit(const std::string& var,
+    std::vector<const VariableValue *> *l) {
+	redisReply *reply;
+
+	reply = (redisReply *) redisCommand(connect, "KEYS %s:*", var.c_str());
+
+	l->insert(l->begin(), new VariableValue(
+		&m_name,
+		&var,
+		new std::string(std::to_string(reply->elements))
+	));
+
+    return;
+}
+
+bool REDIS::insertReqLimit(const std::string &key,
+    const std::string &value) {
+
+	std::string new_var = "";
+
+	uint64_t ms = duration_cast<microseconds>(system_clock::now().time_since_epoch()).count();
+
+	std::ostringstream oss;
+	oss << ms;
+
+	new_var.append(key);
+	new_var.append(":");
+	new_var.append(oss.str());
+
+	redisCommand(connect, "SET %s 0 EX %s", new_var.c_str(), value.c_str());
+
+    return true;
 }
 
 #endif

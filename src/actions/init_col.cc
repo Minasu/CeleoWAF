@@ -44,9 +44,10 @@ bool InitCol::init(std::string *error) {
 
     if (m_collection_key != "ip" &&
         m_collection_key != "global" &&
-        m_collection_key != "resource") {
+        m_collection_key != "resource" &&
+		m_collection_key != "reqlimit") {
         error->assign("Something wrong with initcol: collection must be " \
-            "`ip', `global' or `resource'");
+            "'ip', 'global' or 'resource' or 'reqlimit'");
         return false;
     }
 
@@ -63,6 +64,8 @@ bool InitCol::evaluate(RuleWithActions *rule, Transaction *t) {
         t->m_collections.m_global_collection_key = collectionName;
     } else if (m_collection_key == "resource") {
         t->m_collections.m_resource_collection_key = collectionName;
+    } else if (m_collection_key == "reqlimit") {
+        t->m_collections.m_reqlimit_collection_key = collectionName;
     } else {
         return false;
     }

@@ -304,6 +304,7 @@ class CeleoWAF {
     collection::Collection *m_ip_collection;
     collection::Collection *m_session_collection;
     collection::Collection *m_user_collection;
+    collection::Collection *m_reqlimit_collection;
 
  private:
     std::string m_connector;

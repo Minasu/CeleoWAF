@@ -69,6 +69,11 @@ class Collection {
         variables::KeyExclusions &ke) = 0;
 
 
+	virtual void countReqLimit(const std::string& var,
+        std::vector<const VariableValue *> *l) = 0;
+	virtual bool insertReqLimit(const std::string &key,
+        const std::string &value) = 0;
+
     /* store */
     virtual void store(std::string key, std::string compartment,
         std::string value) {
@@ -192,6 +197,36 @@ class Collection {
         std::vector<const VariableValue *> *l, variables::KeyExclusions &ke) {
         std::string nkey = compartment + "::" + compartment2 + "::" + var;
         resolveRegularExpression(nkey, l, ke);
+    }
+	
+	
+	/* countReqLimit */
+    virtual void countReqLimit(const std::string& var,
+        std::string compartment, std::vector<const VariableValue *> *l) {
+        std::string nkey = compartment + "::" + var;
+        countReqLimit(nkey, l);
+    }
+
+
+    virtual void countReqLimit(const std::string& var,
+        std::string compartment, std::string compartment2,
+        std::vector<const VariableValue *> *l) {
+        std::string nkey = compartment + "::" + compartment2 + "::" + var;
+        countReqLimit(nkey, l);
+    }
+
+    /* insertReqLimit */
+    virtual bool insertReqLimit(const std::string &key, std::string compartment,
+        const std::string &value) {
+        std::string nkey = compartment + "::" + key;
+        return insertReqLimit(nkey, value);
+    }
+
+
+    virtual bool insertReqLimit(const std::string &key, std::string compartment,
+        std::string compartment2, const std::string &value) {
+        std::string nkey = compartment + "::" + compartment2 + "::" + key;
+        return insertReqLimit(nkey, value);
     }
 
     std::string m_name;

@@ -94,6 +94,11 @@ class InMemoryPerProcess :
     void resolveRegularExpression(const std::string& var,
         std::vector<const VariableValue *> *l,
         variables::KeyExclusions &ke) override;
+		
+	void countReqLimit(const std::string& var,
+        std::vector<const VariableValue *> *l) override;
+	bool insertReqLimit(const std::string &key,
+        const std::string &value) override;
 
  private:
     pthread_mutex_t m_lock;

@@ -260,6 +260,7 @@ class Driver;
 #include "src/variables/global.h"
 #include "src/variables/session.h"
 #include "src/variables/status.h"
+#include "src/variables/reqlimit.h"
 
 using namespace celeowaf;
 using namespace celeowaf::variables;
@@ -427,6 +428,7 @@ using namespace celeowaf::operators;
   VARIABLE_TX                                  "VARIABLE_TX"
   VARIABLE_SESSION                             "VARIABLE_SESSION"
   VARIABLE_USER                                "VARIABLE_USER"
+  VARIABLE_REQLIMIT                            "VARIABLE_REQLIMIT"
   RUN_TIME_VAR_ENV                             "RUN_TIME_VAR_ENV"
   RUN_TIME_VAR_XML                             "RUN_TIME_VAR_XML"
 
@@ -2159,6 +2161,22 @@ var:
     | VARIABLE_IP
       {
         VARIABLE_CONTAINER($$, new variables::Ip_NoDictElement());
+      }
+	| VARIABLE_REQLIMIT run_time_string
+      {
+        VARIABLE_CONTAINER($$, new variables::ReqLimit_DynamicElement(std::move($2)));
+      }
+    | VARIABLE_REQLIMIT DICT_ELEMENT
+      {
+        VARIABLE_CONTAINER($$, new variables::ReqLimit_DictElement($2));
+      }
+    | VARIABLE_REQLIMIT DICT_ELEMENT_REGEXP
+      {
+        VARIABLE_CONTAINER($$, new variables::ReqLimit_DictElementRegexp($2));
+      }
+    | VARIABLE_REQLIMIT
+      {
+        VARIABLE_CONTAINER($$, new variables::ReqLimit_NoDictElement());
       }
     | VARIABLE_GLOBAL run_time_string
       {

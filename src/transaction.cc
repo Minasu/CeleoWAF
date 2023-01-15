@@ -135,7 +135,7 @@ Transaction::Transaction(CeleoWAF *ms, RulesSet *rules, void *logCbData)
     m_timeStamp(std::time(NULL)),
     m_collections(ms->m_global_collection, ms->m_ip_collection,
         ms->m_session_collection, ms->m_user_collection,
-        ms->m_resource_collection),
+        ms->m_resource_collection, ms->m_reqlimit_collection),
     m_matched(),
 #ifdef WITH_LIBXML2
     m_xml(new RequestBodyProcessor::XML(this)),
@@ -209,7 +209,7 @@ Transaction::Transaction(CeleoWAF *ms, RulesSet *rules, char *id, void *logCbDat
     m_timeStamp(std::time(NULL)),
     m_collections(ms->m_global_collection, ms->m_ip_collection,
         ms->m_session_collection, ms->m_user_collection,
-        ms->m_resource_collection),
+        ms->m_resource_collection, ms->m_reqlimit_collection),
     m_matched(),
 #ifdef WITH_LIBXML2
     m_xml(new RequestBodyProcessor::XML(this)),

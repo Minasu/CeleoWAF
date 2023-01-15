@@ -23,6 +23,8 @@
 #include <vector>
 #include <algorithm>
 #include <memory>
+#include <ctime>
+#include <chrono>
 #endif
 
 #ifdef WITH_REDIS
@@ -36,6 +38,8 @@
 #include "celeowaf/variable_value.h"
 #include "celeowaf/collection/collection.h"
 #include "src/variables/variable.h"
+
+using namespace std::chrono;
 
 #ifndef SRC_COLLECTION_BACKEND_REDIS_H_
 #define SRC_COLLECTION_BACKEND_REDIS_H_
@@ -72,6 +76,11 @@ class REDIS :
     void resolveRegularExpression(const std::string& var,
         std::vector<const VariableValue *> *l,
         variables::KeyExclusions &ke) override;
+		
+	void countReqLimit(const std::string& var,
+        std::vector<const VariableValue *> *l) override;
+	bool insertReqLimit(const std::string &key,
+        const std::string &value) override;
 
  private:
     redisContext *connect ;

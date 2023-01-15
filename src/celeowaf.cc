@@ -67,6 +67,7 @@ CeleoWAF::CeleoWAF()
     m_ip_collection(new collection::backend::REDIS("IP")),
     m_session_collection(new collection::backend::REDIS("SESSION")),
     m_user_collection(new collection::backend::REDIS("USER")),
+	m_reqlimit_collection(new collection::backend::REDIS("REQLIMIT")),
 #else
     m_global_collection(new collection::backend::InMemoryPerProcess("GLOBAL")),
     m_resource_collection(
@@ -106,6 +107,7 @@ CeleoWAF::~CeleoWAF() {
     delete m_ip_collection;
     delete m_session_collection;
     delete m_user_collection;
+	delete m_reqlimit_collection;
 }
 
 
