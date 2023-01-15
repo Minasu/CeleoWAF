@@ -20,6 +20,7 @@ libcwaf_parser_la_CPPFLAGS = \
 	-g \
 	-fPIC \
 	-O3 \
+	$(AMQP_CFLAGS) \
 	$(CURL_CFLAGS) \
 	$(GEOIP_CFLAGS) \
 	$(GLOBAL_CPPFLAGS) \

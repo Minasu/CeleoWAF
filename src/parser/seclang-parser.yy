@@ -643,6 +643,7 @@ using namespace celeowaf::operators;
   CONFIG_VALUE_ABORT                           "CONFIG_VALUE_ABORT"
   CONFIG_VALUE_DETC                            "CONFIG_VALUE_DETC"
   CONFIG_VALUE_HTTPS                           "CONFIG_VALUE_HTTPS"
+  CONFIG_VALUE_AMQP                            "CONFIG_VALUE_AMQP"
   CONFIG_VALUE_OFF                             "CONFIG_VALUE_OFF"
   CONFIG_VALUE_ON                              "CONFIG_VALUE_ON"
   CONFIG_VALUE_PARALLEL                        "CONFIG_VALUE_PARALLEL"
@@ -802,6 +803,10 @@ audit_log:
     | CONFIG_DIR_AUDIT_TPE CONFIG_VALUE_HTTPS
       {
         driver.m_auditLog->setType(celeowaf::audit_log::AuditLog::HttpsAuditLogType);
+      }
+	| CONFIG_DIR_AUDIT_TPE CONFIG_VALUE_AMQP
+      {
+        driver.m_auditLog->setType(celeowaf::audit_log::AuditLog::AMQPAuditLogType);
       }
 
     /* Upload */

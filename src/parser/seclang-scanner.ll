@@ -397,11 +397,12 @@ CONFIG_UPLOAD_FILE_MODE                 (?i:SecUploadFileMode)
 CONFIG_VALUE_ABORT                      (?i:Abort)
 CONFIG_VALUE_DETC                       (?i:DetectionOnly)
 CONFIG_VALUE_HTTPS                      (?i:https)
+CONFIG_VALUE_AMQP                       (?i:amqp)
 CONFIG_VALUE_NUMBER                     [0-9]+
 CONFIG_VALUE_OFF                        (?i:Off)
 CONFIG_VALUE_ON                         (?i:On)
 CONFIG_VALUE_PARALLEL                   (?i:Parallel|Concurrent)
-CONFIG_VALUE_PATH                       [0-9A-Za-z_\/\.\-\*\:]+
+CONFIG_VALUE_PATH                       [0-9A-Za-z_\/\.\-\*\:\@]+
 CONFIG_VALUE_PROCESS_PARTIAL            (?i:ProcessPartial)
 CONFIG_VALUE_REJECT                     (?i:Reject)
 CONFIG_VALUE_RELEVANT_ONLY              (?i:RelevantOnly)
@@ -805,6 +806,7 @@ EQUALS_MINUS                            (?i:=\-)
 {CONFIG_VALUE_ABORT}                                                    { return p::make_CONFIG_VALUE_ABORT(yytext, *driver.loc.back()); }
 {CONFIG_VALUE_DETC}                                                     { return p::make_CONFIG_VALUE_DETC(yytext, *driver.loc.back()); }
 {CONFIG_VALUE_HTTPS}                                                    { return p::make_CONFIG_VALUE_HTTPS(yytext, *driver.loc.back()); }
+{CONFIG_VALUE_AMQP}                                                     { return p::make_CONFIG_VALUE_AMQP(yytext, *driver.loc.back()); }
 {CONFIG_VALUE_OFF}                                                      { return p::make_CONFIG_VALUE_OFF(yytext, *driver.loc.back()); }
 {CONFIG_VALUE_ON}                                                       { return p::make_CONFIG_VALUE_ON(yytext, *driver.loc.back()); }
 {CONFIG_VALUE_PARALLEL}                                                 { return p::make_CONFIG_VALUE_PARALLEL(yytext, *driver.loc.back()); }

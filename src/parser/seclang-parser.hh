@@ -751,6 +751,7 @@ namespace yy {
       // "CONFIG_VALUE_ABORT"
       // "CONFIG_VALUE_DETC"
       // "CONFIG_VALUE_HTTPS"
+      // "CONFIG_VALUE_AMQP"
       // "CONFIG_VALUE_OFF"
       // "CONFIG_VALUE_ON"
       // "CONFIG_VALUE_PARALLEL"
@@ -1140,44 +1141,45 @@ namespace yy {
         TOK_CONFIG_VALUE_ABORT = 559,
         TOK_CONFIG_VALUE_DETC = 560,
         TOK_CONFIG_VALUE_HTTPS = 561,
-        TOK_CONFIG_VALUE_OFF = 562,
-        TOK_CONFIG_VALUE_ON = 563,
-        TOK_CONFIG_VALUE_PARALLEL = 564,
-        TOK_CONFIG_VALUE_PROCESS_PARTIAL = 565,
-        TOK_CONFIG_VALUE_REJECT = 566,
-        TOK_CONFIG_VALUE_RELEVANT_ONLY = 567,
-        TOK_CONFIG_VALUE_SERIAL = 568,
-        TOK_CONFIG_VALUE_WARN = 569,
-        TOK_CONFIG_XML_EXTERNAL_ENTITY = 570,
-        TOK_CONGIG_DIR_RESPONSE_BODY_MP = 571,
-        TOK_CONGIG_DIR_SEC_ARG_SEP = 572,
-        TOK_CONGIG_DIR_SEC_COOKIE_FORMAT = 573,
-        TOK_CONFIG_SEC_COOKIEV0_SEPARATOR = 574,
-        TOK_CONGIG_DIR_SEC_DATA_DIR = 575,
-        TOK_CONGIG_DIR_SEC_STATUS_ENGINE = 576,
-        TOK_CONFIG_SEC_STREAM_IN_BODY_INSPECTION = 577,
-        TOK_CONFIG_SEC_STREAM_OUT_BODY_INSPECTION = 578,
-        TOK_CONGIG_DIR_SEC_TMP_DIR = 579,
-        TOK_DIRECTIVE = 580,
-        TOK_DIRECTIVE_SECRULESCRIPT = 581,
-        TOK_FREE_TEXT_QUOTE_MACRO_EXPANSION = 582,
-        TOK_QUOTATION_MARK = 583,
-        TOK_RUN_TIME_VAR_BLD = 584,
-        TOK_RUN_TIME_VAR_DUR = 585,
-        TOK_RUN_TIME_VAR_HSV = 586,
-        TOK_RUN_TIME_VAR_REMOTE_USER = 587,
-        TOK_RUN_TIME_VAR_TIME = 588,
-        TOK_RUN_TIME_VAR_TIME_DAY = 589,
-        TOK_RUN_TIME_VAR_TIME_EPOCH = 590,
-        TOK_RUN_TIME_VAR_TIME_HOUR = 591,
-        TOK_RUN_TIME_VAR_TIME_MIN = 592,
-        TOK_RUN_TIME_VAR_TIME_MON = 593,
-        TOK_RUN_TIME_VAR_TIME_SEC = 594,
-        TOK_RUN_TIME_VAR_TIME_WDAY = 595,
-        TOK_RUN_TIME_VAR_TIME_YEAR = 596,
-        TOK_VARIABLE = 597,
-        TOK_DICT_ELEMENT = 598,
-        TOK_DICT_ELEMENT_REGEXP = 599
+        TOK_CONFIG_VALUE_AMQP = 562,
+        TOK_CONFIG_VALUE_OFF = 563,
+        TOK_CONFIG_VALUE_ON = 564,
+        TOK_CONFIG_VALUE_PARALLEL = 565,
+        TOK_CONFIG_VALUE_PROCESS_PARTIAL = 566,
+        TOK_CONFIG_VALUE_REJECT = 567,
+        TOK_CONFIG_VALUE_RELEVANT_ONLY = 568,
+        TOK_CONFIG_VALUE_SERIAL = 569,
+        TOK_CONFIG_VALUE_WARN = 570,
+        TOK_CONFIG_XML_EXTERNAL_ENTITY = 571,
+        TOK_CONGIG_DIR_RESPONSE_BODY_MP = 572,
+        TOK_CONGIG_DIR_SEC_ARG_SEP = 573,
+        TOK_CONGIG_DIR_SEC_COOKIE_FORMAT = 574,
+        TOK_CONFIG_SEC_COOKIEV0_SEPARATOR = 575,
+        TOK_CONGIG_DIR_SEC_DATA_DIR = 576,
+        TOK_CONGIG_DIR_SEC_STATUS_ENGINE = 577,
+        TOK_CONFIG_SEC_STREAM_IN_BODY_INSPECTION = 578,
+        TOK_CONFIG_SEC_STREAM_OUT_BODY_INSPECTION = 579,
+        TOK_CONGIG_DIR_SEC_TMP_DIR = 580,
+        TOK_DIRECTIVE = 581,
+        TOK_DIRECTIVE_SECRULESCRIPT = 582,
+        TOK_FREE_TEXT_QUOTE_MACRO_EXPANSION = 583,
+        TOK_QUOTATION_MARK = 584,
+        TOK_RUN_TIME_VAR_BLD = 585,
+        TOK_RUN_TIME_VAR_DUR = 586,
+        TOK_RUN_TIME_VAR_HSV = 587,
+        TOK_RUN_TIME_VAR_REMOTE_USER = 588,
+        TOK_RUN_TIME_VAR_TIME = 589,
+        TOK_RUN_TIME_VAR_TIME_DAY = 590,
+        TOK_RUN_TIME_VAR_TIME_EPOCH = 591,
+        TOK_RUN_TIME_VAR_TIME_HOUR = 592,
+        TOK_RUN_TIME_VAR_TIME_MIN = 593,
+        TOK_RUN_TIME_VAR_TIME_MON = 594,
+        TOK_RUN_TIME_VAR_TIME_SEC = 595,
+        TOK_RUN_TIME_VAR_TIME_WDAY = 596,
+        TOK_RUN_TIME_VAR_TIME_YEAR = 597,
+        TOK_VARIABLE = 598,
+        TOK_DICT_ELEMENT = 599,
+        TOK_DICT_ELEMENT_REGEXP = 600
       };
     };
 
@@ -2518,6 +2520,10 @@ namespace yy {
 
     static inline
     symbol_type
+    make_CONFIG_VALUE_AMQP (const std::string& v, const location_type& l);
+
+    static inline
+    symbol_type
     make_CONFIG_VALUE_OFF (const std::string& v, const location_type& l);
 
     static inline
@@ -2873,12 +2879,12 @@ namespace yy {
     enum
     {
       yyeof_ = 0,
-      yylast_ = 3344,     ///< Last index in yytable_.
+      yylast_ = 3351,     ///< Last index in yytable_.
       yynnts_ = 16,  ///< Number of nonterminal symbols.
-      yyfinal_ = 339, ///< Termination state number.
+      yyfinal_ = 340, ///< Termination state number.
       yyterror_ = 1,
       yyerrcode_ = 256,
-      yyntokens_ = 345  ///< Number of tokens.
+      yyntokens_ = 346  ///< Number of tokens.
     };
 
 
@@ -2954,9 +2960,10 @@ namespace yy {
      305,   306,   307,   308,   309,   310,   311,   312,   313,   314,
      315,   316,   317,   318,   319,   320,   321,   322,   323,   324,
      325,   326,   327,   328,   329,   330,   331,   332,   333,   334,
-     335,   336,   337,   338,   339,   340,   341,   342,   343,   344
+     335,   336,   337,   338,   339,   340,   341,   342,   343,   344,
+     345
     };
-    const unsigned int user_token_number_max_ = 599;
+    const unsigned int user_token_number_max_ = 600;
     const token_number_type undef_token_ = 2;
 
     if (static_cast<int>(t) <= yyeof_)
@@ -3149,73 +3156,74 @@ namespace yy {
       case 304: // "CONFIG_VALUE_ABORT"
       case 305: // "CONFIG_VALUE_DETC"
       case 306: // "CONFIG_VALUE_HTTPS"
-      case 307: // "CONFIG_VALUE_OFF"
-      case 308: // "CONFIG_VALUE_ON"
-      case 309: // "CONFIG_VALUE_PARALLEL"
-      case 310: // "CONFIG_VALUE_PROCESS_PARTIAL"
-      case 311: // "CONFIG_VALUE_REJECT"
-      case 312: // "CONFIG_VALUE_RELEVANT_ONLY"
-      case 313: // "CONFIG_VALUE_SERIAL"
-      case 314: // "CONFIG_VALUE_WARN"
-      case 315: // "CONFIG_XML_EXTERNAL_ENTITY"
-      case 316: // "CONGIG_DIR_RESPONSE_BODY_MP"
-      case 317: // "CONGIG_DIR_SEC_ARG_SEP"
-      case 318: // "CONGIG_DIR_SEC_COOKIE_FORMAT"
-      case 319: // "CONFIG_SEC_COOKIEV0_SEPARATOR"
-      case 320: // "CONGIG_DIR_SEC_DATA_DIR"
-      case 321: // "CONGIG_DIR_SEC_STATUS_ENGINE"
-      case 322: // "CONFIG_SEC_STREAM_IN_BODY_INSPECTION"
-      case 323: // "CONFIG_SEC_STREAM_OUT_BODY_INSPECTION"
-      case 324: // "CONGIG_DIR_SEC_TMP_DIR"
-      case 325: // "DIRECTIVE"
-      case 326: // "DIRECTIVE_SECRULESCRIPT"
-      case 327: // "FREE_TEXT_QUOTE_MACRO_EXPANSION"
-      case 328: // "QUOTATION_MARK"
-      case 329: // "RUN_TIME_VAR_BLD"
-      case 330: // "RUN_TIME_VAR_DUR"
-      case 331: // "RUN_TIME_VAR_HSV"
-      case 332: // "RUN_TIME_VAR_REMOTE_USER"
-      case 333: // "RUN_TIME_VAR_TIME"
-      case 334: // "RUN_TIME_VAR_TIME_DAY"
-      case 335: // "RUN_TIME_VAR_TIME_EPOCH"
-      case 336: // "RUN_TIME_VAR_TIME_HOUR"
-      case 337: // "RUN_TIME_VAR_TIME_MIN"
-      case 338: // "RUN_TIME_VAR_TIME_MON"
-      case 339: // "RUN_TIME_VAR_TIME_SEC"
-      case 340: // "RUN_TIME_VAR_TIME_WDAY"
-      case 341: // "RUN_TIME_VAR_TIME_YEAR"
-      case 342: // "VARIABLE"
-      case 343: // "Dictionary element"
-      case 344: // "Dictionary element, selected by regexp"
+      case 307: // "CONFIG_VALUE_AMQP"
+      case 308: // "CONFIG_VALUE_OFF"
+      case 309: // "CONFIG_VALUE_ON"
+      case 310: // "CONFIG_VALUE_PARALLEL"
+      case 311: // "CONFIG_VALUE_PROCESS_PARTIAL"
+      case 312: // "CONFIG_VALUE_REJECT"
+      case 313: // "CONFIG_VALUE_RELEVANT_ONLY"
+      case 314: // "CONFIG_VALUE_SERIAL"
+      case 315: // "CONFIG_VALUE_WARN"
+      case 316: // "CONFIG_XML_EXTERNAL_ENTITY"
+      case 317: // "CONGIG_DIR_RESPONSE_BODY_MP"
+      case 318: // "CONGIG_DIR_SEC_ARG_SEP"
+      case 319: // "CONGIG_DIR_SEC_COOKIE_FORMAT"
+      case 320: // "CONFIG_SEC_COOKIEV0_SEPARATOR"
+      case 321: // "CONGIG_DIR_SEC_DATA_DIR"
+      case 322: // "CONGIG_DIR_SEC_STATUS_ENGINE"
+      case 323: // "CONFIG_SEC_STREAM_IN_BODY_INSPECTION"
+      case 324: // "CONFIG_SEC_STREAM_OUT_BODY_INSPECTION"
+      case 325: // "CONGIG_DIR_SEC_TMP_DIR"
+      case 326: // "DIRECTIVE"
+      case 327: // "DIRECTIVE_SECRULESCRIPT"
+      case 328: // "FREE_TEXT_QUOTE_MACRO_EXPANSION"
+      case 329: // "QUOTATION_MARK"
+      case 330: // "RUN_TIME_VAR_BLD"
+      case 331: // "RUN_TIME_VAR_DUR"
+      case 332: // "RUN_TIME_VAR_HSV"
+      case 333: // "RUN_TIME_VAR_REMOTE_USER"
+      case 334: // "RUN_TIME_VAR_TIME"
+      case 335: // "RUN_TIME_VAR_TIME_DAY"
+      case 336: // "RUN_TIME_VAR_TIME_EPOCH"
+      case 337: // "RUN_TIME_VAR_TIME_HOUR"
+      case 338: // "RUN_TIME_VAR_TIME_MIN"
+      case 339: // "RUN_TIME_VAR_TIME_MON"
+      case 340: // "RUN_TIME_VAR_TIME_SEC"
+      case 341: // "RUN_TIME_VAR_TIME_WDAY"
+      case 342: // "RUN_TIME_VAR_TIME_YEAR"
+      case 343: // "VARIABLE"
+      case 344: // "Dictionary element"
+      case 345: // "Dictionary element, selected by regexp"
         value.copy< std::string > (other.value);
         break;
 
-      case 351: // op
-      case 352: // op_before_init
+      case 352: // op
+      case 353: // op_before_init
         value.copy< std::unique_ptr<Operator> > (other.value);
         break;
 
-      case 360: // run_time_string
+      case 361: // run_time_string
         value.copy< std::unique_ptr<RunTimeString> > (other.value);
         break;
 
-      case 357: // var
+      case 358: // var
         value.copy< std::unique_ptr<Variable> > (other.value);
         break;
 
-      case 358: // act
-      case 359: // setvar_action
+      case 359: // act
+      case 360: // setvar_action
         value.copy< std::unique_ptr<actions::Action> > (other.value);
         break;
 
-      case 354: // variables
-      case 355: // variables_pre_process
-      case 356: // variables_may_be_quoted
+      case 355: // variables
+      case 356: // variables_pre_process
+      case 357: // variables_may_be_quoted
         value.copy< std::unique_ptr<std::vector<std::unique_ptr<Variable> > >  > (other.value);
         break;
 
-      case 349: // actions
-      case 350: // actions_may_quoted
+      case 350: // actions
+      case 351: // actions_may_quoted
         value.copy< std::unique_ptr<std::vector<std::unique_ptr<actions::Action> > >  > (other.value);
         break;
 
@@ -3396,73 +3404,74 @@ namespace yy {
       case 304: // "CONFIG_VALUE_ABORT"
       case 305: // "CONFIG_VALUE_DETC"
       case 306: // "CONFIG_VALUE_HTTPS"
-      case 307: // "CONFIG_VALUE_OFF"
-      case 308: // "CONFIG_VALUE_ON"
-      case 309: // "CONFIG_VALUE_PARALLEL"
-      case 310: // "CONFIG_VALUE_PROCESS_PARTIAL"
-      case 311: // "CONFIG_VALUE_REJECT"
-      case 312: // "CONFIG_VALUE_RELEVANT_ONLY"
-      case 313: // "CONFIG_VALUE_SERIAL"
-      case 314: // "CONFIG_VALUE_WARN"
-      case 315: // "CONFIG_XML_EXTERNAL_ENTITY"
-      case 316: // "CONGIG_DIR_RESPONSE_BODY_MP"
-      case 317: // "CONGIG_DIR_SEC_ARG_SEP"
-      case 318: // "CONGIG_DIR_SEC_COOKIE_FORMAT"
-      case 319: // "CONFIG_SEC_COOKIEV0_SEPARATOR"
-      case 320: // "CONGIG_DIR_SEC_DATA_DIR"
-      case 321: // "CONGIG_DIR_SEC_STATUS_ENGINE"
-      case 322: // "CONFIG_SEC_STREAM_IN_BODY_INSPECTION"
-      case 323: // "CONFIG_SEC_STREAM_OUT_BODY_INSPECTION"
-      case 324: // "CONGIG_DIR_SEC_TMP_DIR"
-      case 325: // "DIRECTIVE"
-      case 326: // "DIRECTIVE_SECRULESCRIPT"
-      case 327: // "FREE_TEXT_QUOTE_MACRO_EXPANSION"
-      case 328: // "QUOTATION_MARK"
-      case 329: // "RUN_TIME_VAR_BLD"
-      case 330: // "RUN_TIME_VAR_DUR"
-      case 331: // "RUN_TIME_VAR_HSV"
-      case 332: // "RUN_TIME_VAR_REMOTE_USER"
-      case 333: // "RUN_TIME_VAR_TIME"
-      case 334: // "RUN_TIME_VAR_TIME_DAY"
-      case 335: // "RUN_TIME_VAR_TIME_EPOCH"
-      case 336: // "RUN_TIME_VAR_TIME_HOUR"
-      case 337: // "RUN_TIME_VAR_TIME_MIN"
-      case 338: // "RUN_TIME_VAR_TIME_MON"
-      case 339: // "RUN_TIME_VAR_TIME_SEC"
-      case 340: // "RUN_TIME_VAR_TIME_WDAY"
-      case 341: // "RUN_TIME_VAR_TIME_YEAR"
-      case 342: // "VARIABLE"
-      case 343: // "Dictionary element"
-      case 344: // "Dictionary element, selected by regexp"
+      case 307: // "CONFIG_VALUE_AMQP"
+      case 308: // "CONFIG_VALUE_OFF"
+      case 309: // "CONFIG_VALUE_ON"
+      case 310: // "CONFIG_VALUE_PARALLEL"
+      case 311: // "CONFIG_VALUE_PROCESS_PARTIAL"
+      case 312: // "CONFIG_VALUE_REJECT"
+      case 313: // "CONFIG_VALUE_RELEVANT_ONLY"
+      case 314: // "CONFIG_VALUE_SERIAL"
+      case 315: // "CONFIG_VALUE_WARN"
+      case 316: // "CONFIG_XML_EXTERNAL_ENTITY"
+      case 317: // "CONGIG_DIR_RESPONSE_BODY_MP"
+      case 318: // "CONGIG_DIR_SEC_ARG_SEP"
+      case 319: // "CONGIG_DIR_SEC_COOKIE_FORMAT"
+      case 320: // "CONFIG_SEC_COOKIEV0_SEPARATOR"
+      case 321: // "CONGIG_DIR_SEC_DATA_DIR"
+      case 322: // "CONGIG_DIR_SEC_STATUS_ENGINE"
+      case 323: // "CONFIG_SEC_STREAM_IN_BODY_INSPECTION"
+      case 324: // "CONFIG_SEC_STREAM_OUT_BODY_INSPECTION"
+      case 325: // "CONGIG_DIR_SEC_TMP_DIR"
+      case 326: // "DIRECTIVE"
+      case 327: // "DIRECTIVE_SECRULESCRIPT"
+      case 328: // "FREE_TEXT_QUOTE_MACRO_EXPANSION"
+      case 329: // "QUOTATION_MARK"
+      case 330: // "RUN_TIME_VAR_BLD"
+      case 331: // "RUN_TIME_VAR_DUR"
+      case 332: // "RUN_TIME_VAR_HSV"
+      case 333: // "RUN_TIME_VAR_REMOTE_USER"
+      case 334: // "RUN_TIME_VAR_TIME"
+      case 335: // "RUN_TIME_VAR_TIME_DAY"
+      case 336: // "RUN_TIME_VAR_TIME_EPOCH"
+      case 337: // "RUN_TIME_VAR_TIME_HOUR"
+      case 338: // "RUN_TIME_VAR_TIME_MIN"
+      case 339: // "RUN_TIME_VAR_TIME_MON"
+      case 340: // "RUN_TIME_VAR_TIME_SEC"
+      case 341: // "RUN_TIME_VAR_TIME_WDAY"
+      case 342: // "RUN_TIME_VAR_TIME_YEAR"
+      case 343: // "VARIABLE"
+      case 344: // "Dictionary element"
+      case 345: // "Dictionary element, selected by regexp"
         value.copy< std::string > (v);
         break;
 
-      case 351: // op
-      case 352: // op_before_init
+      case 352: // op
+      case 353: // op_before_init
         value.copy< std::unique_ptr<Operator> > (v);
         break;
 
-      case 360: // run_time_string
+      case 361: // run_time_string
         value.copy< std::unique_ptr<RunTimeString> > (v);
         break;
 
-      case 357: // var
+      case 358: // var
         value.copy< std::unique_ptr<Variable> > (v);
         break;
 
-      case 358: // act
-      case 359: // setvar_action
+      case 359: // act
+      case 360: // setvar_action
         value.copy< std::unique_ptr<actions::Action> > (v);
         break;
 
-      case 354: // variables
-      case 355: // variables_pre_process
-      case 356: // variables_may_be_quoted
+      case 355: // variables
+      case 356: // variables_pre_process
+      case 357: // variables_may_be_quoted
         value.copy< std::unique_ptr<std::vector<std::unique_ptr<Variable> > >  > (v);
         break;
 
-      case 349: // actions
-      case 350: // actions_may_quoted
+      case 350: // actions
+      case 351: // actions_may_quoted
         value.copy< std::unique_ptr<std::vector<std::unique_ptr<actions::Action> > >  > (v);
         break;
 
@@ -3716,73 +3725,74 @@ namespace yy {
       case 304: // "CONFIG_VALUE_ABORT"
       case 305: // "CONFIG_VALUE_DETC"
       case 306: // "CONFIG_VALUE_HTTPS"
-      case 307: // "CONFIG_VALUE_OFF"
-      case 308: // "CONFIG_VALUE_ON"
-      case 309: // "CONFIG_VALUE_PARALLEL"
-      case 310: // "CONFIG_VALUE_PROCESS_PARTIAL"
-      case 311: // "CONFIG_VALUE_REJECT"
-      case 312: // "CONFIG_VALUE_RELEVANT_ONLY"
-      case 313: // "CONFIG_VALUE_SERIAL"
-      case 314: // "CONFIG_VALUE_WARN"
-      case 315: // "CONFIG_XML_EXTERNAL_ENTITY"
-      case 316: // "CONGIG_DIR_RESPONSE_BODY_MP"
-      case 317: // "CONGIG_DIR_SEC_ARG_SEP"
-      case 318: // "CONGIG_DIR_SEC_COOKIE_FORMAT"
-      case 319: // "CONFIG_SEC_COOKIEV0_SEPARATOR"
-      case 320: // "CONGIG_DIR_SEC_DATA_DIR"
-      case 321: // "CONGIG_DIR_SEC_STATUS_ENGINE"
-      case 322: // "CONFIG_SEC_STREAM_IN_BODY_INSPECTION"
-      case 323: // "CONFIG_SEC_STREAM_OUT_BODY_INSPECTION"
-      case 324: // "CONGIG_DIR_SEC_TMP_DIR"
-      case 325: // "DIRECTIVE"
-      case 326: // "DIRECTIVE_SECRULESCRIPT"
-      case 327: // "FREE_TEXT_QUOTE_MACRO_EXPANSION"
-      case 328: // "QUOTATION_MARK"
-      case 329: // "RUN_TIME_VAR_BLD"
-      case 330: // "RUN_TIME_VAR_DUR"
-      case 331: // "RUN_TIME_VAR_HSV"
-      case 332: // "RUN_TIME_VAR_REMOTE_USER"
-      case 333: // "RUN_TIME_VAR_TIME"
-      case 334: // "RUN_TIME_VAR_TIME_DAY"
-      case 335: // "RUN_TIME_VAR_TIME_EPOCH"
-      case 336: // "RUN_TIME_VAR_TIME_HOUR"
-      case 337: // "RUN_TIME_VAR_TIME_MIN"
-      case 338: // "RUN_TIME_VAR_TIME_MON"
-      case 339: // "RUN_TIME_VAR_TIME_SEC"
-      case 340: // "RUN_TIME_VAR_TIME_WDAY"
-      case 341: // "RUN_TIME_VAR_TIME_YEAR"
-      case 342: // "VARIABLE"
-      case 343: // "Dictionary element"
-      case 344: // "Dictionary element, selected by regexp"
+      case 307: // "CONFIG_VALUE_AMQP"
+      case 308: // "CONFIG_VALUE_OFF"
+      case 309: // "CONFIG_VALUE_ON"
+      case 310: // "CONFIG_VALUE_PARALLEL"
+      case 311: // "CONFIG_VALUE_PROCESS_PARTIAL"
+      case 312: // "CONFIG_VALUE_REJECT"
+      case 313: // "CONFIG_VALUE_RELEVANT_ONLY"
+      case 314: // "CONFIG_VALUE_SERIAL"
+      case 315: // "CONFIG_VALUE_WARN"
+      case 316: // "CONFIG_XML_EXTERNAL_ENTITY"
+      case 317: // "CONGIG_DIR_RESPONSE_BODY_MP"
+      case 318: // "CONGIG_DIR_SEC_ARG_SEP"
+      case 319: // "CONGIG_DIR_SEC_COOKIE_FORMAT"
+      case 320: // "CONFIG_SEC_COOKIEV0_SEPARATOR"
+      case 321: // "CONGIG_DIR_SEC_DATA_DIR"
+      case 322: // "CONGIG_DIR_SEC_STATUS_ENGINE"
+      case 323: // "CONFIG_SEC_STREAM_IN_BODY_INSPECTION"
+      case 324: // "CONFIG_SEC_STREAM_OUT_BODY_INSPECTION"
+      case 325: // "CONGIG_DIR_SEC_TMP_DIR"
+      case 326: // "DIRECTIVE"
+      case 327: // "DIRECTIVE_SECRULESCRIPT"
+      case 328: // "FREE_TEXT_QUOTE_MACRO_EXPANSION"
+      case 329: // "QUOTATION_MARK"
+      case 330: // "RUN_TIME_VAR_BLD"
+      case 331: // "RUN_TIME_VAR_DUR"
+      case 332: // "RUN_TIME_VAR_HSV"
+      case 333: // "RUN_TIME_VAR_REMOTE_USER"
+      case 334: // "RUN_TIME_VAR_TIME"
+      case 335: // "RUN_TIME_VAR_TIME_DAY"
+      case 336: // "RUN_TIME_VAR_TIME_EPOCH"
+      case 337: // "RUN_TIME_VAR_TIME_HOUR"
+      case 338: // "RUN_TIME_VAR_TIME_MIN"
+      case 339: // "RUN_TIME_VAR_TIME_MON"
+      case 340: // "RUN_TIME_VAR_TIME_SEC"
+      case 341: // "RUN_TIME_VAR_TIME_WDAY"
+      case 342: // "RUN_TIME_VAR_TIME_YEAR"
+      case 343: // "VARIABLE"
+      case 344: // "Dictionary element"
+      case 345: // "Dictionary element, selected by regexp"
         value.template destroy< std::string > ();
         break;
 
-      case 351: // op
-      case 352: // op_before_init
+      case 352: // op
+      case 353: // op_before_init
         value.template destroy< std::unique_ptr<Operator> > ();
         break;
 
-      case 360: // run_time_string
+      case 361: // run_time_string
         value.template destroy< std::unique_ptr<RunTimeString> > ();
         break;
 
-      case 357: // var
+      case 358: // var
         value.template destroy< std::unique_ptr<Variable> > ();
         break;
 
-      case 358: // act
-      case 359: // setvar_action
+      case 359: // act
+      case 360: // setvar_action
         value.template destroy< std::unique_ptr<actions::Action> > ();
         break;
 
-      case 354: // variables
-      case 355: // variables_pre_process
-      case 356: // variables_may_be_quoted
+      case 355: // variables
+      case 356: // variables_pre_process
+      case 357: // variables_may_be_quoted
         value.template destroy< std::unique_ptr<std::vector<std::unique_ptr<Variable> > >  > ();
         break;
 
-      case 349: // actions
-      case 350: // actions_may_quoted
+      case 350: // actions
+      case 351: // actions_may_quoted
         value.template destroy< std::unique_ptr<std::vector<std::unique_ptr<actions::Action> > >  > ();
         break;
 
@@ -3969,73 +3979,74 @@ namespace yy {
       case 304: // "CONFIG_VALUE_ABORT"
       case 305: // "CONFIG_VALUE_DETC"
       case 306: // "CONFIG_VALUE_HTTPS"
-      case 307: // "CONFIG_VALUE_OFF"
-      case 308: // "CONFIG_VALUE_ON"
-      case 309: // "CONFIG_VALUE_PARALLEL"
-      case 310: // "CONFIG_VALUE_PROCESS_PARTIAL"
-      case 311: // "CONFIG_VALUE_REJECT"
-      case 312: // "CONFIG_VALUE_RELEVANT_ONLY"
-      case 313: // "CONFIG_VALUE_SERIAL"
-      case 314: // "CONFIG_VALUE_WARN"
-      case 315: // "CONFIG_XML_EXTERNAL_ENTITY"
-      case 316: // "CONGIG_DIR_RESPONSE_BODY_MP"
-      case 317: // "CONGIG_DIR_SEC_ARG_SEP"
-      case 318: // "CONGIG_DIR_SEC_COOKIE_FORMAT"
-      case 319: // "CONFIG_SEC_COOKIEV0_SEPARATOR"
-      case 320: // "CONGIG_DIR_SEC_DATA_DIR"
-      case 321: // "CONGIG_DIR_SEC_STATUS_ENGINE"
-      case 322: // "CONFIG_SEC_STREAM_IN_BODY_INSPECTION"
-      case 323: // "CONFIG_SEC_STREAM_OUT_BODY_INSPECTION"
-      case 324: // "CONGIG_DIR_SEC_TMP_DIR"
-      case 325: // "DIRECTIVE"
-      case 326: // "DIRECTIVE_SECRULESCRIPT"
-      case 327: // "FREE_TEXT_QUOTE_MACRO_EXPANSION"
-      case 328: // "QUOTATION_MARK"
-      case 329: // "RUN_TIME_VAR_BLD"
-      case 330: // "RUN_TIME_VAR_DUR"
-      case 331: // "RUN_TIME_VAR_HSV"
-      case 332: // "RUN_TIME_VAR_REMOTE_USER"
-      case 333: // "RUN_TIME_VAR_TIME"
-      case 334: // "RUN_TIME_VAR_TIME_DAY"
-      case 335: // "RUN_TIME_VAR_TIME_EPOCH"
-      case 336: // "RUN_TIME_VAR_TIME_HOUR"
-      case 337: // "RUN_TIME_VAR_TIME_MIN"
-      case 338: // "RUN_TIME_VAR_TIME_MON"
-      case 339: // "RUN_TIME_VAR_TIME_SEC"
-      case 340: // "RUN_TIME_VAR_TIME_WDAY"
-      case 341: // "RUN_TIME_VAR_TIME_YEAR"
-      case 342: // "VARIABLE"
-      case 343: // "Dictionary element"
-      case 344: // "Dictionary element, selected by regexp"
+      case 307: // "CONFIG_VALUE_AMQP"
+      case 308: // "CONFIG_VALUE_OFF"
+      case 309: // "CONFIG_VALUE_ON"
+      case 310: // "CONFIG_VALUE_PARALLEL"
+      case 311: // "CONFIG_VALUE_PROCESS_PARTIAL"
+      case 312: // "CONFIG_VALUE_REJECT"
+      case 313: // "CONFIG_VALUE_RELEVANT_ONLY"
+      case 314: // "CONFIG_VALUE_SERIAL"
+      case 315: // "CONFIG_VALUE_WARN"
+      case 316: // "CONFIG_XML_EXTERNAL_ENTITY"
+      case 317: // "CONGIG_DIR_RESPONSE_BODY_MP"
+      case 318: // "CONGIG_DIR_SEC_ARG_SEP"
+      case 319: // "CONGIG_DIR_SEC_COOKIE_FORMAT"
+      case 320: // "CONFIG_SEC_COOKIEV0_SEPARATOR"
+      case 321: // "CONGIG_DIR_SEC_DATA_DIR"
+      case 322: // "CONGIG_DIR_SEC_STATUS_ENGINE"
+      case 323: // "CONFIG_SEC_STREAM_IN_BODY_INSPECTION"
+      case 324: // "CONFIG_SEC_STREAM_OUT_BODY_INSPECTION"
+      case 325: // "CONGIG_DIR_SEC_TMP_DIR"
+      case 326: // "DIRECTIVE"
+      case 327: // "DIRECTIVE_SECRULESCRIPT"
+      case 328: // "FREE_TEXT_QUOTE_MACRO_EXPANSION"
+      case 329: // "QUOTATION_MARK"
+      case 330: // "RUN_TIME_VAR_BLD"
+      case 331: // "RUN_TIME_VAR_DUR"
+      case 332: // "RUN_TIME_VAR_HSV"
+      case 333: // "RUN_TIME_VAR_REMOTE_USER"
+      case 334: // "RUN_TIME_VAR_TIME"
+      case 335: // "RUN_TIME_VAR_TIME_DAY"
+      case 336: // "RUN_TIME_VAR_TIME_EPOCH"
+      case 337: // "RUN_TIME_VAR_TIME_HOUR"
+      case 338: // "RUN_TIME_VAR_TIME_MIN"
+      case 339: // "RUN_TIME_VAR_TIME_MON"
+      case 340: // "RUN_TIME_VAR_TIME_SEC"
+      case 341: // "RUN_TIME_VAR_TIME_WDAY"
+      case 342: // "RUN_TIME_VAR_TIME_YEAR"
+      case 343: // "VARIABLE"
+      case 344: // "Dictionary element"
+      case 345: // "Dictionary element, selected by regexp"
         value.move< std::string > (s.value);
         break;
 
-      case 351: // op
-      case 352: // op_before_init
+      case 352: // op
+      case 353: // op_before_init
         value.move< std::unique_ptr<Operator> > (s.value);
         break;
 
-      case 360: // run_time_string
+      case 361: // run_time_string
         value.move< std::unique_ptr<RunTimeString> > (s.value);
         break;
 
-      case 357: // var
+      case 358: // var
         value.move< std::unique_ptr<Variable> > (s.value);
         break;
 
-      case 358: // act
-      case 359: // setvar_action
+      case 359: // act
+      case 360: // setvar_action
         value.move< std::unique_ptr<actions::Action> > (s.value);
         break;
 
-      case 354: // variables
-      case 355: // variables_pre_process
-      case 356: // variables_may_be_quoted
+      case 355: // variables
+      case 356: // variables_pre_process
+      case 357: // variables_may_be_quoted
         value.move< std::unique_ptr<std::vector<std::unique_ptr<Variable> > >  > (s.value);
         break;
 
-      case 349: // actions
-      case 350: // actions_may_quoted
+      case 350: // actions
+      case 351: // actions_may_quoted
         value.move< std::unique_ptr<std::vector<std::unique_ptr<actions::Action> > >  > (s.value);
         break;
 
@@ -4128,7 +4139,7 @@ namespace yy {
      565,   566,   567,   568,   569,   570,   571,   572,   573,   574,
      575,   576,   577,   578,   579,   580,   581,   582,   583,   584,
      585,   586,   587,   588,   589,   590,   591,   592,   593,   594,
-     595,   596,   597,   598,   599
+     595,   596,   597,   598,   599,   600
     };
     return static_cast<token_type> (yytoken_number_[type]);
   }
@@ -5964,6 +5975,12 @@ namespace yy {
   }
 
   seclang_parser::symbol_type
+  seclang_parser::make_CONFIG_VALUE_AMQP (const std::string& v, const location_type& l)
+  {
+    return symbol_type (token::TOK_CONFIG_VALUE_AMQP, v, l);
+  }
+
+  seclang_parser::symbol_type
   seclang_parser::make_CONFIG_VALUE_OFF (const std::string& v, const location_type& l)
   {
     return symbol_type (token::TOK_CONFIG_VALUE_OFF, v, l);
@@ -6194,7 +6211,7 @@ namespace yy {
 
 
 } // yy
-#line 6198 "seclang-parser.hh" // lalr1.cc:377
+#line 6215 "seclang-parser.hh" // lalr1.cc:377
 
 
 

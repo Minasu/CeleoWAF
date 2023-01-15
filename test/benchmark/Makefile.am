@@ -6,6 +6,7 @@ benchmark_SOURCES = \
         benchmark.cc
 
 benchmark_LDADD = \
+	$(AMQP_LDADD) \
 	$(CURL_LDADD) \
 	$(GEOIP_LDADD) \
 	$(MAXMIND_LDADD) \
@@ -19,6 +20,7 @@ benchmark_LDADD = \
 
 benchmark_LDFLAGS = \
 	-L$(top_builddir)/src/.libs/ \
+	$(AMQP_LDFLAGS) \
 	$(GEOIP_LDFLAGS) \
 	-lceleowaf \
 	-lpthread \
@@ -35,6 +37,7 @@ benchmark_CPPFLAGS = \
 	-std=c++11 \
 	-I$(top_builddir)/headers \
 	$(GLOBAL_CPPFLAGS) \
+	$(AMQP_CFLAGS) \
 	$(PCRE_CFLAGS) \
 	$(LMDB_CFLAGS) \
 	$(LIBXML2_CFLAGS)

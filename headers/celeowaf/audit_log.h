@@ -44,7 +44,8 @@ class AuditLog {
      NotSetAuditLogType,
      SerialAuditLogType,
      ParallelAuditLogType,
-     HttpsAuditLogType
+     HttpsAuditLogType,
+	 AMQPAuditLogType
     };
 
     enum AuditLogStatus {

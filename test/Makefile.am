@@ -42,6 +42,7 @@ noinst_HEADERS = \
 
 
 unit_tests_LDADD = \
+	$(AMQP_LDADD) \
 	$(CURL_LDADD) \
 	$(GEOIP_LDADD) \
 	$(MAXMIND_LDADD) \
@@ -57,6 +58,7 @@ unit_tests_LDADD = \
 
 unit_tests_LDFLAGS = \
 	-L$(top_builddir)/src/.libs/ \
+	$(AMQP_LDFLAGS) \
 	$(GEOIP_LDFLAGS) \
 	-lceleowaf \
 	-lpthread \
@@ -75,6 +77,7 @@ unit_tests_CPPFLAGS = \
 	-I../ \
 	-g \
 	-I$(top_builddir)/headers \
+	$(AMQP_CFLAGS) \
 	$(CURL_CFLAGS) \
 	$(CWAF_NO_LOGS) \
 	$(GEOIP_CFLAGS) \
@@ -98,6 +101,7 @@ regression_tests_SOURCES = \
         regression/custom_debug_log.cc
 
 regression_tests_LDADD = \
+	$(AMQP_LDADD) \
 	$(CURL_LDADD) \
 	$(GEOIP_LDADD) \
 	$(MAXMIND_LDADD) \
@@ -113,6 +117,7 @@ regression_tests_LDADD = \
 
 regression_tests_LDFLAGS = \
 	-L$(top_builddir)/src/.libs/ \
+	$(AMQP_LDFLAGS) \
 	$(GEOIP_LDFLAGS) \
 	-lceleowaf \
 	-lpthread \
@@ -131,6 +136,7 @@ regression_tests_CPPFLAGS = \
 	-I../ \
 	-g \
 	-I$(top_builddir)/headers \
+	$(AMQP_CFLAGS) \
 	$(CURL_CFLAGS) \
 	$(CWAF_NO_LOGS) \
 	$(GEOIP_CFLAGS) \
@@ -153,6 +159,7 @@ rules_optimization_SOURCES = \
         optimization/optimization.cc
 
 rules_optimization_LDADD = \
+	$(AMQP_LDADD) \
 	$(CURL_LDADD) \
 	$(GEOIP_LDADD) \
 	$(MAXMIND_LDADD) \
@@ -167,6 +174,7 @@ rules_optimization_LDADD = \
 
 rules_optimization_LDFLAGS = \
 	-L$(top_builddir)/src/.libs/ \
+	$(AMQP_LDFLAGS) \
 	$(GEOIP_LDFLAGS) \
 	-lceleowaf \
 	-lpthread \
@@ -184,6 +192,7 @@ rules_optimization_CPPFLAGS = \
 	-I../ \
 	-g \
 	-I$(top_builddir)/headers \
+	$(AMQP_CFLAGS) \
 	$(CURL_CFLAGS) \
 	$(CWAF_NO_LOGS) \
 	$(GEOIP_CFLAGS) \

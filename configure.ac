@@ -136,6 +136,13 @@ PROG_PCRE2
 AM_CONDITIONAL([PCRE2_CFLAGS], [test "PCRE2_CFLAGS" != ""])
 
 
+#
+# Check for AMQP
+#
+PROG_AMQP
+AM_CONDITIONAL([AMQP_CFLAGS], [test "AMQP_CFLAGS" != ""])
+
+
 # Checks for header files.
 AC_HEADER_STDC
 AC_CHECK_HEADERS([string])
@@ -578,6 +585,25 @@ fi
 if test "x$PCRE2_FOUND" = "x2"; then
     echo "   + PCRE2                                          ....disabled"
 fi
+
+## AMQP
+if test "x$AMQP_FOUND" = "x0"; then
+    echo "   + AMQP                                          ....not found"
+fi
+if test "x$AMQP_FOUND" = "x1"; then
+    echo -n "   + AMQP                                          ....found "
+    if ! test "x$AMQP_VERSION" = "x"; then
+        echo "v${AMQP_VERSION}"
+    else
+        echo ""
+    fi
+    echo "      ${AMQP_DISPLAY}"
+fi
+if test "x$AMQP_FOUND" = "x2"; then
+    echo "   + AMQP                                          ....disabled"
+fi
+
+
 
 echo " "
 echo " Other Options"

@@ -281,6 +281,7 @@ libceleowaf_la_SOURCES = \
 	audit_log/writer/https.cc \
 	audit_log/writer/serial.cc \
 	audit_log/writer/parallel.cc \
+	audit_log/writer/amqp.cc \
 	celeowaf.cc \
 	rules_set.cc \
 	rules_set_phases.cc \
@@ -316,6 +317,7 @@ libceleowaf_la_CPPFLAGS = \
 	-fPIC \
 	-O3 \
 	-I../headers \
+	$(AMQP_CFLAGS) \
 	$(CURL_CFLAGS) \
 	$(GEOIP_CFLAGS) \
 	$(GLOBAL_CPPFLAGS) \
@@ -332,6 +334,7 @@ libceleowaf_la_CPPFLAGS = \
 
 
 libceleowaf_la_LDFLAGS = \
+	$(AMQP_LDFLAGS) \
 	$(CURL_LDFLAGS) \
 	$(GEOIP_LDFLAGS) \
 	$(GLOBAL_LDFLAGS) \
@@ -348,6 +351,7 @@ libceleowaf_la_LDFLAGS = \
 
 
 libceleowaf_la_LIBADD = \
+	$(AMQP_LDADD) \
 	$(CURL_LDADD) \
 	$(GEOIP_LDADD) \
 	$(GLOBAL_LDADD) \

@@ -23,6 +23,7 @@
 
 #include "celeowaf/transaction.h"
 #include "celeowaf/rule_message.h"
+#include "src/audit_log/writer/amqp.h"
 #include "src/audit_log/writer/https.h"
 #include "src/audit_log/writer/parallel.h"
 #include "src/audit_log/writer/serial.h"
@@ -225,6 +226,8 @@ bool AuditLog::init(std::string *error) {
         tmp_writer = new audit_log::writer::Parallel(this);
     } else if (m_type == HttpsAuditLogType) {
         tmp_writer = new audit_log::writer::Https(this);
+    } else if (m_type == AMQPAuditLogType) {
+        tmp_writer = new audit_log::writer::AMQP(this);
     } else {
         /*
          * if (m_type == SerialAuditLogType
