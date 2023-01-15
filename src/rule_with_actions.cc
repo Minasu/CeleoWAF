@@ -517,15 +517,16 @@ void RuleWithActions::performLogging(Transaction *trans,
                 trans->m_rulesMessages.push_back(*ruleMessage);
 
                 /* error */
-                if (!ruleMessage->m_isDisruptive) {
+                if (ruleMessage->m_isDisruptive) {
                     trans->serverLog(ruleMessage);
                 }
             }
         } else if (hasBlockAction() && !hasMultimatch()) {
             /* warn */
             trans->m_rulesMessages.push_back(*ruleMessage);
+			
             /* error */
-            if (!ruleMessage->m_isDisruptive) {
+            if (ruleMessage->m_isDisruptive) {
                 trans->serverLog(ruleMessage);
             }
         } else {
@@ -535,7 +536,7 @@ void RuleWithActions::performLogging(Transaction *trans,
                 trans->m_rulesMessages.push_back(*ruleMessage);
 
                 /* error */
-                if (!ruleMessage->m_isDisruptive) {
+                if (ruleMessage->m_isDisruptive) {
                     trans->serverLog(ruleMessage);
                 }
             }
@@ -546,7 +547,7 @@ void RuleWithActions::performLogging(Transaction *trans,
             trans->m_rulesMessages.push_back(*ruleMessage.get());
 
             /* error */
-            if (!ruleMessage->m_isDisruptive) {
+            if (ruleMessage->m_isDisruptive) {
                 trans->serverLog(ruleMessage);
             }
 
