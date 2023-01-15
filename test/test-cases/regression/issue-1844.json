@@ -41,6 +41,10 @@
     },
     "rules":[
       "SecRuleEngine On",
+	  "SecAuditLog /dev/null",
+	  "SecAuditLogType Parallel",
+	  "SecAuditLogRelevantStatus \"^(?:5|4(?!04))\""
+	  "SecAuditLogParts ABCFHZ",
       "SecRule WEBAPPID \"@contains test1\" \"id:1,phase:3,pass,t:trim\"",
       "Include test-cases/data/big-file.conf"
     ]

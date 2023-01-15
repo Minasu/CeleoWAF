@@ -31,6 +31,10 @@
   },
   "rules": [
     "SecRuleEngine On",
+	"SecAuditLog /dev/null",
+	"SecAuditLogType Parallel",
+	"SecAuditLogRelevantStatus \"^(?:5|4(?!04))\""
+	"SecAuditLogParts ABCFHZ",
     "SecAction \"id:1, nolog, setvar:tx.bad_value=attack\"",
     "SecRule ARGS:param \"@rx ^%{tx.bad_value}$\" \"id:2,block\""
   ]

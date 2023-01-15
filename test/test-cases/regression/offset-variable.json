@@ -25,6 +25,11 @@
       "error_log":"o0,3v23,6t:trim"
     },
     "rules":[
+	  "SecRuleEngine On",
+	  "SecAuditLog /dev/null",
+	  "SecAuditLogType Parallel",
+	  "SecAuditLogRelevantStatus \"^(?:5|4(?!04))\""
+	  "SecAuditLogParts ABCFHZ",
       "SecRule ARGS \"@rx val\" \"id:1,phase:2,pass,t:trim,msg:'ops'\""
     ]
   },

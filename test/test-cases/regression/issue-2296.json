@@ -39,6 +39,10 @@
     },
     "rules":[
         "SecRuleEngine On",
+	    "SecAuditLog /dev/null",
+	    "SecAuditLogType Parallel",
+	    "SecAuditLogRelevantStatus \"^(?:5|4(?!04))\""
+	    "SecAuditLogParts ABCFHZ",
         "SecRule ARGS:/^ThIs$/ \"test\" \"id:1\""
     ]
   },

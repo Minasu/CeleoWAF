@@ -83,6 +83,10 @@
     },
     "rules":[
       "SecRuleEngine On",
+	  "SecAuditLog /dev/null",
+	  "SecAuditLogType Parallel",
+	  "SecAuditLogRelevantStatus \"^(?:5|4(?!04))\""
+	  "SecAuditLogParts ABCFHZ",
       "SecRule REQUEST_HEADERS:Content-Length \"!^0$\" \"id:1,phase:2,pass,t:trim,block\""
     ]
   },

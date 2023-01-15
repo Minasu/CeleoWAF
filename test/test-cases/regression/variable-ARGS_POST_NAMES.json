@@ -142,7 +142,7 @@
   {
     "enabled":1,
     "version_min":300000,
-    "title":"Testing Variables :: ARGS_POST_NAMES (3/x)",
+    "title":"Testing Variables :: ARGS_POST_NAMES (4/x)",
     "client":{
       "ip":"200.249.12.31",
       "port":123
@@ -186,7 +186,11 @@
       "error_log":"o0,5v206,5t:trim"
     },
     "rules":[
-        "SecRuleEngine On",
+		"SecRuleEngine On",
+		"SecAuditLog /dev/null",
+		"SecAuditLogType Parallel",
+		"SecAuditLogRelevantStatus \"^(?:5|4(?!04))\""
+		"SecAuditLogParts ABCFHZ",
         "SecRequestBodyAccess On",
         "SecRule ARGS_POST_NAMES \"@contains name1\" \"id:1,phase:3,pass,t:trim\""
     ]
