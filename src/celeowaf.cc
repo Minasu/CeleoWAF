@@ -36,7 +36,7 @@
 #include "celeowaf/rule.h"
 #include "celeowaf/rule_message.h"
 #include "src/collection/backend/in_memory-per_process.h"
-#include "src/collection/backend/lmdb.h"
+#include "src/collection/backend/redis.h"
 #include "src/unique_id.h"
 #include "src/utils/regex.h"
 #include "src/utils/geo_lookup.h"
@@ -61,12 +61,12 @@ namespace celeowaf {
  */
 CeleoWAF::CeleoWAF()
     :
-#ifdef WITH_LMDB
-    m_global_collection(new collection::backend::LMDB("GLOBAL")),
-    m_resource_collection(new collection::backend::LMDB("RESOURCE")),
-    m_ip_collection(new collection::backend::LMDB("IP")),
-    m_session_collection(new collection::backend::LMDB("SESSION")),
-    m_user_collection(new collection::backend::LMDB("USER")),
+#ifdef WITH_REDIS
+    m_global_collection(new collection::backend::REDIS("GLOBAL")),
+    m_resource_collection(new collection::backend::REDIS("RESOURCE")),
+    m_ip_collection(new collection::backend::REDIS("IP")),
+    m_session_collection(new collection::backend::REDIS("SESSION")),
+    m_user_collection(new collection::backend::REDIS("USER")),
 #else
     m_global_collection(new collection::backend::InMemoryPerProcess("GLOBAL")),
     m_resource_collection(

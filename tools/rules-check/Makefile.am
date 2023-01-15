@@ -13,10 +13,10 @@ cwaf_rules_check_LDADD = \
 	$(MAXMIND_LDADD) \
 	$(GLOBAL_LDADD) \
 	$(LIBXML2_LDADD) \
-	$(LMDB_LDADD) \
 	$(LUA_LDADD) \
 	$(PCRE_LDADD) \
 	$(SSDEEP_LDADD) \
+	$(REDIS_LDADD) \
 	$(YAJL_LDADD)
 
 cwaf_rules_check_LDFLAGS = \
@@ -24,9 +24,9 @@ cwaf_rules_check_LDFLAGS = \
 	$(GEOIP_LDFLAGS) \
 	$(MAXMIND_LDFLAGS) \
 	$(LDFLAGS) \
-	$(LMDB_LDFLAGS) \
 	$(LUA_LDFLAGS) \
 	$(SSDEEP_LDFLAGS) \
+	$(REDIS_LDFLAGS) \
 	$(YAJL_LDFLAGS)
 
 cwaf_rules_check_CPPFLAGS = \
@@ -35,9 +35,9 @@ cwaf_rules_check_CPPFLAGS = \
 	$(GLOBAL_CPPFLAGS) \
 	$(AMQP_CFLAGS) \
 	$(PCRE_CFLAGS) \
-	$(LMDB_CFLAGS) \
 	$(MAXMIND_CFLAGS) \
-	$(LIBXML2_CFLAGS)
+	$(LIBXML2_CFLAGS) \
+	$(REDIS_CFLAGS)
 
 MAINTAINERCLEANFILES = \
         Makefile.in

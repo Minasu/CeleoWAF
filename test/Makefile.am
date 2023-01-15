@@ -48,11 +48,11 @@ unit_tests_LDADD = \
 	$(MAXMIND_LDADD) \
 	$(GLOBAL_LDADD) \
 	$(LIBXML2_LDADD) \
-	$(LMDB_LDADD) \
 	$(LUA_LDADD) \
 	$(PCRE_LDADD) \
 	$(PCRE2_LDADD) \
 	$(SSDEEP_LDADD) \
+	$(REDIS_LDADD) \
 	$(YAJL_LDADD)
 
 
@@ -65,9 +65,9 @@ unit_tests_LDFLAGS = \
 	-lm \
 	-lstdc++ \
 	$(MAXMIND_LDFLAGS) \
-	$(LMDB_LDFLAGS) \
 	$(LUA_LDFLAGS) \
 	$(SSDEEP_LDFLAGS) \
+	$(REDIS_LDFLAGS) \
 	$(YAJL_LDFLAGS)
 
 
@@ -83,12 +83,12 @@ unit_tests_CPPFLAGS = \
 	$(GEOIP_CFLAGS) \
 	$(MAXMIND_CFLAGS) \
 	$(GLOBAL_CPPFLAGS) \
-	$(LMDB_CFLAGS) \
 	$(PCRE_CFLAGS) \
 	$(PCRE2_CFLAGS) \
 	$(YAJL_CFLAGS) \
 	$(LUA_CFLAGS) \
 	$(SSDEEP_CFLAGS) \
+	$(REDIS_CFLAGS) \
 	$(LIBXML2_CFLAGS)
 
 
@@ -107,11 +107,11 @@ regression_tests_LDADD = \
 	$(MAXMIND_LDADD) \
 	$(GLOBAL_LDADD) \
 	$(LIBXML2_LDADD) \
-	$(LMDB_LDADD) \
 	$(LUA_LDADD) \
 	$(PCRE_LDADD) \
 	$(PCRE2_LDADD) \
 	$(SSDEEP_LDADD) \
+	$(REDIS_LDADD) \
 	$(YAJL_LDADD)
 
 
@@ -125,9 +125,9 @@ regression_tests_LDFLAGS = \
 	-lstdc++ \
 	$(MAXMIND_LDFLAGS) \
 	$(YAJL_LDFLAGS) \
-	$(LMDB_LDFLAGS) \
 	$(SSDEEP_LDFLAGS) \
-	$(LUA_LDFLAGS)
+	$(LUA_LDFLAGS) \
+	$(REDIS_LDFLAGS)
 
 
 regression_tests_CPPFLAGS = \
@@ -142,13 +142,13 @@ regression_tests_CPPFLAGS = \
 	$(GEOIP_CFLAGS) \
 	$(MAXMIND_CFLAGS) \
 	$(GLOBAL_CPPFLAGS) \
-	$(LMDB_CFLAGS) \
 	$(LUA_CFLAGS) \
 	$(SSDEEP_CFLAGS) \
 	$(PCRE_CFLAGS) \
 	$(PCRE2_CFLAGS) \
 	$(YAJL_CFLAGS) \
-	$(LIBXML2_CFLAGS)
+	$(LIBXML2_CFLAGS) \
+	$(REDIS_CFLAGS)
 
 
 # optimization
@@ -165,11 +165,11 @@ rules_optimization_LDADD = \
 	$(MAXMIND_LDADD) \
 	$(GLOBAL_LDADD) \
 	$(LIBXML2_LDADD) \
-	$(LMDB_LDADD) \
 	$(LUA_LDADD) \
 	$(PCRE_LDADD) \
 	$(PCRE2_LDADD) \
 	$(SSDEEP_LDADD) \
+	$(REDIS_LDADD) \
 	$(YAJL_LDADD)
 
 rules_optimization_LDFLAGS = \
@@ -181,9 +181,9 @@ rules_optimization_LDFLAGS = \
 	-lm \
 	-lstdc++ \
 	$(MAXMIND_LDFLAGS) \
-	$(LMDB_LDFLAGS) \
 	$(LUA_LDFLAGS) \
 	$(SSDEEP_LDFLAGS) \
+	$(REDIS_LDFLAGS) \
 	$(YAJL_LDFLAGS)
 
 rules_optimization_CPPFLAGS = \
@@ -198,11 +198,11 @@ rules_optimization_CPPFLAGS = \
 	$(GEOIP_CFLAGS) \
 	$(MAXMIND_CFLAGS) \
 	$(GLOBAL_CPPFLAGS) \
-	$(LMDB_CFLAGS) \
 	$(LUA_CFLAGS) \
 	$(SSDEEP_CFLAGS) \
 	$(PCRE_CFLAGS) \
 	$(PCRE2_CFLAGS) \
 	$(YAJL_CFLAGS) \
+	$(REDIS_CFLAGS) \
 	$(LIBXML2_CFLAGS)
 

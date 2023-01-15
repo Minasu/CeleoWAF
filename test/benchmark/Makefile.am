@@ -12,10 +12,10 @@ benchmark_LDADD = \
 	$(MAXMIND_LDADD) \
 	$(PCRE_LDADD) \
 	$(YAJL_LDADD) \
-	$(LMDB_LDADD) \
 	$(SSDEEP_LDADD) \
 	$(LUA_LDADD) \
 	$(LIBXML2_LDADD) \
+	$(REDIS_LDADD) \
 	$(GLOBAL_LDADD)
 
 benchmark_LDFLAGS = \
@@ -29,9 +29,9 @@ benchmark_LDFLAGS = \
 	$(GEOIP_LDFLAGS) \
 	$(MAXMIND_LDFLAGS) \
 	$(YAJL_LDFLAGS) \
-	$(LMDB_LDFLAGS) \
 	$(SSDEEP_LDFLAGS) \
-	$(LUA_LDFLAGS)
+	$(LUA_LDFLAGS) \
+	$(REDIS_LDFLAGS)
 
 benchmark_CPPFLAGS = \
 	-std=c++11 \
@@ -39,8 +39,8 @@ benchmark_CPPFLAGS = \
 	$(GLOBAL_CPPFLAGS) \
 	$(AMQP_CFLAGS) \
 	$(PCRE_CFLAGS) \
-	$(LMDB_CFLAGS) \
-	$(LIBXML2_CFLAGS)
+	$(LIBXML2_CFLAGS) \
+	$(REDIS_CFLAGS)
 
 MAINTAINERCLEANFILES = \
         Makefile.in

@@ -260,7 +260,7 @@ UTILS = \
 COLLECTION = \
 	collection/collections.cc \
 	collection/backend/in_memory-per_process.cc \
-	collection/backend/lmdb.cc
+	collection/backend/redis.cc
 
 
 BODY_PROCESSORS = \
@@ -324,13 +324,13 @@ libceleowaf_la_CPPFLAGS = \
 	$(CWAF_NO_LOGS) \
 	$(CWAF_MUTEX_ON_PM) \
 	$(YAJL_CFLAGS) \
-	$(LMDB_CFLAGS) \
 	$(PCRE_CFLAGS) \
 	$(PCRE2_CFLAGS) \
 	$(SSDEEP_CFLAGS) \
 	$(MAXMIND_CFLAGS) \
 	$(LUA_CFLAGS) \
-	$(LIBXML2_CFLAGS)
+	$(LIBXML2_CFLAGS) \
+	$(REDIS_CFLAGS)
 
 
 libceleowaf_la_LDFLAGS = \
@@ -340,12 +340,12 @@ libceleowaf_la_LDFLAGS = \
 	$(GLOBAL_LDFLAGS) \
 	$(LDFLAGS) \
 	$(LIBXML2_LDFLAGS) \
-	$(LMDB_LDFLAGS) \
 	$(LUA_LDFLAGS) \
 	$(PCRE_LDFLAGS) \
 	$(PCRE2_LDFLAGS) \
 	$(SSDEEP_LDFLAGS) \
 	$(MAXMIND_LDFLAGS) \
+	$(REDIS_LDFLAGS) \
 	$(YAJL_LDFLAGS) \
 	-version-info @MSC_VERSION_INFO@
 
@@ -356,7 +356,6 @@ libceleowaf_la_LIBADD = \
 	$(GEOIP_LDADD) \
 	$(GLOBAL_LDADD) \
 	$(LIBXML2_LDADD) \
-	$(LMDB_LDADD) \
 	$(LUA_LDADD) \
 	../others/libinjection.la \
 	../others/libmbedtls.la \
@@ -364,5 +363,6 @@ libceleowaf_la_LIBADD = \
 	$(PCRE2_LDADD) \
 	$(MAXMIND_LDADD) \
 	$(SSDEEP_LDADD) \
+	$(REDIS_LDADD) \
 	$(YAJL_LDADD)
 
