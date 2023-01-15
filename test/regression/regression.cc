@@ -161,12 +161,6 @@ void perform_unit_test(CeleoWAFTest<RegressionTest> *test,
             continue;
         }
 
-#ifdef WITH_LMDB
-        // some tests (e.g. issue-1831.json)  don't like it when data persists between runs
-        unlink("./cwaf-shared-collections");
-        unlink("./cwaf-shared-collections-lock");
-#endif
-
         cwaf = new celeowaf::CeleoWAF();
         cwaf->setConnectorInformation("CeleoWAF-regression v0.0.1-alpha" \
             " (CeleoWAF regression test utility)");

@@ -93,11 +93,6 @@ AM_CONDITIONAL([GEOIP_CFLAGS], [test "GEOIP_CFLAGS" != ""])
 PROG_MAXMIND
 AM_CONDITIONAL([MAXMIND_CFLAGS], [test "MAXMIND_CFLAGS" != ""])
 
-
-# Check for LMDB
-PROG_LMDB
-AM_CONDITIONAL([LMDB_CFLAGS], [test "LMDB_CFLAGS" != ""])
-
 # Check for SSDEEP
 CHECK_SSDEEP
 AM_CONDITIONAL([SSDEEP_CFLAGS], [test "SSDEEP_CFLAGS" != ""])
@@ -141,6 +136,12 @@ AM_CONDITIONAL([PCRE2_CFLAGS], [test "PCRE2_CFLAGS" != ""])
 #
 PROG_AMQP
 AM_CONDITIONAL([AMQP_CFLAGS], [test "AMQP_CFLAGS" != ""])
+
+#
+# Check for Redis
+#
+PROG_REDIS
+AM_CONDITIONAL([REDIS_CFLAGS], [test "REDIS_CFLAGS" != ""])
 
 
 # Checks for header files.
@@ -498,24 +499,6 @@ if test "x$YAJL_FOUND" = "x2"; then
 fi
 
 
-## LMDB
-if test "x$LMDB_FOUND" = "x0"; then
-    echo "   + LMDB                                          ....not found"
-fi
-if test "x$LMDB_FOUND" = "x1"; then
-    echo -n "   + LMDB                                          ....found "
-    if ! test "x$LMDB_VERSION" = "x"; then
-        echo "v${LMDB_VERSION}"
-    else
-        echo ""
-    fi
-    echo "      ${LMDB_DISPLAY}"
-fi
-if test "x$LMDB_FOUND" = "x2"; then
-    echo "   + LMDB                                          ....disabled"
-fi
-
-
 ## libxml2
 if test "x$LIBXML2_FOUND" = "x0"; then
     echo "   + LibXML2                                       ....not found"
@@ -603,6 +586,23 @@ if test "x$AMQP_FOUND" = "x2"; then
     echo "   + AMQP                                          ....disabled"
 fi
 
+
+## REDIS
+if test "x$REDIS_FOUND" = "x0"; then
+    echo "   + REDIS                                         ....not found"
+fi
+if test "x$REDIS_FOUND" = "x1"; then
+    echo -n "   + REDIS                                         ....found "
+    if ! test "x$REDIS_VERSION" = "x"; then
+        echo "v${REDIS_VERSION}"
+    else
+        echo ""
+    fi
+    echo "      ${REDIS_DISPLAY}"
+fi
+if test "x$REDIS_FOUND" = "x2"; then
+    echo "   + REDIS                                          ....disabled"
+fi
 
 
 echo " "

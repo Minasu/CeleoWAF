@@ -171,6 +171,20 @@ std::unique_ptr<std::string> InMemoryPerProcess::resolveFirst(
 }
 
 
+void InMemoryPerProcess::countReqLimit(const std::string& var,
+    std::vector<const VariableValue *> *l) {
+	// Not Available
+    return;
+}
+
+bool InMemoryPerProcess::insertReqLimit(const std::string &key,
+    const std::string &value) {
+	// Not Available
+	
+    return true;
+}
+
+
 }  // namespace backend
 }  // namespace collection
 }  // namespace celeowaf

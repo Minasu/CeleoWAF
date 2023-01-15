@@ -11,10 +11,10 @@ read_LDADD = \
 	$(MAXMIND_LDADD) \
 	$(GLOBAL_LDADD) \
 	$(LIBXML2_LDADD) \
-	$(LMDB_LDADD) \
 	$(LUA_LDADD) \
 	$(PCRE_LDADD) \
 	$(SSDEEP_LDADD) \
+	$(REDIS_LDADD) \
 	$(YAJL_LDADD)
 
 read_LDFLAGS = \
@@ -24,10 +24,10 @@ read_LDFLAGS = \
 	-lpthread \
 	-lm \
 	-lstdc++ \
-	$(LMDB_LDFLAGS) \
 	$(LUA_LDFLAGS) \
 	$(SSDEEP_LDFLAGS) \
 	$(MAXMIND_LDFLAGS) \
+	$(REDIS_LDFLAGS) \
 	$(YAJL_LDFLAGS)
 
 read_CPPFLAGS = \
@@ -45,10 +45,10 @@ read_CPPFLAGS = \
 	$(GLOBAL_CPPFLAGS) \
 	$(CWAF_NO_LOGS) \
 	$(YAJL_CFLAGS) \
-	$(LMDB_CFLAGS) \
 	$(LUA_CFLAGS) \
 	$(PCRE_CFLAGS) \
-	$(LIBXML2_CFLAGS)
+	$(LIBXML2_CFLAGS) \
+	$(REDIS_CFLAGS)
 
 
 MAINTAINERCLEANFILES = \

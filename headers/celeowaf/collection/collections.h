@@ -46,7 +46,7 @@ namespace collection {
 class Collections {
  public:
     Collections(Collection *global, Collection *ip, Collection *session,
-        Collection *user, Collection *resource);
+        Collection *user, Collection *resource, Collection *reqlimit);
     ~Collections();
 
     Collections(const Collections &c) = delete;
@@ -57,12 +57,14 @@ class Collections {
     std::string m_session_collection_key;
     std::string m_user_collection_key;
     std::string m_resource_collection_key;
+	std::string m_reqlimit_collection_key;
 
     Collection *m_global_collection;
     Collection *m_ip_collection;
     Collection *m_session_collection;
     Collection *m_user_collection;
     Collection *m_resource_collection;
+	Collection *m_reqlimit_collection;
     Collection *m_tx_collection;
 };
 

@@ -10,11 +10,11 @@ simple_request_LDADD = \
 	$(GEOIP_LDADD) \
 	$(GLOBAL_LDADD) \
 	$(LIBXML2_LDADD) \
-	$(LMDB_LDADD) \
 	$(MAXMIND_LDADD) \
 	$(LUA_LDADD) \
 	$(PCRE_LDADD) \
 	$(SSDEEP_LDADD) \
+	$(REDIS_LDADD) \
 	$(YAJL_LDADD)
 
 simple_request_LDFLAGS = \
@@ -24,10 +24,10 @@ simple_request_LDFLAGS = \
 	-lpthread \
 	-lm \
 	-lstdc++ \
-	$(LMDB_LDFLAGS) \
 	$(LUA_LDFLAGS) \
 	$(MAXMIND_LDFLAGS) \
 	$(SSDEEP_LDFLAGS) \
+	$(REDIS_LDFLAGS) \
 	$(YAJL_LDFLAGS)
 
 simple_request_CPPFLAGS = \
@@ -44,9 +44,9 @@ simple_request_CPPFLAGS = \
 	$(GLOBAL_CPPFLAGS) \
 	$(CWAF_NO_LOGS) \
 	$(YAJL_CFLAGS) \
-	$(LMDB_CFLAGS) \
 	$(LUA_CFLAGS) \
 	$(PCRE_CFLAGS) \
+	$(REDIS_CFLAGS) \
 	$(LIBXML2_CFLAGS)
 
 

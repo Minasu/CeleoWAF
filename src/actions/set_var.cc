@@ -29,6 +29,7 @@
 #include "src/variables/session.h"
 #include "src/variables/tx.h"
 #include "src/variables/user.h"
+#include "src/variables/reqlimit.h"
 #include "src/variables/variable.h"
 
 namespace celeowaf {
@@ -63,6 +64,9 @@ bool SetVar::evaluate(RuleWithActions *rule, Transaction *t) {
         variables::Global_DynamicElement *> (v);
     variables::User_DynamicElement *user = dynamic_cast<
         variables::User_DynamicElement *> (v);
+	variables::ReqLimit_DynamicElement *reqlimit = dynamic_cast<
+        variables::ReqLimit_DynamicElement *> (v);	
+	
     if (tx) {
         m_variableNameExpanded = tx->m_string->evaluate(t, rule);
     } else if (session) {
@@ -75,7 +79,9 @@ bool SetVar::evaluate(RuleWithActions *rule, Transaction *t) {
         m_variableNameExpanded = global->m_string->evaluate(t, rule);
     } else if (user) {
         m_variableNameExpanded = user->m_string->evaluate(t, rule);
-    } else {
+    } else if (reqlimit) {
+        m_variableNameExpanded = reqlimit->m_string->evaluate(t, rule);
+	} else {
         m_variableNameExpanded = m_variable->m_name;
     }
 
@@ -96,6 +102,8 @@ bool SetVar::evaluate(RuleWithActions *rule, Transaction *t) {
             global->del(t, m_variableNameExpanded);
         } else if (user) {
             user->del(t, m_variableNameExpanded);
+		} else if (user) {
+            reqlimit->del(t, m_variableNameExpanded);
         } else {
             // ?
         }
@@ -148,7 +156,9 @@ bool SetVar::evaluate(RuleWithActions *rule, Transaction *t) {
         global->storeOrUpdateFirst(t, m_variableNameExpanded, targetValue);
     } else if (user) {
         user->storeOrUpdateFirst(t, m_variableNameExpanded, targetValue);
-    } else {
+    } else if (reqlimit) {
+        reqlimit->storeOrUpdateFirst(t, m_variableNameExpanded, targetValue);
+	} else {
         // ?
     }
 

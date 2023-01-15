@@ -1,6 +1,6 @@
 /*
  * CeleoWAF, http://www.celeowaf.org/
- * Copyright (c) 2015 - 2021 Trustwave Holdings, Inc. (http://www.trustwave.com/)
+ * Copyright (c) 2023 - 2023 Celeonet SAS (https://www.celeonet.fr/)
  *
  * You may not use this file except in compliance with
  * the License.  You may obtain a copy of the License at
@@ -16,64 +16,46 @@
 
 #ifdef __cplusplus
 #include <string>
+#include <cstring>
 #include <iostream>
 #include <unordered_map>
 #include <list>
 #include <vector>
 #include <algorithm>
 #include <memory>
+#include <ctime>
+#include <chrono>
 #endif
 
+#ifdef WITH_REDIS
+#include <hiredis/hiredis.h>
+#endif  // WITH_REDIS
+#include <sys/stat.h>
+#include <sys/types.h>
+#include <fcntl.h>
+#include <pthread.h>
 
 #include "celeowaf/variable_value.h"
 #include "celeowaf/collection/collection.h"
 #include "src/variables/variable.h"
 
-#ifndef SRC_COLLECTION_BACKEND_IN_MEMORY_PER_PROCESS_H_
-#define SRC_COLLECTION_BACKEND_IN_MEMORY_PER_PROCESS_H_
+using namespace std::chrono;
+
+#ifndef SRC_COLLECTION_BACKEND_REDIS_H_
+#define SRC_COLLECTION_BACKEND_REDIS_H_
+
+#ifdef WITH_REDIS
 
 #ifdef __cplusplus
 namespace celeowaf {
 namespace collection {
 namespace backend {
 
-/*
- * FIXME:
- *
- * This was an example grabbed from:
- * http://stackoverflow.com/questions/8627698/case-insensitive-stl-containers-e-g-stdunordered-set
- *
- * We have to have a better hash function, maybe based on the std::hash.
- *
- */
-struct MyEqual {
-    bool operator()(const std::string& Left, const std::string& Right) const {
-        return Left.size() == Right.size()
-             && std::equal(Left.begin(), Left.end(), Right.begin(),
-            [](char a, char b) {
-            return tolower(a) == tolower(b);
-        });
-    }
-};
-
-struct MyHash{
-    size_t operator()(const std::string& Keyval) const {
-        // You might need a better hash function than this
-        size_t h = 0;
-        std::for_each(Keyval.begin(), Keyval.end(), [&](char c) {
-            h += tolower(c);
-        });
-        return h;
-    }
-};
-
-class InMemoryPerProcess :
-    public std::unordered_multimap<std::string, std::string,
-        /*std::hash<std::string>*/MyHash, MyEqual>,
+class REDIS :
     public Collection {
  public:
-    explicit InMemoryPerProcess(const std::string &name);
-    ~InMemoryPerProcess();
+    explicit REDIS(std::string name);
+	~REDIS();
     void store(std::string key, std::string value) override;
 
     bool storeOrUpdateFirst(const std::string &key,
@@ -101,7 +83,7 @@ class InMemoryPerProcess :
         const std::string &value) override;
 
  private:
-    pthread_mutex_t m_lock;
+    redisContext *connect ;
 };
 
 }  // namespace backend
@@ -109,5 +91,6 @@ class InMemoryPerProcess :
 }  // namespace celeowaf
 #endif
 
+#endif  // WITH_REDIS
 
-#endif  // SRC_COLLECTION_BACKEND_IN_MEMORY_PER_PROCESS_H_
+#endif  // SRC_COLLECTION_BACKEND_REDIS_H_

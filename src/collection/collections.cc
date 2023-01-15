@@ -36,17 +36,19 @@ namespace collection {
 
 Collections::Collections(Collection *global,
     Collection *ip, Collection *session, Collection *user,
-    Collection *resource)
+    Collection *resource, Collection *reqlimit)
     : m_global_collection_key(""),
     m_ip_collection_key(""),
     m_session_collection_key(""),
     m_user_collection_key(""),
     m_resource_collection_key(""),
+    m_reqlimit_collection_key(""),
     m_global_collection(global),
     m_ip_collection(ip),
     m_session_collection(session),
     m_user_collection(user),
     m_resource_collection(resource),
+    m_reqlimit_collection(reqlimit),
     m_tx_collection(new backend::InMemoryPerProcess("TX")) {
     }
 

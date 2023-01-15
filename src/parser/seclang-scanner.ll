@@ -257,6 +257,7 @@ VARIABLE_MULTIPART_PART_HEADERS           (?i:MULTIPART_PART_HEADERS)
 VARIABLE_RULE                             (?i:RULE)
 VARIABLE_SESSION                          (?i:(SESSION))
 VARIABLE_IP                               (?i:(IP))
+VARIABLE_REQLIMIT                         (?i:(REQLIMIT))
 VARIABLE_USER                             (?i:(USER))
 VARIABLE_STATUS                           (?i:(STATUS))
 VARIABLE_STATUS_LINE                      (?i:(STATUS_LINE))
@@ -1024,6 +1025,7 @@ EQUALS_MINUS                            (?i:=\-)
 {VARIABLE_WEBSERVER_ERROR_LOG}              { driver.error (*driver.loc.back(), "Variable VARIABLE_WEBSERVER_ERROR_LOG is not supported by libCeleoWAF", ""); throw p::syntax_error(*driver.loc.back(), "");}
 {VARIABLE_GLOBAL}                           { return p::make_VARIABLE_GLOBAL(*driver.loc.back()); }
 {VARIABLE_IP}                               { return p::make_VARIABLE_IP(*driver.loc.back()); }
+{VARIABLE_REQLIMIT}                         { return p::make_VARIABLE_REQLIMIT(*driver.loc.back()); }
 {VARIABLE_RESOURCE}                         { return p::make_VARIABLE_RESOURCE(*driver.loc.back()); }
 {VARIABLE_SESSION}                          { return p::make_VARIABLE_SESSION(*driver.loc.back()); }
 {VARIABLE_STATUS}                           { return p::make_VARIABLE_STATUS(*driver.loc.back()); }
@@ -1035,6 +1037,7 @@ EQUALS_MINUS                            (?i:=\-)
 <EXPECTING_VARIABLE,EXPECTING_ACTION_PREDICATE_VARIABLE,SETVAR_ACTION_NONQUOTED,SETVAR_ACTION_QUOTED>{
 {VARIABLE_GLOBAL}[:.]                       { BEGINX_(); return p::make_VARIABLE_GLOBAL(*driver.loc.back()); }
 {VARIABLE_IP}[:.]                           { BEGINX_(); return p::make_VARIABLE_IP(*driver.loc.back()); }
+{VARIABLE_REQLIMIT}[:.]                     { BEGINX_(); return p::make_VARIABLE_REQLIMIT(*driver.loc.back()); }
 {VARIABLE_RESOURCE}[:.]                     { BEGINX_(); return p::make_VARIABLE_RESOURCE(*driver.loc.back()); }
 {VARIABLE_SESSION}[:.]                      { BEGINX_(); return p::make_VARIABLE_SESSION(*driver.loc.back()); }
 {VARIABLE_TX}[:.]                           { BEGINX_(); return p::make_VARIABLE_TX(*driver.loc.back()); }
